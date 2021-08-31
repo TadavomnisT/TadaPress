@@ -3,6 +3,6 @@
 require_once 'chessbean.php';
 $algorithm = new ChessBean ;
 
-$algorithm -> printBlockAsChessBoard(); 
+$algorithm -> compressFile( "test.php" , "sss" ); 
 
 ?>
