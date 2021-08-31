@@ -49,11 +49,12 @@ class ChessBean
     while (! feof ($input))
     {
         $chunk = fread( $input , 8 );
-        $bits = $this->stringToBinary( $chunk );
+        $block = $this->stringToBinary( $chunk );
         // // testing exceptions :
         // $bits = "1111111111111111111111111111111111111111111111111111111111111111";
         // $bits = "0000000000000000000000000000000000000000000000000000000000000000";
-
+        var_dump($this->compressBlock( $block ));
+        die;
     }
     // code...
   }
@@ -141,24 +142,24 @@ class ChessBean
 
     $center_4_bits = $block[27] . $block[28] . $block[35] . $block[36] ;
 
-    echo "whites_7_bits : " . $whites_7_bits . PHP_EOL;
-    echo "blacks_7_bits : " . $blacks_7_bits . PHP_EOL;
-    echo "sum_whites_5_bits : " . $sum_whites_5_bits . PHP_EOL;
-    echo "sum_blacks_5_bits : " . $sum_blacks_5_bits . PHP_EOL;
-    echo "sum_columns_8_bits : " . $sum_columns_8_bits . PHP_EOL;
-    echo "sum_rows_8_bits : " . $sum_rows_8_bits . PHP_EOL;
-    echo "corner_4_bits : " . $corner_4_bits . PHP_EOL;
-    echo "center_4_bits : " . $center_4_bits . PHP_EOL;
+    // echo "whites_7_bits : " . $whites_7_bits . PHP_EOL;
+    // echo "blacks_7_bits : " . $blacks_7_bits . PHP_EOL;
+    // echo "sum_whites_5_bits : " . $sum_whites_5_bits . PHP_EOL;
+    // echo "sum_blacks_5_bits : " . $sum_blacks_5_bits . PHP_EOL;
+    // echo "sum_columns_8_bits : " . $sum_columns_8_bits . PHP_EOL;
+    // echo "sum_rows_8_bits : " . $sum_rows_8_bits . PHP_EOL;
+    // echo "corner_4_bits : " . $corner_4_bits . PHP_EOL;
+    // echo "center_4_bits : " . $center_4_bits . PHP_EOL;
 
-    // code...
+    return $whites_7_bits . $blacks_7_bits . $sum_whites_5_bits . $sum_blacks_5_bits . $sum_columns_8_bits . $sum_rows_8_bits . $corner_4_bits . $center_4_bits;
   }
   private function decompressBlock( string $block )
   {
-    // code...
+    // This will be tha hard part.
   }
   function hashBlock( string $block )
   {
-    // code...
+    // I should implement this later, after we decompressed data successfully.
   }
   private function strToArray($str, $l = 0)
   {
@@ -194,6 +195,20 @@ class ChessBean
           $binary[$key] = str_repeat("0" , ( 8 - strlen($binary[$key]) ) ) . $binary[$key];
       }
       return implode(' ', $binary);
+  }
+  private function printBlockAsMatrix( string $block )
+  {
+    $cnt = 0;
+    for ($i=0; $i < 64 ; $i++)
+    {
+        echo $block[$i] . " ";
+        ++ $cnt;
+        if ($cnt >= 8) {
+            $cnt = 0;
+            echo PHP_EOL;
+        }
+    }
+    echo PHP_EOL;
   }
   private function printBlockAsChessBoard( string $block )
   {
