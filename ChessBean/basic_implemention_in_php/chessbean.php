@@ -54,9 +54,6 @@ class ChessBean
           fwrite( $output , pack('H*', base_convert($this->compressBlock( $block ), 2, 16)) );
         else
           fwrite( $output , $chunk );
-        // // testing exceptions :
-        // $bits = "1111111111111111111111111111111111111111111111111111111111111111";
-        // $bits = "0000000000000000000000000000000000000000000000000000000000000000";
     }
   }
   public function decompressFile( string $inputName , string $outputName )
@@ -65,7 +62,20 @@ class ChessBean
     if ( file_exists( $outputName ) ) throw new \Exception("File \"$outputName\" aleady exists.", 1);
     if ( $inputName === $outputName ) throw new \Exception("Output name cannot be same as input name.", 1);
 
-    // code...
+    $input = fopen( $inputName,"rb");
+    $output = fopen( $outputName,"w");
+    while (! feof ($input))
+    {
+        $chunk = fread( $input , 7 );
+        $block = $this->stringToBinary( $chunk );
+        if( strlen($block) === 56 )
+          fwrite( $output , pack('H*', base_convert($this->decompressBlock( $block ), 2, 16)) );
+        else
+          fwrite( $output , $chunk );
+          // DEBUG: The above IF_ELSE has a small problem , havn't decided for it yet.
+          // DEBUG: The above IF_ELSE has a small problem , havn't decided for it yet.
+          // DEBUG: The above IF_ELSE has a small problem , havn't decided for it yet.
+    }
   }
   public function compressData( $data )
   {
@@ -151,7 +161,8 @@ class ChessBean
   }
   private function decompressBlock( string $block )
   {
-    // This will be tha hard part.
+    // let's work on this part:
+    var_dump($block);die;
   }
   private function hashBlock( string $block )
   {
