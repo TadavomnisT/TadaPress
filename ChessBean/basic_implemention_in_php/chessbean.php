@@ -50,13 +50,14 @@ class ChessBean
     {
         $chunk = fread( $input , 8 );
         $block = $this->stringToBinary( $chunk );
+        if( strlen($block) === 64 )
+          fwrite( $output , pack('H*', base_convert($this->compressBlock( $block ), 2, 16)) );
+        else
+          fwrite( $output , $chunk );
         // // testing exceptions :
         // $bits = "1111111111111111111111111111111111111111111111111111111111111111";
         // $bits = "0000000000000000000000000000000000000000000000000000000000000000";
-        var_dump($this->compressBlock( $block ));
-        die;
     }
-    // code...
   }
   public function decompressFile( string $inputName , string $outputName )
   {
@@ -142,24 +143,25 @@ class ChessBean
 
     $center_4_bits = $block[27] . $block[28] . $block[35] . $block[36] ;
 
-    // echo "whites_7_bits : " . $whites_7_bits . PHP_EOL;
-    // echo "blacks_7_bits : " . $blacks_7_bits . PHP_EOL;
-    // echo "sum_whites_5_bits : " . $sum_whites_5_bits . PHP_EOL;
-    // echo "sum_blacks_5_bits : " . $sum_blacks_5_bits . PHP_EOL;
-    // echo "sum_columns_8_bits : " . $sum_columns_8_bits . PHP_EOL;
-    // echo "sum_rows_8_bits : " . $sum_rows_8_bits . PHP_EOL;
-    // echo "corner_4_bits : " . $corner_4_bits . PHP_EOL;
-    // echo "center_4_bits : " . $center_4_bits . PHP_EOL;
+    $compressed = $whites_7_bits . $blacks_7_bits . $sum_whites_5_bits .
+            $sum_blacks_5_bits . $sum_columns_8_bits . $sum_rows_8_bits .
+            $corner_4_bits . $center_4_bits ;
 
-    return $whites_7_bits . $blacks_7_bits . $sum_whites_5_bits . $sum_blacks_5_bits . $sum_columns_8_bits . $sum_rows_8_bits . $corner_4_bits . $center_4_bits;
+    return $compressed . $this->hashBlock( $compressed ) ;
   }
   private function decompressBlock( string $block )
   {
     // This will be tha hard part.
   }
-  function hashBlock( string $block )
+  private function hashBlock( string $block )
   {
     // I should implement this later, after we decompressed data successfully.
+    return "00000000";
+  }
+  private function hashCompressedData( string $still_not_implemented )
+  {
+    // I should implement this later, after we decompressed data successfully.
+    return "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   }
   private function strToArray($str, $l = 0)
   {
