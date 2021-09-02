@@ -162,7 +162,45 @@ class ChessBean
   private function decompressBlock( string $block )
   {
     // let's work on this part:
-    var_dump($block);die;
+    $whites_7_bits = substr( $block , 0 , 7 );
+    $blacks_7_bits = substr( $block , 7 , 7 );
+    $sum_whites_5_bits = substr( $block , 14 , 5 );
+    $sum_blacks_5_bits = substr( $block , 19 , 5 );
+    $sum_columns_8_bits = substr( $block , 24 , 8 );
+    $sum_rows_8_bits = substr( $block , 32 , 8 );
+    $corner_4_bits = substr( $block , 40 , 4 );
+    $center_4_bits = substr( $block , 44 , 4 );
+    $blockHash = substr( $block , 48 , 8 );
+
+    if( $sum_whites_5_bits == "00000" )
+    {
+        if ( $whites_7_bits == "0111111" )
+            $sum_whites = 32;
+        else $sum_whites = 0;
+    }
+    else $sum_whites = bindec( $sum_whites_5_bits );
+
+    if( $sum_blacks_5_bits == "00000" )
+    {
+        if ( $blacks_7_bits == "0111111" )
+            $sum_blacks = 32;
+        else $sum_blacks = 0;
+    }
+    else $sum_blacks = bindec( $sum_blacks_5_bits );
+
+    var_dump(
+      $whites_7_bits ,
+      $blacks_7_bits ,
+      $sum_whites_5_bits ,
+      $sum_blacks_5_bits ,
+      $sum_columns_8_bits ,
+      $sum_rows_8_bits ,
+      $corner_4_bits ,
+      $center_4_bits ,
+      $blockHash ,
+      $sum_blacks ,
+      $sum_whites
+    );die;
   }
   private function hashBlock( string $block )
   {
