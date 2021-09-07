@@ -188,6 +188,13 @@ class ChessBean
     }
     else $sum_blacks = bindec( $sum_blacks_5_bits );
 
+
+    // DEBUG: ==============================
+    // DEBUG: Test block is : 1000100101010000010011100100011100001101000010100001101000001010
+    $this->printBlockAsMatrix( "1000100101010000010011100100011100001101000010100001101000001010" );
+    $this->printBlockAsChessBoard( "1000100101010000010011100100011100001101000010100001101000001010" );
+    // =====================================
+
     var_dump(
       $whites_7_bits ,
       $blacks_7_bits ,
@@ -268,7 +275,7 @@ class ChessBean
     $col_counter = 0;
     $row_counter = 0;
     $matrix = str_split( $block , 8 );
-    $chess_board_array = strToArray($chess_board_with_beans);
+    $chess_board_array = $this->strToArray($chess_board_with_beans);
     foreach ( $chess_board_array as $key => $value)
     {
     	if ($value == "*" )
