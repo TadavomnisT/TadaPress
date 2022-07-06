@@ -3,6 +3,7 @@
 Compressed block:
 01111010111001011110101100001000010101110010010100000000
 
+01111010111001 01111 01011 00001000010101110010010100000000
 
 white 7 bits:      0111101 
 black 7 bits:      0111001 
@@ -83,6 +84,7 @@ int main(int argc, char *argv[])
     string input_buffer = argv[ 1 ];
     char  one = '1' ,  zero = '0';
     bool chessboard[8][8]; 
+    unsigned char all_blacks, all_whites, remained_blacks, remained_whites;
 
     // Initialize boolean array
     for(size_t i = 0; i < 8; i++){
@@ -105,7 +107,44 @@ int main(int argc, char *argv[])
     chessboard[4][3] = ( input_buffer[46] == one );
     chessboard[4][4] = ( input_buffer[47] == one );
 
-    
+    // Step #3 - calculate how many whites shall be placed:
+    all_whites =
+    ( input_buffer[14] == one ) * 16 +
+    ( input_buffer[15] == one ) * 8  +
+    ( input_buffer[16] == one ) * 4  +
+    ( input_buffer[17] == one ) * 2  +
+    ( input_buffer[18] == one ) * 1  ;
+    remained_whites = all_whites
+    - chessboard[0][0]
+    - chessboard[3][3]
+    - chessboard[4][4]
+    - chessboard[7][7];
+
+    cout << "all whites:" << (int) all_whites << endl;
+    cout << "remained whites:" << (int) remained_whites << endl;
+
+    // Step #4 - calculate how many balcks shall be placed: 
+    all_blacks =
+    ( input_buffer[19] == one ) * 16 +
+    ( input_buffer[20] == one ) * 8  +
+    ( input_buffer[21] == one ) * 4  +
+    ( input_buffer[22] == one ) * 2  +
+    ( input_buffer[23] == one ) * 1  ;
+    remained_blacks = all_blacks
+    - chessboard[0][7]
+    - chessboard[3][4]
+    - chessboard[4][3]
+    - chessboard[7][0];
+
+    cout << "all blacks:" << (int) all_blacks << endl;
+    cout << "remained blacks:" << (int) remained_blacks << endl;
+
+    // Step #5 - extract rules for columns:
+    // ...
+
+    // Step #6 - extract rules for rows:
+
+
 
     for(size_t i = 0; i < 8; i++){
         for(size_t j = 0; j < 8; j++){
