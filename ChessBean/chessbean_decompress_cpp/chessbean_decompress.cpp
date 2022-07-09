@@ -86,6 +86,31 @@ int main(int argc, char *argv[])
     bool chessboard[8][8]; 
     unsigned char all_blacks, all_whites, remained_blacks, remained_whites;
 
+    /*All possible values for a diagonal with 1 or 3 combination.*/
+    bool diagonal_1_3[8][4] = {
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
+
+    /*All possible values for a diagonal with 0 or 2 or 4 combination.*/
+    bool diagonal_0_2_4[8][4] = {
+    {0,0,0,0},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,1,1,1}
+    };
+
+
     // Initialize boolean array
     for(size_t i = 0; i < 8; i++){
         for(size_t j = 0; j < 8; j++){
@@ -123,7 +148,7 @@ int main(int argc, char *argv[])
     cout << "all whites:" << (int) all_whites << endl;
     cout << "remained whites:" << (int) remained_whites << endl;
 
-    // Step #4 - calculate how many balcks shall be placed: 
+    // Step #4 - calculate how many blacks shall be placed: 
     all_blacks =
     ( input_buffer[19] == one ) * 16 +
     ( input_buffer[20] == one ) * 8  +
@@ -140,7 +165,7 @@ int main(int argc, char *argv[])
     cout << "remained blacks:" << (int) remained_blacks << endl;
 
     // Step #5 - extract rules for columns:
-    // ...
+    
 
     // Step #6 - extract rules for rows:
 
