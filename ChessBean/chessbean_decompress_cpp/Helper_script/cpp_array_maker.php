@@ -1,10 +1,24 @@
 <?php
 
+dump_cpp_var_definition(
+    "diagonal_1_3" ,
+    array_merge(
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 3 )
+    ),
+    "All possible values for a diagonal with 1 or 3 combination."
+);
 
-var_dump(
-    p_binary_combination( 4 , 3 ),
-    p_binary_combination( 3 , 2 ),
-    p_binary_combination( 8 , 5 )
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "diagonal_0_2_4" ,
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 4 )
+    ),
+    "All possible values for a diagonal with 0 or 2 or 4 combination."
 );
 
 
@@ -34,9 +48,37 @@ function p_binary_combination( int $n, int $r, $base_string = NULL , $original_r
     // ... just not today. 
 }
 
+function dump_cpp_var_definition( string $name, array $values, string $comment = NULL )
+{
+    if( $comment !== NULL )
+    echo "/*" . $comment . "*/" . PHP_EOL;
+    echo "bool " . $name . "[" . count( $values ) . "][" . strlen( $values[0] ) . "] = {" . PHP_EOL;
+    foreach ($values as $key => $value) {
+        echo '{' . implode( ',' , strToArray( $value ) ) . '}' . (( $key != count( $values ) - 1 ) ? ',' . PHP_EOL : PHP_EOL) ;
+    }
+    echo "};" . PHP_EOL;
+}
 
 
+function get_cpp_var_definition( string $name, array $values, string $comment = NULL )
+{
+    ob_start();
+    dump_cpp_var_definition( $name , $values );
+    return ob_get_clean();
+}
 
+function strToArray($str, $l = 0)
+  {
+      if ($l > 0) {
+          $ret = array();
+          $len = mb_strlen($str, "UTF-8");
+          for ($i = 0; $i < $len; $i += $l) {
+              $ret[] = mb_substr($str, $i, $l, "UTF-8");
+          }
+          return $ret;
+      }
+      return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
+  }
 
 
 ?>
