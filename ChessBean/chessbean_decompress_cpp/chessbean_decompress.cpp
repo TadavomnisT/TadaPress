@@ -100,6 +100,7 @@ bool check_rules_remained_whites_demo( bool[8][8] , unsigned char );
 bool check_rules_sum_blacks( bool[8][8] , unsigned char );
 bool check_rules_remained_blacks( bool[8][8] , unsigned char );
 bool check_rules_remained_blacks_demo( bool[8][8] , unsigned char );
+void copy_chessboard( bool[8][8], bool ** );
 
 int main(int argc, char *argv[])
 {
@@ -108,6 +109,13 @@ int main(int argc, char *argv[])
     string input_buffer = argv[ 1 ];
     char  one = '1' ,  zero = '0';
     bool chessboard[8][8]; 
+    
+    // bool temp_chessboard[8][8]; 
+    bool **temp_chessboard;
+    temp_chessboard = new bool *[8];
+    for(int i = 0; i <8; i++)
+        temp_chessboard[i] = new bool[8];
+
     bool cols[8]; 
     bool rows[8]; 
     unsigned char all_blacks, all_whites, remained_blacks, remained_whites;
@@ -226,19 +234,23 @@ int main(int argc, char *argv[])
     rows[6] = ( input_buffer[38] == one );
     rows[7] = ( input_buffer[39] == one );
 
+    // cout << check_rules_cols_demo( chessboard , cols ) << endl;
+    // cout << check_rules_rows_demo( chessboard , rows ) << endl;
 
-    cout << check_rules_cols_demo( chessboard , cols ) << endl;
-    cout << check_rules_rows_demo( chessboard , rows ) << endl;
+    // cout << check_rules_remained_whites( chessboard , remained_whites ) << endl;
+    // cout << check_rules_remained_blacks( chessboard , remained_blacks ) << endl;
+    // cout << check_rules_remained_whites_demo( chessboard , remained_whites ) << endl;
+    // cout << check_rules_remained_blacks_demo( chessboard , remained_blacks ) << endl;
 
-    cout << check_rules_remained_whites( chessboard , remained_whites ) << endl;
-    cout << check_rules_remained_blacks( chessboard , remained_blacks ) << endl;
-    cout << check_rules_remained_whites_demo( chessboard , remained_whites ) << endl;
-    cout << check_rules_remained_blacks_demo( chessboard , remained_blacks ) << endl;
 
+    // Actually, Let's get serious!
+
+
+    copy_chessboard( chessboard , temp_chessboard );
 
     for(size_t i = 0; i < 8; i++){
         for(size_t j = 0; j < 8; j++){
-            cout << chessboard[i][j] << " ";
+            cout << temp_chessboard[i][j] << " ";
         }
         cout << endl;
     }
@@ -530,4 +542,11 @@ bool check_rules_remained_blacks_demo( bool chessboard[8][8] , unsigned char rem
     chessboard[7][2] +
     chessboard[7][4] +
     chessboard[7][6] ) <= (int) remained_blacks;
+}
+
+void copy_chessboard( bool chessboard[8][8], bool ** temp_chessboard )
+{
+    for(size_t i = 0; i < 8; i++)
+        for(size_t j = 0; j < 8; j++)
+            temp_chessboard[i][j] = chessboard[i][j];           
 }
