@@ -74,6 +74,19 @@ string(64) "0111101001010001100010110000101011001111110000010000000010011000"
 */
 
 
+/*
+NOTE:
+
+Why did I hard-code everything? instead of using loops ,etc..?
+
+Simple!
+In large scale computing, once the code is compiled, it behaves more optimised!
++ Less memory in use :3
++ Less pointers involved :3
+++ Faster result *-* 
+
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -81,6 +94,12 @@ bool check_rules_cols( bool[8][8] , bool[8] );
 bool check_rules_cols_demo( bool[8][8] , bool[8] );
 bool check_rules_rows( bool[8][8] , bool[8] );
 bool check_rules_rows_demo( bool[8][8] , bool[8] );
+bool check_rules_sum_whites( bool[8][8] , unsigned char );
+bool check_rules_remained_whites( bool[8][8] , unsigned char );
+bool check_rules_remained_whites_demo( bool[8][8] , unsigned char );
+bool check_rules_sum_blacks( bool[8][8] , unsigned char );
+bool check_rules_remained_blacks( bool[8][8] , unsigned char );
+bool check_rules_remained_blacks_demo( bool[8][8] , unsigned char );
 
 int main(int argc, char *argv[])
 {
@@ -207,8 +226,15 @@ int main(int argc, char *argv[])
     rows[6] = ( input_buffer[38] == one );
     rows[7] = ( input_buffer[39] == one );
 
-    cout << check_rules_cols_demo( chessboard , cols ) <<endl;
-    cout << check_rules_rows_demo( chessboard , rows ) <<endl;
+
+    cout << check_rules_cols_demo( chessboard , cols ) << endl;
+    cout << check_rules_rows_demo( chessboard , rows ) << endl;
+
+    cout << check_rules_remained_whites( chessboard , remained_whites ) << endl;
+    cout << check_rules_remained_blacks( chessboard , remained_blacks ) << endl;
+    cout << check_rules_remained_whites_demo( chessboard , remained_whites ) << endl;
+    cout << check_rules_remained_blacks_demo( chessboard , remained_blacks ) << endl;
+
 
     for(size_t i = 0; i < 8; i++){
         for(size_t j = 0; j < 8; j++){
@@ -219,6 +245,14 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+// ===========================================================================
+// ---------------------------------------------------------------------------
+// ---------------------------------FUNCTIONS---------------------------------
+// ---------------------------------------------------------------------------
+// ===========================================================================
+
+
 
 bool check_rules_cols( bool chessboard[8][8], bool cols[8]  )
 {
@@ -284,4 +318,216 @@ bool check_rules_rows_demo( bool chessboard[8][8], bool rows[8]  )
                 return false;
     }
     return true;
+}
+
+bool check_rules_sum_whites( bool chessboard[8][8] , unsigned char sum_whites )
+{
+    //This function can be used, only if we have a complete final chessboard 
+    return (
+    chessboard[0][0] +
+    chessboard[0][2] +
+    chessboard[0][4] +
+    chessboard[0][6] +
+    chessboard[1][1] +
+    chessboard[1][3] +
+    chessboard[1][5] +
+    chessboard[1][7] +
+    chessboard[2][0] +
+    chessboard[2][2] +
+    chessboard[2][4] +
+    chessboard[2][6] +
+    chessboard[3][1] +
+    chessboard[3][3] +
+    chessboard[3][5] +
+    chessboard[3][7] +
+    chessboard[4][0] +
+    chessboard[4][2] +
+    chessboard[4][4] +
+    chessboard[4][6] +
+    chessboard[5][1] +
+    chessboard[5][3] +
+    chessboard[5][5] +
+    chessboard[5][7] +
+    chessboard[6][0] +
+    chessboard[6][2] +
+    chessboard[6][4] +
+    chessboard[6][6] +
+    chessboard[7][1] +
+    chessboard[7][3] +
+    chessboard[7][5] +
+    chessboard[7][7]) == (int) sum_whites;
+}
+
+bool check_rules_sum_blacks( bool chessboard[8][8] , unsigned char sum_blacks )
+{
+    //This function can be used, only if we have a complete final chessboard 
+    return (
+    chessboard[0][1] +
+    chessboard[0][3] +
+    chessboard[0][5] +
+    chessboard[0][7] +
+    chessboard[1][0] +
+    chessboard[1][2] +
+    chessboard[1][4] +
+    chessboard[1][6] +
+    chessboard[2][1] +
+    chessboard[2][3] +
+    chessboard[2][5] +
+    chessboard[2][7] +
+    chessboard[3][0] +
+    chessboard[3][2] +
+    chessboard[3][4] +
+    chessboard[3][6] +
+    chessboard[4][1] +
+    chessboard[4][3] +
+    chessboard[4][5] +
+    chessboard[4][7] +
+    chessboard[5][0] +
+    chessboard[5][2] +
+    chessboard[5][4] +
+    chessboard[5][6] +
+    chessboard[6][1] +
+    chessboard[6][3] +
+    chessboard[6][5] +
+    chessboard[6][7] +
+    chessboard[7][0] +
+    chessboard[7][2] +
+    chessboard[7][4] +
+    chessboard[7][6] ) == (int) sum_blacks;
+}
+
+bool check_rules_remained_whites( bool chessboard[8][8] , unsigned char remained_whites )
+{
+    //This function can be used, only if we have a complete final chessboard 
+    return (
+    chessboard[0][2] +
+    chessboard[0][4] +
+    chessboard[0][6] +
+    chessboard[1][1] +
+    chessboard[1][3] +
+    chessboard[1][5] +
+    chessboard[1][7] +
+    chessboard[2][0] +
+    chessboard[2][2] +
+    chessboard[2][4] +
+    chessboard[2][6] +
+    chessboard[3][1] +
+    chessboard[3][5] +
+    chessboard[3][7] +
+    chessboard[4][0] +
+    chessboard[4][2] +
+    chessboard[4][6] +
+    chessboard[5][1] +
+    chessboard[5][3] +
+    chessboard[5][5] +
+    chessboard[5][7] +
+    chessboard[6][0] +
+    chessboard[6][2] +
+    chessboard[6][4] +
+    chessboard[6][6] +
+    chessboard[7][1] +
+    chessboard[7][3] +
+    chessboard[7][5] ) == (int) remained_whites;
+}
+
+bool check_rules_remained_blacks( bool chessboard[8][8] , unsigned char remained_blacks )
+{
+    //This function can be used, only if we have a complete final chessboard 
+    return (
+    chessboard[0][1] +
+    chessboard[0][3] +
+    chessboard[0][5] +
+    chessboard[1][0] +
+    chessboard[1][2] +
+    chessboard[1][4] +
+    chessboard[1][6] +
+    chessboard[2][1] +
+    chessboard[2][3] +
+    chessboard[2][5] +
+    chessboard[2][7] +
+    chessboard[3][0] +
+    chessboard[3][2] +
+    chessboard[3][6] +
+    chessboard[4][1] +
+    chessboard[4][5] +
+    chessboard[4][7] +
+    chessboard[5][0] +
+    chessboard[5][2] +
+    chessboard[5][4] +
+    chessboard[5][6] +
+    chessboard[6][1] +
+    chessboard[6][3] +
+    chessboard[6][5] +
+    chessboard[6][7] +
+    chessboard[7][2] +
+    chessboard[7][4] +
+    chessboard[7][6] ) == (int) remained_blacks;
+}
+
+bool check_rules_remained_whites_demo( bool chessboard[8][8] , unsigned char remained_whites )
+{
+    //This function can be used in any state
+    return (
+    chessboard[0][2] +
+    chessboard[0][4] +
+    chessboard[0][6] +
+    chessboard[1][1] +
+    chessboard[1][3] +
+    chessboard[1][5] +
+    chessboard[1][7] +
+    chessboard[2][0] +
+    chessboard[2][2] +
+    chessboard[2][4] +
+    chessboard[2][6] +
+    chessboard[3][1] +
+    chessboard[3][5] +
+    chessboard[3][7] +
+    chessboard[4][0] +
+    chessboard[4][2] +
+    chessboard[4][6] +
+    chessboard[5][1] +
+    chessboard[5][3] +
+    chessboard[5][5] +
+    chessboard[5][7] +
+    chessboard[6][0] +
+    chessboard[6][2] +
+    chessboard[6][4] +
+    chessboard[6][6] +
+    chessboard[7][1] +
+    chessboard[7][3] +
+    chessboard[7][5] ) <= (int) remained_whites;
+}
+
+bool check_rules_remained_blacks_demo( bool chessboard[8][8] , unsigned char remained_blacks )
+{
+    //This function can be used in any state
+    return (
+    chessboard[0][1] +
+    chessboard[0][3] +
+    chessboard[0][5] +
+    chessboard[1][0] +
+    chessboard[1][2] +
+    chessboard[1][4] +
+    chessboard[1][6] +
+    chessboard[2][1] +
+    chessboard[2][3] +
+    chessboard[2][5] +
+    chessboard[2][7] +
+    chessboard[3][0] +
+    chessboard[3][2] +
+    chessboard[3][6] +
+    chessboard[4][1] +
+    chessboard[4][5] +
+    chessboard[4][7] +
+    chessboard[5][0] +
+    chessboard[5][2] +
+    chessboard[5][4] +
+    chessboard[5][6] +
+    chessboard[6][1] +
+    chessboard[6][3] +
+    chessboard[6][5] +
+    chessboard[6][7] +
+    chessboard[7][2] +
+    chessboard[7][4] +
+    chessboard[7][6] ) <= (int) remained_blacks;
 }
