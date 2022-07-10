@@ -437,12 +437,15 @@ int main(int argc, char *argv[])
     // bool temp_chessboard[8][8]; 
     bool **temp_chessboard;
     temp_chessboard = new bool *[8];
-    for(int i = 0; i <8; i++)
+    for(int i = 0; i < 8; i++)
         temp_chessboard[i] = new bool[8];
 
     bool cols[8]; 
     bool rows[8]; 
+    bool black_diagonals[7]; 
+    bool white_diagonals[7]; 
     unsigned char all_blacks, all_whites, remained_blacks, remained_whites;
+    int current_beans;
 
     // /*All possible values for a column.*/
     // unsigned char cols_possible_values[8][5] = {
@@ -558,21 +561,111 @@ int main(int argc, char *argv[])
     rows[6] = ( input_buffer[38] == one );
     rows[7] = ( input_buffer[39] == one );
 
-    // cout << check_rules_cols_demo( chessboard , cols ) << endl;
-    // cout << check_rules_rows_demo( chessboard , rows ) << endl;
+    // Step #7 - extract rules for white diagonal:
+    white_diagonals[0] = ( input_buffer[0] == one );
+    white_diagonals[1] = ( input_buffer[1] == one );
+    white_diagonals[2] = ( input_buffer[2] == one );
+    white_diagonals[3] = ( input_buffer[3] == one );
+    white_diagonals[4] = ( input_buffer[4] == one );
+    white_diagonals[5] = ( input_buffer[5] == one );
+    white_diagonals[6] = ( input_buffer[6] == one );
 
-    // cout << check_rules_remained_whites( chessboard , remained_whites ) << endl;
-    // cout << check_rules_remained_blacks( chessboard , remained_blacks ) << endl;
-    // cout << check_rules_remained_whites_demo( chessboard , remained_whites ) << endl;
-    // cout << check_rules_remained_blacks_demo( chessboard , remained_blacks ) << endl;
+    // Step #8 - extract rules for black diagonal:
+    black_diagonals[0] = ( input_buffer[7] == one );
+    black_diagonals[1] = ( input_buffer[8] == one );
+    black_diagonals[2] = ( input_buffer[9] == one );
+    black_diagonals[3] = ( input_buffer[10] == one );
+    black_diagonals[4] = ( input_buffer[11] == one );
+    black_diagonals[5] = ( input_buffer[12] == one );
+    black_diagonals[6] = ( input_buffer[13] == one );
+
+    // cout << cb_object.check_rules_cols_demo( chessboard , cols ) << endl;
+    // cout << cb_object.check_rules_rows_demo( chessboard , rows ) << endl;
+
+    // cout << cb_object.check_rules_remained_whites( chessboard , remained_whites ) << endl;
+    // cout << cb_object.check_rules_remained_blacks( chessboard , remained_blacks ) << endl;
+    // cout << cb_object.check_rules_remained_whites_demo( chessboard , remained_whites ) << endl;
+    // cout << cb_object.check_rules_remained_blacks_demo( chessboard , remained_blacks ) << endl;
 
 
     // Actually, Let's get serious!
-
-
     cb_object.copy_chessboard( chessboard , temp_chessboard );
-    cb_object.print_chessboard( chessboard );
-    cb_object.print_chessboard( temp_chessboard );
+
+    current_beans = (int)
+    (
+    temp_chessboard[0][0] +
+    temp_chessboard[3][3] +
+    temp_chessboard[4][4] +
+    temp_chessboard[7][7]
+    );
+
+    if ( current_beans == 0 )
+    {
+        if( white_diagonals[0] )
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+    else if( current_beans == 1 )
+    {
+        if( white_diagonals[0] )
+        {
+            for(int i = 0; i <8; i++)
+            {
+                // code...
+                // diagonal_1_3
+            }
+        }
+        else
+        {
+            
+        }
+    }
+    else if( current_beans == 2 )
+    {
+        if( white_diagonals[0] )
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+    else if( current_beans == 3 )
+    {
+        if( white_diagonals[0] )
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+    else if( current_beans == 4 )
+    {
+        if( white_diagonals[0] )
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+
+    // for white diagonal
+    for(size_t i = 0; i < 8; i++){
+
+    }
+
+    // cb_object.print_chessboard( chessboard );
+    // cb_object.print_chessboard( temp_chessboard );
 
     return 0;
 }
