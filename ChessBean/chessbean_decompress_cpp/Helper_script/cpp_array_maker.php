@@ -1,5 +1,14 @@
 <?php
 
+$counter = 0;
+for ($i=0; $i < 8; $i++) { 
+    for ($j=0; $j < 8 ; $j++) { 
+        if( !(($counter + !($i % 2) ) % 2) )
+        echo "chessboard[$i][$j] +" . PHP_EOL;
+        ++$counter;
+    }
+}
+
 dump_cpp_var_definition(
     "diagonal_1_3" ,
     array_merge(
