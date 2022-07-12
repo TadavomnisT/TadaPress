@@ -710,108 +710,28 @@ int main(int argc, char * argv[]) {
   // };
 
   /*All possible values for a diagonal with 1 or 3 combination.*/
-  bool diagonal_1_3[8][4] = {
-    {
-      1,
-      0,
-      0,
-      0
-    },
-    {
-      0,
-      1,
-      0,
-      0
-    },
-    {
-      0,
-      0,
-      1,
-      0
-    },
-    {
-      0,
-      0,
-      0,
-      1
-    },
-    {
-      1,
-      1,
-      1,
-      0
-    },
-    {
-      1,
-      1,
-      0,
-      1
-    },
-    {
-      1,
-      0,
-      1,
-      1
-    },
-    {
-      0,
-      1,
-      1,
-      1
-    }
-  };
+    bool diagonal_1_3[8][4] = {
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
 
-  /*All possible values for a diagonal with 0 or 2 or 4 combination.*/
-  bool diagonal_0_2_4[8][4] = {
-    {
-      0,
-      0,
-      0,
-      0
-    },
-    {
-      1,
-      1,
-      0,
-      0
-    },
-    {
-      1,
-      0,
-      1,
-      0
-    },
-    {
-      1,
-      0,
-      0,
-      1
-    },
-    {
-      0,
-      1,
-      1,
-      0
-    },
-    {
-      0,
-      1,
-      0,
-      1
-    },
-    {
-      0,
-      0,
-      1,
-      1
-    },
-    {
-      1,
-      1,
-      1,
-      1
-    }
-  };
+    /*All possible values for a diagonal with 0 or 2 or 4 combination.*/
+    bool diagonal_0_2_4[8][4] = {
+    {0,0,0,0},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,1,1,1}
+    };
 
   // Initialize boolean array
   for (size_t i = 0; i < 8; i++) {
@@ -968,181 +888,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -1189,181 +1091,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -1412,181 +1296,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -1633,181 +1499,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -1856,181 +1704,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -2077,181 +1907,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -2300,181 +2112,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -2521,181 +2315,164 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 8; i++)
                   temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -2744,181 +2521,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -2965,181 +2724,163 @@ int main(int argc, char * argv[]) {
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 1) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 2) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 3) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
           } else if (black_diagonal_placed_beans == 4) {
             if (white_diagonals[0]) {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_1_3[i][0];
-                  temp_chessboard[2][5] = diagonal_1_3[i][1];
-                  temp_chessboard[5][2] = diagonal_1_3[i][2];
-                  temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_1_3[i][0];
+                temp_chessboard[2][5] = diagonal_1_3[i][1];
+                temp_chessboard[5][2] = diagonal_1_3[i][2];
+                temp_chessboard[6][1] = diagonal_1_3[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             } else {
               for (int i = 0; i < 8; i++) {
-                for (int i = 0; i < 8; i++) {
-                  temp_chessboard[1][6] = diagonal_0_2_4[i][0];
-                  temp_chessboard[2][5] = diagonal_0_2_4[i][1];
-                  temp_chessboard[5][2] = diagonal_0_2_4[i][2];
-                  temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
-                    cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
-                    cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-                    cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-                  ) {
-                    // code
+                temp_chessboard[1][6] = diagonal_0_2_4[i][0];
+                temp_chessboard[2][5] = diagonal_0_2_4[i][1];
+                temp_chessboard[5][2] = diagonal_0_2_4[i][2];
+                temp_chessboard[6][1] = diagonal_0_2_4[i][3];
+                if (cb_object.check_rules_cols_demo(temp_chessboard, cols) &&
+                  cb_object.check_rules_rows_demo(temp_chessboard, rows) &&
+                  cb_object.check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+                  cb_object.check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+                ) {
+                  // code
 
-                    cb_object.print_chessboard(temp_chessboard);
-                    cout << endl;
-                  }
+                  cb_object.print_chessboard(temp_chessboard);
+                  cout << endl;
                 }
               }
             }
@@ -3148,9 +2889,6 @@ int main(int argc, char * argv[]) {
       }
     }
   }
-
-  // cb_object.print_chessboard(chessboard);
-  // cb_object.print_chessboard(temp_chessboard);
 
   return 0;
 }
