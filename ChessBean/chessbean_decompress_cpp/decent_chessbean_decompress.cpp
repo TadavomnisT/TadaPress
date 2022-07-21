@@ -164,7 +164,13 @@ class ChessBean {
     // ===========================================================================
 
     // Constructor
-    ChessBean( string input_buffer )
+    ChessBean( string input_buffer = "" )
+    {
+      if (input_buffer != "")
+      this->input_buffer = input_buffer;
+    }
+
+    void setInputBuffer( string input_buffer )
     {
       this->input_buffer = input_buffer;
     }
@@ -1265,6 +1271,45 @@ void black_diagonal(bool temp_chessboard[8][8]  , bool black_diagonals[7] , bool
   }
 }
 
+void decompress_block( string block )
+{
+
+  this->setInputBuffer( block );
+
+  // Step #0 - initializing:
+  this->initializer();
+
+  // Step #1 - Fill 4 corners:
+  this->fill_4_corners();
+
+  // Step #2 - Fill 4 centers:
+  this->fill_4_centers();
+  
+
+  // Step #3 - calculate how many whites shall be placed:
+  this->calculate_whites();
+
+  // Step #4 - calculate how many blacks shall be placed: 
+  this->calculate_blacks();
+  
+  // Step #5 - extract rules for columns:
+  this->extract_rules_cols();
+
+  // Step #6 - extract rules for rows:
+  this->extract_rules_rows();
+
+  // Step #7 - extract rules for white diagonal:
+  this->extract_rules_white_diagonal();
+
+  // Step #8 - extract rules for black diagonal:
+  this->extract_rules_black_diagonal();
+
+  this->copy_chessboard(chessboard, temp_chessboard);
+
+  // Step #9
+  
+}
+
 
 };
 
@@ -1272,52 +1317,10 @@ int main(int argc, char * argv[]) {
 
   // string input_buffer = "01111010111001011110101100001000010101110010010100000000";
   string input_buffer = argv[1];
-  ChessBean cb_object( input_buffer );
+  ChessBean cb_object;
   
-  // /*All possible values for a column.*/
-  // unsigned char cols_possible_values[8][5] = {	// {0,1,2,3,4},
-  // {5,6,7,8}
-  // };
-
-  // /*All possible values for a row.*/
-  // unsigned char rows_possible_values[8][5] = {	// {4,5,6,7,8},
-  // {0,1,2,3}
-  // };
-
-  
-  cb_object.initializer();
-
-
-
   // decompress part
-
-  // Step #1 - Fill 4 corners:
-  cb_object.fill_4_corners();
-
-  // Step #2 - Fill 4 centers:
-  cb_object.fill_4_centers();
-  
-
-  // Step #3 - calculate how many whites shall be placed:
-  cb_object.calculate_whites();
-
-  // Step #4 - calculate how many blacks shall be placed: 
-  cb_object.calculate_blacks();
-  
-  // Step #5 - extract rules for columns:
-  cb_object.extract_rules_cols();
-
-  // Step #6 - extract rules for rows:
-  cb_object.extract_rules_rows();
-
-  // Step #7 - extract rules for white diagonal:
-  cb_object.extract_rules_white_diagonal();
-
-  // Step #8 - extract rules for black diagonal:
-  cb_object.extract_rules_black_diagonal();
-
-  // Actually, Let's get serious!
-  cb_object.copy_chessboard(chessboard, temp_chessboard);
+  cb_object.decompress_block( input_buffer );
 
  
   return 0;
