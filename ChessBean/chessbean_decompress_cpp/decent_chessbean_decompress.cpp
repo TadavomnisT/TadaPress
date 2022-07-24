@@ -833,7 +833,7 @@ void white_diagonal( bool ** temp_chessboard ) {
     temp_chessboard[4][4] +
     temp_chessboard[7][7]
   );
-  // for black diagonal
+  // for white diagonal
   if (white_diagonal_placed_beans == 0) {
     if (white_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
@@ -848,13 +848,12 @@ void white_diagonal( bool ** temp_chessboard ) {
         ) {
           // code
 
-          this->print_chessboard(temp_chessboard);
+          this->black_diagonal(temp_chessboard);
           cout << endl;
         }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_0_2_4[i][0];
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
@@ -866,16 +865,14 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (white_diagonal_placed_beans == 1) {
     if (white_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_0_2_4[i][0];
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
@@ -887,14 +884,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_1_3[i][0];
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
@@ -906,16 +901,14 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (white_diagonal_placed_beans == 2) {
     if (white_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_1_3[i][0];
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
@@ -927,14 +920,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_0_2_4[i][0];
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
@@ -946,16 +937,14 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (white_diagonal_placed_beans == 3) {
     if (white_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_0_2_4[i][0];
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
@@ -967,14 +956,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_1_3[i][0];
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
@@ -986,16 +973,14 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (white_diagonal_placed_beans == 4) {
     if (white_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_1_3[i][0];
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
@@ -1007,14 +992,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][1] = diagonal_0_2_4[i][0];
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
@@ -1026,10 +1009,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           ) {
             // code
 
-            this->print_chessboard(temp_chessboard);
+            this->black_diagonal(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   }
@@ -1064,7 +1046,6 @@ void black_diagonal( bool ** temp_chessboard ) {
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_0_2_4[i][0];
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
@@ -1079,13 +1060,11 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (black_diagonal_placed_beans == 1) {
     if (black_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_0_2_4[i][0];
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
@@ -1100,11 +1079,9 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_1_3[i][0];
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
@@ -1119,13 +1096,11 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (black_diagonal_placed_beans == 2) {
     if (black_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_1_3[i][0];
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
@@ -1140,11 +1115,9 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_0_2_4[i][0];
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
@@ -1159,13 +1132,11 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (black_diagonal_placed_beans == 3) {
     if (black_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_0_2_4[i][0];
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
@@ -1180,11 +1151,9 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_1_3[i][0];
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
@@ -1199,13 +1168,11 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   } else if (black_diagonal_placed_beans == 4) {
     if (black_diagonals[0]) {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_1_3[i][0];
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
@@ -1220,11 +1187,9 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
-        for (int i = 0; i < 8; i++) {
           temp_chessboard[1][6] = diagonal_0_2_4[i][0];
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
@@ -1239,7 +1204,6 @@ void black_diagonal( bool ** temp_chessboard ) {
             this->print_chessboard(temp_chessboard);
             cout << endl;
           }
-        }
       }
     }
   }
@@ -1264,7 +1228,6 @@ void decompress_block( string block )
   // Step #2 - Fill 4 centers:
   this->fill_4_centers();
   
-
   // Step #3 - calculate how many whites shall be placed:
   this->calculate_whites();
 
