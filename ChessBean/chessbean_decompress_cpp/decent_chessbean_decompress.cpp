@@ -841,13 +841,12 @@ void white_diagonal( bool ** temp_chessboard ) {
         temp_chessboard[2][2] = diagonal_1_3[i][1];
         temp_chessboard[5][5] = diagonal_1_3[i][2];
         temp_chessboard[6][6] = diagonal_1_3[i][3];
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        ) {
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        // )
           this->black_diagonal(temp_chessboard);
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -855,13 +854,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     }
   } else if (white_diagonal_placed_beans == 1) {
@@ -871,13 +869,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -885,13 +882,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     }
   } else if (white_diagonal_placed_beans == 2) {
@@ -901,13 +897,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -915,13 +910,13 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
+
       }
     }
   } else if (white_diagonal_placed_beans == 3) {
@@ -931,13 +926,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -945,13 +939,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     }
   } else if (white_diagonal_placed_beans == 4) {
@@ -961,13 +954,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -975,13 +967,12 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->black_diagonal(temp_chessboard);
-          }
       }
     }
   }
@@ -1003,13 +994,12 @@ void black_diagonal( bool ** temp_chessboard ) {
         temp_chessboard[2][5] = diagonal_1_3[i][1];
         temp_chessboard[5][2] = diagonal_1_3[i][2];
         temp_chessboard[6][1] = diagonal_1_3[i][3];
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        ) {
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        // )
           this->little_white_diagonal_1(temp_chessboard);
-        }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -1017,13 +1007,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     }
   } else if (black_diagonal_placed_beans == 1) {
@@ -1033,13 +1022,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // ) 
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -1047,13 +1035,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     }
   } else if (black_diagonal_placed_beans == 2) {
@@ -1063,13 +1050,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -1077,13 +1063,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     }
   } else if (black_diagonal_placed_beans == 3) {
@@ -1093,13 +1078,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -1107,13 +1091,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     }
   } else if (black_diagonal_placed_beans == 4) {
@@ -1123,13 +1106,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     } else {
       for (int i = 0; i < 8; i++) {
@@ -1137,13 +1119,12 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-          if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-            this->check_rules_rows_demo(temp_chessboard, rows) &&
-            this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-            this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-          ) {
+          // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+          //   this->check_rules_rows_demo(temp_chessboard, rows) &&
+          //   this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+          //   this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+          // )
             this->little_white_diagonal_1(temp_chessboard);
-          }
       }
     }
   }
@@ -1151,6 +1132,7 @@ void black_diagonal( bool ** temp_chessboard ) {
 
 void little_white_diagonal_1( bool ** temp_chessboard )
 {
+  // cout << "This happens 64 times right?" << endl;
   if( this->white_diagonals[1] )
   {
     if( temp_chessboard[1][1] )
@@ -1322,7 +1304,7 @@ void little_white_diagonal_2( bool ** temp_chessboard )
 }
 
 void little_black_diagonal_1( bool ** temp_chessboard )
-{ //problem?
+{
   if( this->black_diagonals[1] )
   {
     if( temp_chessboard[1][6] )
@@ -1409,9 +1391,6 @@ void little_black_diagonal_1( bool ** temp_chessboard )
 
 void little_black_diagonal_2( bool ** temp_chessboard )
 {
-  this->print_chessboard( temp_chessboard );
-  cout << endl;
-  return;
   if( this->black_diagonals[6] )
   {
     if( temp_chessboard[6][1] )
