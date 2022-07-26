@@ -1402,7 +1402,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1410,7 +1410,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     } 
     else
     {
@@ -1421,7 +1421,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1429,7 +1429,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     }
   }
   else
@@ -1443,7 +1443,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1451,7 +1451,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     } 
     else
     {
@@ -1462,7 +1462,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1470,9 +1470,165 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->next_nested_function(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     }
   }
+}
+
+void choosing_strategy( bool ** temp_chessboard )
+{
+  int sum = 0 , col_result = 1 , row_result = 1 ;
+  // starting with columns :
+  // if VALUE > 4 then: 1
+  // else: 0
+  // first column:-----------index = 0------------
+  sum += (int)
+  temp_chessboard[0][0] +
+  temp_chessboard[2][0] +
+  temp_chessboard[5][0] +
+  temp_chessboard[7][0];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    // Find possible values
+    if( !(sum == 0) )
+    {
+      if( sum == 1 )
+        col_result *= 1;
+      else if( sum == 2 )
+        col_result *= 5;
+      else if( sum == 3 )
+        col_result *= 11;
+      else if( sum == 4 )
+        col_result *= 15;
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if( sum == 0 )
+      col_result *= 16;
+    else if( sum == 1 )
+      col_result *= 15;
+    else if( sum == 2 )
+      col_result *= 11;
+    else if( sum == 3 )
+      col_result *= 5;
+    else if( sum == 4 )
+      col_result *= 1;
+  }
+  // ---------------------------------------------
+  // next column:-----------index = 2-------------
+  sum = 0;
+  sum += (int)
+  temp_chessboard[0][2] +
+  temp_chessboard[2][2] +
+  temp_chessboard[5][2] +
+  temp_chessboard[7][2];
+  if( this->cols[ 2 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    // Find possible values
+    if( !(sum == 0) )
+    {
+      if( sum == 1 )
+        col_result *= 1;
+      else if( sum == 2 )
+        col_result *= 5;
+      else if( sum == 3 )
+        col_result *= 11;
+      else if( sum == 4 )
+        col_result *= 15;
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if( sum == 0 )
+      col_result *= 16;
+    else if( sum == 1 )
+      col_result *= 15;
+    else if( sum == 2 )
+      col_result *= 11;
+    else if( sum == 3 )
+      col_result *= 5;
+    else if( sum == 4 )
+      col_result *= 1;
+  }
+  // ---------------------------------------------
+// next column:-----------index = 5-------------
+  sum = 0;
+  sum += (int)
+  temp_chessboard[0][5] +
+  temp_chessboard[2][5] +
+  temp_chessboard[5][5] +
+  temp_chessboard[7][5];
+  if( this->cols[ 5 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    // Find possible values
+    if( !(sum == 0) )
+    {
+      if( sum == 1 )
+        col_result *= 1;
+      else if( sum == 2 )
+        col_result *= 5;
+      else if( sum == 3 )
+        col_result *= 11;
+      else if( sum == 4 )
+        col_result *= 15;
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if( sum == 0 )
+      col_result *= 16;
+    else if( sum == 1 )
+      col_result *= 15;
+    else if( sum == 2 )
+      col_result *= 11;
+    else if( sum == 3 )
+      col_result *= 5;
+    else if( sum == 4 )
+      col_result *= 1;
+  }
+  // ---------------------------------------------
+// next column:-----------index = 7-------------
+  sum = 0;
+  sum += (int)
+  temp_chessboard[0][7] +
+  temp_chessboard[2][7] +
+  temp_chessboard[5][7] +
+  temp_chessboard[7][7];
+  if( this->cols[ 7 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    // Find possible values
+    if( !(sum == 0) )
+    {
+      if( sum == 1 )
+        col_result *= 1;
+      else if( sum == 2 )
+        col_result *= 5;
+      else if( sum == 3 )
+        col_result *= 11;
+      else if( sum == 4 )
+        col_result *= 15;
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if( sum == 0 )
+      col_result *= 16;
+    else if( sum == 1 )
+      col_result *= 15;
+    else if( sum == 2 )
+      col_result *= 11;
+    else if( sum == 3 )
+      col_result *= 5;
+    else if( sum == 4 )
+      col_result *= 1;
+  }
+  // ---------------------------------------------
+
+
+  cout << col_result << endl;
+
+
 }
 
 void next_nested_function( bool ** temp_chessboard )
