@@ -1478,6 +1478,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
 void choosing_strategy( bool ** temp_chessboard )
 {
   int sum = 0 , col_result = 1 , row_result = 1 ;
+  bool has_answer = true;
   // starting with columns :
   // if VALUE > 4 then: 1
   // else: 0
@@ -1489,18 +1490,16 @@ void choosing_strategy( bool ** temp_chessboard )
   temp_chessboard[7][0];
   if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
   {
-    // Find possible values
-    if( !(sum == 0) )
-    {
-      if( sum == 1 )
-        col_result *= 1;
-      else if( sum == 2 )
-        col_result *= 5;
-      else if( sum == 3 )
-        col_result *= 11;
-      else if( sum == 4 )
-        col_result *= 15;
-    }
+    if ( sum == 0 )
+      has_answer = false;
+    else if( sum == 1 )
+      col_result *= 1;
+    else if( sum == 2 )
+      col_result *= 5;
+    else if( sum == 3 )
+      col_result *= 11;
+    else if( sum == 4 )
+      col_result *= 15;
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
@@ -1525,18 +1524,16 @@ void choosing_strategy( bool ** temp_chessboard )
   temp_chessboard[7][2];
   if( this->cols[ 2 ] ) //Means: ">4" PV: 5,6,7,8
   {
-    // Find possible values
-    if( !(sum == 0) )
-    {
-      if( sum == 1 )
-        col_result *= 1;
-      else if( sum == 2 )
-        col_result *= 5;
-      else if( sum == 3 )
-        col_result *= 11;
-      else if( sum == 4 )
-        col_result *= 15;
-    }
+    if ( sum == 0 )
+      has_answer = false;
+    else if( sum == 1 )
+      col_result *= 1;
+    else if( sum == 2 )
+      col_result *= 5;
+    else if( sum == 3 )
+      col_result *= 11;
+    else if( sum == 4 )
+      col_result *= 15;
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
@@ -1561,18 +1558,16 @@ void choosing_strategy( bool ** temp_chessboard )
   temp_chessboard[7][5];
   if( this->cols[ 5 ] ) //Means: ">4" PV: 5,6,7,8
   {
-    // Find possible values
-    if( !(sum == 0) )
-    {
-      if( sum == 1 )
-        col_result *= 1;
-      else if( sum == 2 )
-        col_result *= 5;
-      else if( sum == 3 )
-        col_result *= 11;
-      else if( sum == 4 )
-        col_result *= 15;
-    }
+    if ( sum == 0 )
+      has_answer = false;
+    else if( sum == 1 )
+      col_result *= 1;
+    else if( sum == 2 )
+      col_result *= 5;
+    else if( sum == 3 )
+      col_result *= 11;
+    else if( sum == 4 )
+      col_result *= 15;
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
@@ -1597,18 +1592,16 @@ void choosing_strategy( bool ** temp_chessboard )
   temp_chessboard[7][7];
   if( this->cols[ 7 ] ) //Means: ">4" PV: 5,6,7,8
   {
-    // Find possible values
-    if( !(sum == 0) )
-    {
-      if( sum == 1 )
-        col_result *= 1;
-      else if( sum == 2 )
-        col_result *= 5;
-      else if( sum == 3 )
-        col_result *= 11;
-      else if( sum == 4 )
-        col_result *= 15;
-    }
+    if ( sum == 0 )
+      has_answer = false;
+    else if( sum == 1 )
+      col_result *= 1;
+    else if( sum == 2 )
+      col_result *= 5;
+    else if( sum == 3 )
+      col_result *= 11;
+    else if( sum == 4 )
+      col_result *= 15;
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
@@ -1624,11 +1617,146 @@ void choosing_strategy( bool ** temp_chessboard )
       col_result *= 1;
   }
   // ---------------------------------------------
-
-
-  cout << col_result << endl;
-
-
+  // going on rows :
+  // if VALUE < 4 then: 1
+  // else: 0
+  // ---------------------------------------------
+  // first row:-----------index = 0------------
+  sum += (int)
+  temp_chessboard[0][0] +
+  temp_chessboard[0][2] +
+  temp_chessboard[0][5] +
+  temp_chessboard[0][7];
+  if( this->rows[ 0 ] ) //Means: "<4" PV: 0,1,2,3
+  {
+      if( sum == 0 )
+        row_result *= 15;
+      else if( sum == 1 )
+        row_result *= 11;
+      else if( sum == 2 )
+        row_result *= 5;
+      else if( sum == 3 )
+        row_result *= 1;
+      else if( sum == 3 )
+        has_answer = false;
+  }
+  else //Means: ">=4" PV: 4,5,6,7,8
+  {
+    if( sum == 0 )
+      row_result *= 1;
+    else if( sum == 1 )
+      row_result *= 5;
+    else if( sum == 2 )
+      row_result *= 11;
+    else if( sum == 3 )
+      row_result *= 15;
+    else if( sum == 4 )
+      row_result *= 16;
+  }
+  // ---------------------------------------------
+  // first row:-----------index = 2------------
+  sum += (int)
+  temp_chessboard[2][0] +
+  temp_chessboard[2][2] +
+  temp_chessboard[2][5] +
+  temp_chessboard[2][7];
+  if( this->rows[ 2 ] ) //Means: "<4" PV: 0,1,2,3
+  {
+    if( sum == 0 )
+      row_result *= 15;
+    else if( sum == 1 )
+      row_result *= 11;
+    else if( sum == 2 )
+      row_result *= 5;
+    else if( sum == 3 )
+      row_result *= 1;
+    else if( sum == 3 )
+      has_answer = false;
+  }
+  else //Means: ">=4" PV: 4,5,6,7,8
+  {
+    if( sum == 0 )
+      row_result *= 1;
+    else if( sum == 1 )
+      row_result *= 5;
+    else if( sum == 2 )
+      row_result *= 11;
+    else if( sum == 3 )
+      row_result *= 15;
+    else if( sum == 4 )
+      row_result *= 16;
+  }
+  // ---------------------------------------------
+  // first row:-----------index = 5------------
+  sum += (int)
+  temp_chessboard[5][0] +
+  temp_chessboard[5][2] +
+  temp_chessboard[5][5] +
+  temp_chessboard[5][7];
+  if( this->rows[ 5 ] ) //Means: "<4" PV: 0,1,2,3
+  {
+    if( sum == 0 )
+      row_result *= 15;
+    else if( sum == 1 )
+      row_result *= 11;
+    else if( sum == 2 )
+      row_result *= 5;
+    else if( sum == 3 )
+      row_result *= 1;
+    else if( sum == 3 )
+      has_answer = false;
+  }
+  else //Means: ">=4" PV: 4,5,6,7,8
+  {
+    if( sum == 0 )
+      row_result *= 1;
+    else if( sum == 1 )
+      row_result *= 5;
+    else if( sum == 2 )
+      row_result *= 11;
+    else if( sum == 3 )
+      row_result *= 15;
+    else if( sum == 4 )
+      row_result *= 16;
+  }
+  // ---------------------------------------------
+  // first row:-----------index = 7------------
+  sum += (int)
+  temp_chessboard[7][0] +
+  temp_chessboard[7][2] +
+  temp_chessboard[7][5] +
+  temp_chessboard[7][7];
+  if( this->rows[ 7 ] ) //Means: "<4" PV: 0,1,2,3
+  {
+    if( sum == 0 )
+      row_result *= 15;
+    else if( sum == 1 )
+      row_result *= 11;
+    else if( sum == 2 )
+      row_result *= 5;
+    else if( sum == 3 )
+      row_result *= 1;
+    else if( sum == 3 )
+      has_answer = false;
+  }
+  else //Means: ">=4" PV: 4,5,6,7,8
+  {
+    if( sum == 0 )
+      row_result *= 1;
+    else if( sum == 1 )
+      row_result *= 5;
+    else if( sum == 2 )
+      row_result *= 11;
+    else if( sum == 3 )
+      row_result *= 15;
+    else if( sum == 4 )
+      row_result *= 16;
+  }
+  // ---------------------------------------------
+  if( has_answer )
+    cout << col_result << "\tvs\t" << row_result << endl;
+  else 
+    cout << "No-Answers: Droping calculations." << endl;
 }
 
 void next_nested_function( bool ** temp_chessboard )
