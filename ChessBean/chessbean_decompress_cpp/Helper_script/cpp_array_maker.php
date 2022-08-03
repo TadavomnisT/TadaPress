@@ -8,6 +8,9 @@ dump_cpp_var_definition(
     ),
     "cols4: 4"
 );
+
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_4_3",
     array_merge(
@@ -16,6 +19,9 @@ dump_cpp_var_definition(
     ),
     "cols4: 4,3"
 );
+
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_4_3_2",
     array_merge(
@@ -25,6 +31,9 @@ dump_cpp_var_definition(
     ),
     "cols4: 4,3,2"
 );
+
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_4_3_2_1",
     array_merge(
@@ -36,7 +45,11 @@ dump_cpp_var_definition(
     "cols4: 4,3,2,1"
 );
 
+echo PHP_EOL;
+
 echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
 
 dump_cpp_var_definition(
     "cols4_0_1_2_3_4",
@@ -50,6 +63,8 @@ dump_cpp_var_definition(
     "cols4: 0,1,2,3,4"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_0_1_2_3",
     array_merge(
@@ -61,6 +76,8 @@ dump_cpp_var_definition(
     "cols4: 0,1,2,3"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_0_1_2",
     array_merge(
@@ -71,6 +88,8 @@ dump_cpp_var_definition(
     "cols4: 0,1,2"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_0_1",
     array_merge(
@@ -80,6 +99,8 @@ dump_cpp_var_definition(
     "cols4: 0,1"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "cols4_0",
     array_merge(
@@ -88,9 +109,13 @@ dump_cpp_var_definition(
     "cols4: 0"
 );
 
+echo PHP_EOL;
+
 echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
 echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
 echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
 
 dump_cpp_var_definition(
     "rows4_0_1_2_3",
@@ -103,6 +128,8 @@ dump_cpp_var_definition(
     "rows4: 0,1,2,3"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "rows4_0_1_2",
     array_merge(
@@ -113,6 +140,8 @@ dump_cpp_var_definition(
     "rows4: 0,1,2"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "rows4_0_1",
     array_merge(
@@ -122,6 +151,8 @@ dump_cpp_var_definition(
     "rows4: 0,1"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "rows4_0",
     array_merge(
@@ -130,7 +161,11 @@ dump_cpp_var_definition(
     "rows4: 0"
 );
 
+echo PHP_EOL;
+
 echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
 
 dump_cpp_var_definition(
     "rows4_4",
@@ -140,6 +175,8 @@ dump_cpp_var_definition(
     "rows4: 4"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "rows4_4_3",
     array_merge(
@@ -148,6 +185,8 @@ dump_cpp_var_definition(
     ),
     "rows4: 4,3"
 );
+
+echo PHP_EOL;
 
 dump_cpp_var_definition(
     "rows4_4_3_2",
@@ -159,6 +198,8 @@ dump_cpp_var_definition(
     "rows4: 4,3,2"
 );
 
+echo PHP_EOL;
+
 dump_cpp_var_definition(
     "rows4_4_3_2_1",
     array_merge(
@@ -169,6 +210,8 @@ dump_cpp_var_definition(
     ),
     "rows4: 4,3,2,1"
 );
+
+echo PHP_EOL;
 
 dump_cpp_var_definition(
     "rows4_4_3_2_1_0",
