@@ -129,6 +129,247 @@ class ChessBean {
     {0,0,1,1},
     {1,1,1,1}
     };
+    
+    /*cols4: 4*/
+    bool cols4_4[1][4] = {
+    {1,1,1,1}
+    };
+
+    /*cols4: 4,3*/
+    bool cols4_4_3[5][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
+
+    /*cols4: 4,3,2*/
+    bool cols4_4_3_2[11][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1}
+    };
+
+    /*cols4: 4,3,2,1*/
+    bool cols4_4_3_2_1[15][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1}
+    };
+
+    //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+    /*cols4: 0,1,2,3,4*/
+    bool cols4_0_1_2_3_4[16][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,1,1}
+    };
+
+    /*cols4: 0,1,2,3*/
+    bool cols4_0_1_2_3[15][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
+
+    /*cols4: 0,1,2*/
+    bool cols4_0_1_2[11][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1}
+    };
+
+    /*cols4: 0,1*/
+    bool cols4_0_1[5][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1}
+    };
+
+    /*cols4: 0*/
+    bool cols4_0[1][4] = {
+    {0,0,0,0}
+    };
+
+    //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+    //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+    //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+    /*rows4: 0,1,2,3*/
+    bool rows4_0_1_2_3[15][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
+
+    /*rows4: 0,1,2*/
+    bool rows4_0_1_2[11][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1}
+    };
+
+    /*rows4: 0,1*/
+    bool rows4_0_1[5][4] = {
+    {0,0,0,0},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1}
+    };
+
+    /*rows4: 0*/
+    bool rows4_0[1][4] = {
+    {0,0,0,0}
+    };
+
+    //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+    /*rows4: 4*/
+    bool rows4_4[1][4] = {
+    {1,1,1,1}
+    };
+
+    /*rows4: 4,3*/
+    bool rows4_4_3[5][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1}
+    };
+
+    /*rows4: 4,3,2*/
+    bool rows4_4_3_2[11][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1}
+    };
+
+    /*rows4: 4,3,2,1*/
+    bool rows4_4_3_2_1[15][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1}
+    };
+
+    /*rows4: 4,3,2,1,0*/
+    bool rows4_4_3_2_1_0[16][4] = {
+    {1,1,1,1},
+    {1,1,1,0},
+    {1,1,0,1},
+    {1,0,1,1},
+    {0,1,1,1},
+    {1,1,0,0},
+    {1,0,1,0},
+    {1,0,0,1},
+    {0,1,1,0},
+    {0,1,0,1},
+    {0,0,1,1},
+    {1,0,0,0},
+    {0,1,0,0},
+    {0,0,1,0},
+    {0,0,0,1},
+    {0,0,0,0}
+    };
+
 
     // ===========================================================================
     // ---------------------------------------------------------------------------
@@ -1402,7 +1643,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1410,7 +1651,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
     } 
     else
     {
@@ -1421,7 +1662,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1429,7 +1670,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
     }
   }
   else
@@ -1443,7 +1684,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1451,7 +1692,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
     } 
     else
     {
@@ -1462,7 +1703,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1470,12 +1711,12 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy(temp_chessboard);
+        this->choosing_strategy_phase_1(temp_chessboard);
     }
   }
 }
 
-void choosing_strategy( bool ** temp_chessboard )
+void choosing_strategy_phase_1( bool ** temp_chessboard )
 {
   int sum = 0 , col_result = 1 , row_result = 1 ;
   bool has_answer = true;
@@ -1753,10 +1994,125 @@ void choosing_strategy( bool ** temp_chessboard )
       row_result *= 16;
   }
   // ---------------------------------------------
+  // if( has_answer )
+  //   cout << col_result << "\tvs\t" << row_result << endl;
+  // else 
+  //   cout << "No-Answers: Droping calculations." << endl;
   if( has_answer )
-    cout << col_result << "\tvs\t" << row_result << endl;
-  else 
-    cout << "No-Answers: Droping calculations." << endl;
+    if ( col_result > row_result )
+      this->complete_4_cols_1( temp_chessboard );
+    else 
+      this->complete_4_rows_1( temp_chessboard );
+}
+
+void complete_4_cols_1( bool ** temp_chessboard )
+{
+  int sum = (int)
+  temp_chessboard[0][0] +
+  temp_chessboard[2][0] +
+  temp_chessboard[5][0] +
+  temp_chessboard[7][0];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      return; //No answer
+    }
+    else if ( sum == 1 )
+    {
+      
+    }
+    else if ( sum == 2 )
+    {
+      
+    }
+    else if ( sum == 3 )
+    {
+      
+    }
+    else if ( sum == 4 )
+    {
+      
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+
+    }
+    else if ( sum == 1 )
+    {
+      
+    }
+    else if ( sum == 2 )
+    {
+      
+    }
+    else if ( sum == 3 )
+    {
+      
+    }
+    else if ( sum == 4 )
+    {
+      
+    }
+  }
+}
+
+void complete_4_rows_1( bool ** temp_chessboard )
+{
+  int sum = (int)
+  temp_chessboard[0][0] +
+  temp_chessboard[2][0] +
+  temp_chessboard[5][0] +
+  temp_chessboard[7][0];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      return; //No amswer
+    }
+    else if ( sum == 1 )
+    {
+      
+    }
+    else if ( sum == 2 )
+    {
+      
+    }
+    else if ( sum == 3 )
+    {
+      
+    }
+    else if ( sum == 4 )
+    {
+      
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+
+    }
+    else if ( sum == 1 )
+    {
+      
+    }
+    else if ( sum == 2 )
+    {
+      
+    }
+    else if ( sum == 3 )
+    {
+      
+    }
+    else if ( sum == 4 )
+    {
+      
+    }
+  }
 }
 
 void next_nested_function( bool ** temp_chessboard )

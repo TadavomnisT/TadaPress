@@ -1,5 +1,251 @@
 <?php
 
+
+dump_cpp_var_definition(
+    "cols4_4",
+    array_merge(
+        p_binary_combination( 4 , 4 )
+    ),
+    "cols4: 4"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_4_3",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 )
+    ),
+    "cols4: 4,3"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_4_3_2",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 2 )
+    ),
+    "cols4: 4,3,2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_4_3_2_1",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 1 )
+    ),
+    "cols4: 4,3,2,1"
+);
+
+echo PHP_EOL;
+
+echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_0_1_2_3_4",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 4 )
+    ),
+    "cols4: 0,1,2,3,4"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_0_1_2_3",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 3 )
+    ),
+    "cols4: 0,1,2,3"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_0_1_2",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 2 )
+    ),
+    "cols4: 0,1,2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_0_1",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 )
+    ),
+    "cols4: 0,1"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "cols4_0",
+    array_merge(
+        p_binary_combination( 4 , 0 )
+    ),
+    "cols4: 0"
+);
+
+echo PHP_EOL;
+
+echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_0_1_2_3",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 3 )
+    ),
+    "rows4: 0,1,2,3"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_0_1_2",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 2 )
+    ),
+    "rows4: 0,1,2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_0_1",
+    array_merge(
+        p_binary_combination( 4 , 0 ),
+        p_binary_combination( 4 , 1 )
+    ),
+    "rows4: 0,1"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_0",
+    array_merge(
+        p_binary_combination( 4 , 0 )
+    ),
+    "rows4: 0"
+);
+
+echo PHP_EOL;
+
+echo "//=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" . PHP_EOL;
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_4",
+    array_merge(
+        p_binary_combination( 4 , 4 )
+    ),
+    "rows4: 4"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_4_3",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 )
+    ),
+    "rows4: 4,3"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_4_3_2",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 2 )
+    ),
+    "rows4: 4,3,2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_4_3_2_1",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 1 )
+    ),
+    "rows4: 4,3,2,1"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "rows4_4_3_2_1_0",
+    array_merge(
+        p_binary_combination( 4 , 4 ),
+        p_binary_combination( 4 , 3 ),
+        p_binary_combination( 4 , 2 ),
+        p_binary_combination( 4 , 1 ),
+        p_binary_combination( 4 , 0 ),
+    ),
+    "rows4: 4,3,2,1,0"
+);
+
+die;
+
+var_dump(
+    p_binary_combination( 4 , 3 )
+);
+
+die;
+
+// four_lil_diagonals
+var_dump( 
+    array_merge(
+        p_binary_combination( 3 , 0 ),
+        p_binary_combination( 3 , 2 )
+    ),
+    array_merge(
+        p_binary_combination( 3 , 1 ),
+        p_binary_combination( 3 , 3 )
+    )
+);die;
+
+
 $counter = 0;
 for ($i=0; $i < 8; $i++) { 
     for ($j=0; $j < 8 ; $j++) { 
