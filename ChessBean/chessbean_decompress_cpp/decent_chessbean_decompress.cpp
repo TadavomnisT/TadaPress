@@ -84,7 +84,8 @@ In large scale computing, once the code is compiled, it behaves more optimised!
 
 */
 
-#define CSP_CONDITION
+// // Comment following line if wanna skip the middle-rule-checkers 
+#define MIDDLE_RULE_CHECKER_ON
 
 #include <iostream>
 
@@ -715,7 +716,7 @@ class ChessBean {
 
   bool check_rules_remained_whites_demo(bool ** chessboard, unsigned char remained_whites) {
     //This function can be used in any state
-    return ( (chessboard[0][2] +
+    return (chessboard[0][2] +
       chessboard[0][4] +
       chessboard[0][6] +
       chessboard[1][1] +
@@ -742,12 +743,12 @@ class ChessBean {
       chessboard[6][6] +
       chessboard[7][1] +
       chessboard[7][3] +
-      chessboard[7][5]) <= ( (int) remained_whites));
+      chessboard[7][5]) <= (int) remained_whites;
   }
 
   bool check_rules_remained_blacks_demo(bool ** chessboard, unsigned char remained_blacks) {
     //This function can be used in any state
-    return ( (chessboard[0][1] +
+    return (chessboard[0][1] +
       chessboard[0][3] +
       chessboard[0][5] +
       chessboard[1][0] +
@@ -774,7 +775,17 @@ class ChessBean {
       chessboard[6][7] +
       chessboard[7][2] +
       chessboard[7][4] +
-      chessboard[7][6]) <= ((int) remained_blacks) );
+      chessboard[7][6]) <= (int) remained_blacks;
+  }
+
+  bool middle_rule_checker(bool ** chessboard)
+  {
+    return 
+    (this->check_rules_cols_demo(temp_chessboard, this->cols) &&
+      this->check_rules_rows_demo(temp_chessboard, this->rows) &&
+      this->check_rules_remained_blacks_demo(temp_chessboard, this->remained_blacks) &&
+      this->check_rules_remained_whites_demo(temp_chessboard, this->remained_whites)
+    );
   }
 
   void copy_chessboard(bool ** chessboard, bool temp_chessboard[8][8]) {
@@ -1085,12 +1096,8 @@ void white_diagonal( bool ** temp_chessboard ) {
         temp_chessboard[2][2] = diagonal_1_3[i][1];
         temp_chessboard[5][5] = diagonal_1_3[i][2];
         temp_chessboard[6][6] = diagonal_1_3[i][3];
-        #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->black_diagonal(temp_chessboard);
       }
@@ -1100,13 +1107,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     }
@@ -1117,13 +1120,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     } else {
@@ -1132,13 +1131,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     }
@@ -1149,13 +1144,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     } else {
@@ -1164,13 +1155,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
 
       }
@@ -1182,13 +1169,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     } else {
@@ -1197,13 +1180,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     }
@@ -1214,13 +1193,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_1_3[i][1];
           temp_chessboard[5][5] = diagonal_1_3[i][2];
           temp_chessboard[6][6] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     } else {
@@ -1229,13 +1204,9 @@ void white_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][2] = diagonal_0_2_4[i][1];
           temp_chessboard[5][5] = diagonal_0_2_4[i][2];
           temp_chessboard[6][6] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->black_diagonal(temp_chessboard);
       }
     }
@@ -1258,12 +1229,8 @@ void black_diagonal( bool ** temp_chessboard ) {
         temp_chessboard[2][5] = diagonal_1_3[i][1];
         temp_chessboard[5][2] = diagonal_1_3[i][2];
         temp_chessboard[6][1] = diagonal_1_3[i][3];
-        #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->little_white_diagonal_1(temp_chessboard);
       }
@@ -1273,13 +1240,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     }
@@ -1290,13 +1253,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif 
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif 
             this->little_white_diagonal_1(temp_chessboard);
       }
     } else {
@@ -1305,13 +1264,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     }
@@ -1322,13 +1277,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     } else {
@@ -1337,13 +1288,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     }
@@ -1354,13 +1301,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     } else {
@@ -1369,13 +1312,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     }
@@ -1386,13 +1325,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_1_3[i][1];
           temp_chessboard[5][2] = diagonal_1_3[i][2];
           temp_chessboard[6][1] = diagonal_1_3[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     } else {
@@ -1401,13 +1336,9 @@ void black_diagonal( bool ** temp_chessboard ) {
           temp_chessboard[2][5] = diagonal_0_2_4[i][1];
           temp_chessboard[5][2] = diagonal_0_2_4[i][2];
           temp_chessboard[6][1] = diagonal_0_2_4[i][3];
-                  #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
             this->little_white_diagonal_1(temp_chessboard);
       }
     }
@@ -1423,46 +1354,30 @@ void little_white_diagonal_1( bool ** temp_chessboard )
     {
       temp_chessboard[0][2] = 0;
       temp_chessboard[2][0] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
       temp_chessboard[0][2] = 1;
       temp_chessboard[2][0] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
     } 
     else
     {
       temp_chessboard[0][2] = 1;
       temp_chessboard[2][0] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
       temp_chessboard[0][2] = 0;
       temp_chessboard[2][0] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
     }
   }
@@ -1472,46 +1387,30 @@ void little_white_diagonal_1( bool ** temp_chessboard )
     {
       temp_chessboard[0][2] = 1;
       temp_chessboard[2][0] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
       temp_chessboard[0][2] = 0;
       temp_chessboard[2][0] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
     } 
     else
     {
       temp_chessboard[0][2] = 0;
       temp_chessboard[2][0] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
       temp_chessboard[0][2] = 1;
       temp_chessboard[2][0] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_white_diagonal_2(temp_chessboard);
     }
   }
@@ -1525,46 +1424,30 @@ void little_white_diagonal_2( bool ** temp_chessboard )
     {
       temp_chessboard[5][7] = 0;
       temp_chessboard[7][5] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
       temp_chessboard[5][7] = 1;
       temp_chessboard[7][5] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
     } 
     else
     {
       temp_chessboard[5][7] = 1;
       temp_chessboard[7][5] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
       temp_chessboard[5][7] = 0;
       temp_chessboard[7][5] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
     }
   }
@@ -1574,46 +1457,30 @@ void little_white_diagonal_2( bool ** temp_chessboard )
     {
       temp_chessboard[5][7] = 1;
       temp_chessboard[7][5] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
       temp_chessboard[5][7] = 0;
       temp_chessboard[7][5] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
     } 
     else
     {
       temp_chessboard[5][7] = 0;
       temp_chessboard[7][5] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
       temp_chessboard[5][7] = 1;
       temp_chessboard[7][5] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_1(temp_chessboard);
     }
   }
@@ -1627,46 +1494,30 @@ void little_black_diagonal_1( bool ** temp_chessboard )
     {
       temp_chessboard[0][5] = 0;
       temp_chessboard[2][7] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
       temp_chessboard[0][5] = 1;
       temp_chessboard[2][7] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
     } 
     else
     {
       temp_chessboard[0][5] = 1;
       temp_chessboard[2][7] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
       temp_chessboard[0][5] = 0;
       temp_chessboard[2][7] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
     }
   }
@@ -1676,46 +1527,30 @@ void little_black_diagonal_1( bool ** temp_chessboard )
     {
       temp_chessboard[0][5] = 1;
       temp_chessboard[2][7] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
       temp_chessboard[0][5] = 0;
       temp_chessboard[2][7] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
     } 
     else
     {
       temp_chessboard[0][5] = 0;
       temp_chessboard[2][7] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
       temp_chessboard[0][5] = 1;
       temp_chessboard[2][7] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->little_black_diagonal_2(temp_chessboard);
     }
   }
@@ -1729,46 +1564,30 @@ void little_black_diagonal_2( bool ** temp_chessboard )
     {
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
     } 
     else
     {
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
     }
   }
@@ -1778,46 +1597,30 @@ void little_black_diagonal_2( bool ** temp_chessboard )
     {
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
     } 
     else
     {
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 0;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->choosing_strategy(temp_chessboard);
     }
   }
@@ -2132,13 +1935,9 @@ void complete_4_cols_1( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_4[0][1];
       temp_chessboard[4][INDEX] = cols4_4[0][2];
       temp_chessboard[6][INDEX] = cols4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_2(temp_chessboard);
     }
     else if ( sum == 2 )
@@ -2149,12 +1948,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2167,12 +1962,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2185,12 +1976,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2206,12 +1993,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2224,12 +2007,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2242,12 +2021,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2260,12 +2035,8 @@ void complete_4_cols_1( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_2(temp_chessboard);
       }
@@ -2276,13 +2047,9 @@ void complete_4_cols_1( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_0[0][1];
       temp_chessboard[4][INDEX] = cols4_0[0][2];
       temp_chessboard[6][INDEX] = cols4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_2(temp_chessboard);
     }
   }
@@ -2308,13 +2075,9 @@ void complete_4_cols_2( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_4[0][1];
       temp_chessboard[4][INDEX] = cols4_4[0][2];
       temp_chessboard[6][INDEX] = cols4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_3(temp_chessboard);
     }
     else if ( sum == 2 )
@@ -2325,12 +2088,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2343,12 +2102,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2361,12 +2116,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2382,12 +2133,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2400,12 +2147,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2418,12 +2161,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2436,12 +2175,8 @@ void complete_4_cols_2( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_3(temp_chessboard);
       }
@@ -2452,13 +2187,9 @@ void complete_4_cols_2( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_0[0][1];
       temp_chessboard[4][INDEX] = cols4_0[0][2];
       temp_chessboard[6][INDEX] = cols4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_3(temp_chessboard);
     }
   }
@@ -2484,13 +2215,9 @@ void complete_4_cols_3( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_4[0][1];
       temp_chessboard[4][INDEX] = cols4_4[0][2];
       temp_chessboard[6][INDEX] = cols4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_4(temp_chessboard);
     }
     else if ( sum == 2 )
@@ -2501,12 +2228,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2519,12 +2242,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2537,12 +2256,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2558,12 +2273,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2576,12 +2287,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2594,12 +2301,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2612,12 +2315,8 @@ void complete_4_cols_3( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_cols_4(temp_chessboard);
       }
@@ -2628,13 +2327,9 @@ void complete_4_cols_3( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_0[0][1];
       temp_chessboard[4][INDEX] = cols4_0[0][2];
       temp_chessboard[6][INDEX] = cols4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_cols_4(temp_chessboard);
     }
   }
@@ -2660,13 +2355,9 @@ void complete_4_cols_4( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_4[0][1];
       temp_chessboard[4][INDEX] = cols4_4[0][2];
       temp_chessboard[6][INDEX] = cols4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->next_nested_function(temp_chessboard);
     }
     else if ( sum == 2 )
@@ -2677,12 +2368,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2695,12 +2382,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2713,12 +2396,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
         temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
         temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2734,12 +2413,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2752,12 +2427,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2770,12 +2441,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2788,12 +2455,8 @@ void complete_4_cols_4( bool ** temp_chessboard )
         temp_chessboard[3][INDEX] = cols4_0_1[i][1];
         temp_chessboard[4][INDEX] = cols4_0_1[i][2];
         temp_chessboard[6][INDEX] = cols4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -2804,13 +2467,9 @@ void complete_4_cols_4( bool ** temp_chessboard )
       temp_chessboard[3][INDEX] = cols4_0[0][1];
       temp_chessboard[4][INDEX] = cols4_0[0][2];
       temp_chessboard[6][INDEX] = cols4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->next_nested_function(temp_chessboard);
     }
   }
@@ -2834,12 +2493,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2852,12 +2507,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2870,12 +2521,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2886,13 +2533,9 @@ void complete_4_rows_1( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_0[0][1];
       temp_chessboard[INDEX][4] = rows4_0[0][2];
       temp_chessboard[INDEX][6] = rows4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_2(temp_chessboard);
     }
     else if ( sum == 4 )
@@ -2908,13 +2551,9 @@ void complete_4_rows_1( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_4[0][1];
       temp_chessboard[INDEX][4] = rows4_4[0][2];
       temp_chessboard[INDEX][6] = rows4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_2(temp_chessboard);
     }
     else if ( sum == 1 )
@@ -2925,12 +2564,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2943,12 +2578,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2961,12 +2592,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -2979,12 +2606,8 @@ void complete_4_rows_1( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_2(temp_chessboard);
       }
@@ -3010,12 +2633,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3028,12 +2647,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3046,12 +2661,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3062,13 +2673,9 @@ void complete_4_rows_2( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_0[0][1];
       temp_chessboard[INDEX][4] = rows4_0[0][2];
       temp_chessboard[INDEX][6] = rows4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_3(temp_chessboard);
     }
     else if ( sum == 4 )
@@ -3084,13 +2691,9 @@ void complete_4_rows_2( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_4[0][1];
       temp_chessboard[INDEX][4] = rows4_4[0][2];
       temp_chessboard[INDEX][6] = rows4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_3(temp_chessboard);
     }
     else if ( sum == 1 )
@@ -3101,12 +2704,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3119,12 +2718,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3137,12 +2732,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3155,12 +2746,8 @@ void complete_4_rows_2( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_3(temp_chessboard);
       }
@@ -3186,12 +2773,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3204,12 +2787,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3222,12 +2801,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3238,13 +2813,9 @@ void complete_4_rows_3( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_0[0][1];
       temp_chessboard[INDEX][4] = rows4_0[0][2];
       temp_chessboard[INDEX][6] = rows4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_4(temp_chessboard);
     }
     else if ( sum == 4 )
@@ -3260,13 +2831,9 @@ void complete_4_rows_3( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_4[0][1];
       temp_chessboard[INDEX][4] = rows4_4[0][2];
       temp_chessboard[INDEX][6] = rows4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->complete_4_rows_4(temp_chessboard);
     }
     else if ( sum == 1 )
@@ -3277,12 +2844,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3295,12 +2858,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3313,12 +2872,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3331,12 +2886,8 @@ void complete_4_rows_3( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->complete_4_rows_4(temp_chessboard);
       }
@@ -3362,12 +2913,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3380,12 +2927,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3398,12 +2941,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_0_1[i][1];
         temp_chessboard[INDEX][4] = rows4_0_1[i][2];
         temp_chessboard[INDEX][6] = rows4_0_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3414,13 +2953,9 @@ void complete_4_rows_4( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_0[0][1];
       temp_chessboard[INDEX][4] = rows4_0[0][2];
       temp_chessboard[INDEX][6] = rows4_0[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->next_nested_function(temp_chessboard);
     }
     else if ( sum == 4 )
@@ -3436,13 +2971,9 @@ void complete_4_rows_4( bool ** temp_chessboard )
       temp_chessboard[INDEX][3] = rows4_4[0][1];
       temp_chessboard[INDEX][4] = rows4_4[0][2];
       temp_chessboard[INDEX][6] = rows4_4[0][3];
-              #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
-        #endif
+      #ifdef MIDDLE_RULE_CHECKER_ON
+      if (this->middle_rule_checker( temp_chessboard ) )
+      #endif
         this->next_nested_function(temp_chessboard);
     }
     else if ( sum == 1 )
@@ -3453,12 +2984,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3471,12 +2998,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3489,12 +3012,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
@@ -3507,12 +3026,8 @@ void complete_4_rows_4( bool ** temp_chessboard )
         temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
         temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
         temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
-                #ifdef CSP_CONDITION
-        if (this->check_rules_cols_demo(temp_chessboard, cols) &&
-          this->check_rules_rows_demo(temp_chessboard, rows) &&
-          this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
-          this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
-        )
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
         #endif
           this->next_nested_function(temp_chessboard);
       }
