@@ -787,10 +787,10 @@ class ChessBean {
     ) )
     {
       cout << endl << "++++++DEBUG++++++" << endl;
-      cout << this->check_rules_cols_demo(chessboard, this->cols) <<
-      this->check_rules_rows_demo(chessboard, this->rows) <<
-      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<
-      this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
+      cout << "check_rules_cols_demo : " <<this->check_rules_cols_demo(chessboard, this->cols) << endl 
+      << "check_rules_rows_demo : " << this->check_rules_rows_demo(chessboard, this->rows) <<endl 
+      << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<endl 
+      << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
       this->print_chessboard( chessboard );
       cout << endl << "======DEBUG======" << endl;
     }
