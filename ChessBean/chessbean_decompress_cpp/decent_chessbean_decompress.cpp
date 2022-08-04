@@ -556,7 +556,7 @@ class ChessBean {
     for (size_t i = 0; i < 8; i++) {
       sum = 0;
       for (size_t j = 0; j < 8; j++)
-        sum += (int) chessboard[i][j];
+        sum += (int) chessboard[j][i];
       if (cols[i] == 0)
         if (sum > 4)
           return false;
@@ -570,7 +570,7 @@ class ChessBean {
     for (size_t i = 0; i < 8; i++) {
       sum = 0;
       for (size_t j = 0; j < 8; j++)
-        sum += (int) chessboard[j][i];
+        sum += (int) chessboard[i][j];
       if (rows[i] == 1)
         if (sum >= 4)
           return false;
@@ -780,20 +780,20 @@ class ChessBean {
 
   bool middle_rule_checker(bool ** chessboard)
   {
-    if( !(this->check_rules_cols_demo(chessboard, this->cols) &&
-      this->check_rules_rows_demo(chessboard, this->rows) &&
-      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
-      this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
-    ) )
-    {
-      cout << endl << "++++++DEBUG++++++" << endl;
-      cout << "check_rules_cols_demo : " <<this->check_rules_cols_demo(chessboard, this->cols) << endl 
-      << "check_rules_rows_demo : " << this->check_rules_rows_demo(chessboard, this->rows) <<endl 
-      << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<endl 
-      << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
-      this->print_chessboard( chessboard );
-      cout << endl << "======DEBUG======" << endl;
-    }
+    // if( !(this->check_rules_cols_demo(chessboard, this->cols) &&
+    //   this->check_rules_rows_demo(chessboard, this->rows) &&
+    //   this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
+    //   this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
+    // ) )
+    // {
+    //   cout << endl << "++++++DEBUG++++++" << endl;
+    //   cout << "check_rules_cols_demo : " <<this->check_rules_cols_demo(chessboard, this->cols) << endl 
+    //   << "check_rules_rows_demo : " << this->check_rules_rows_demo(chessboard, this->rows) <<endl 
+    //   << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<endl 
+    //   << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
+    //   this->print_chessboard( chessboard );
+    //   cout << endl << "======DEBUG======" << endl;
+    // }
     return 
     (this->check_rules_cols_demo(chessboard, this->cols) &&
       this->check_rules_rows_demo(chessboard, this->rows) &&
@@ -854,7 +854,7 @@ class ChessBean {
     for (size_t i = 0; i < 8; i++) {
       sum = 0;
       for (size_t j = 0; j < 8; j++)
-        sum += (int) chessboard[i][j];
+        sum += (int) chessboard[j][i];
       if (cols[i] == 0)
         if (sum > 4)
           return false;
@@ -868,7 +868,7 @@ class ChessBean {
     for (size_t i = 0; i < 8; i++) {
       sum = 0;
       for (size_t j = 0; j < 8; j++)
-        sum += (int) chessboard[j][i];
+        sum += (int) chessboard[i][j];
       if (rows[i] == 1)
         if (sum >= 4)
           return false;
