@@ -780,11 +780,25 @@ class ChessBean {
 
   bool middle_rule_checker(bool ** chessboard)
   {
+    if( !(this->check_rules_cols_demo(chessboard, this->cols) &&
+      this->check_rules_rows_demo(chessboard, this->rows) &&
+      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
+      this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
+    ) )
+    {
+      cout << endl << "++++++DEBUG++++++" << endl;
+      cout << this->check_rules_cols_demo(chessboard, this->cols) <<
+      this->check_rules_rows_demo(chessboard, this->rows) <<
+      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<
+      this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
+      this->print_chessboard( chessboard );
+      cout << endl << "======DEBUG======" << endl;
+    }
     return 
-    (this->check_rules_cols_demo(temp_chessboard, this->cols) &&
-      this->check_rules_rows_demo(temp_chessboard, this->rows) &&
-      this->check_rules_remained_blacks_demo(temp_chessboard, this->remained_blacks) &&
-      this->check_rules_remained_whites_demo(temp_chessboard, this->remained_whites)
+    (this->check_rules_cols_demo(chessboard, this->cols) &&
+      this->check_rules_rows_demo(chessboard, this->rows) &&
+      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
+      this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
     );
   }
 
