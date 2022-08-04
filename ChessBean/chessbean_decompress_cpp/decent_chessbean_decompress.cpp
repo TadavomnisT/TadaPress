@@ -1643,7 +1643,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1651,7 +1651,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     } 
     else
     {
@@ -1662,7 +1662,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1670,7 +1670,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     }
   }
   else
@@ -1684,7 +1684,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 0;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1692,7 +1692,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     } 
     else
     {
@@ -1703,7 +1703,7 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
       temp_chessboard[5][0] = 1;
       temp_chessboard[7][2] = 1;
       // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
@@ -1711,12 +1711,12 @@ void little_black_diagonal_2( bool ** temp_chessboard )
       //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
       //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
       //     ) 
-        this->choosing_strategy_phase_1(temp_chessboard);
+        this->choosing_strategy(temp_chessboard);
     }
   }
 }
 
-void choosing_strategy_phase_1( bool ** temp_chessboard )
+void choosing_strategy( bool ** temp_chessboard )
 {
   int sum = 0 , col_result = 1 , row_result = 1 ;
   bool has_answer = true;
@@ -2007,11 +2007,12 @@ void choosing_strategy_phase_1( bool ** temp_chessboard )
 
 void complete_4_cols_1( bool ** temp_chessboard )
 {
+  int INDEX = 0;
   int sum = (int)
-  temp_chessboard[0][0] +
-  temp_chessboard[2][0] +
-  temp_chessboard[5][0] +
-  temp_chessboard[7][0];
+  temp_chessboard[0][INDEX] +
+  temp_chessboard[2][INDEX] +
+  temp_chessboard[5][INDEX] +
+  temp_chessboard[7][INDEX];
   if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
   {
     if ( sum == 0 )
@@ -2020,97 +2021,1250 @@ void complete_4_cols_1( bool ** temp_chessboard )
     }
     else if ( sum == 1 )
     {
-      
+      temp_chessboard[1][INDEX] = cols4_4[0][0];
+      temp_chessboard[3][INDEX] = cols4_4[0][1];
+      temp_chessboard[4][INDEX] = cols4_4[0][2];
+      temp_chessboard[6][INDEX] = cols4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_2(temp_chessboard);
     }
     else if ( sum == 2 )
     {
-      
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 3 )
     {
-      
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 4 )
     {
-      
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
     if ( sum == 0 )
     {
-
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 1 )
     {
-      
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 2 )
     {
-      
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 3 )
     {
-      
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_2(temp_chessboard);
+      }
     }
     else if ( sum == 4 )
     {
-      
+      temp_chessboard[1][INDEX] = cols4_0[0][0];
+      temp_chessboard[3][INDEX] = cols4_0[0][1];
+      temp_chessboard[4][INDEX] = cols4_0[0][2];
+      temp_chessboard[6][INDEX] = cols4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_2(temp_chessboard);
+    }
+  }
+}
+
+void complete_4_cols_2( bool ** temp_chessboard )
+{
+  int INDEX = 2;
+  int sum = (int)
+  temp_chessboard[0][INDEX] +
+  temp_chessboard[2][INDEX] +
+  temp_chessboard[5][INDEX] +
+  temp_chessboard[7][INDEX];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      return; //No answer
+    }
+    else if ( sum == 1 )
+    {
+      temp_chessboard[1][INDEX] = cols4_4[0][0];
+      temp_chessboard[3][INDEX] = cols4_4[0][1];
+      temp_chessboard[4][INDEX] = cols4_4[0][2];
+      temp_chessboard[6][INDEX] = cols4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_3(temp_chessboard);
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      temp_chessboard[1][INDEX] = cols4_0[0][0];
+      temp_chessboard[3][INDEX] = cols4_0[0][1];
+      temp_chessboard[4][INDEX] = cols4_0[0][2];
+      temp_chessboard[6][INDEX] = cols4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_3(temp_chessboard);
+    }
+  }
+}
+
+void complete_4_cols_3( bool ** temp_chessboard )
+{
+  int INDEX = 5;
+  int sum = (int)
+  temp_chessboard[0][INDEX] +
+  temp_chessboard[2][INDEX] +
+  temp_chessboard[5][INDEX] +
+  temp_chessboard[7][INDEX];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      return; //No answer
+    }
+    else if ( sum == 1 )
+    {
+      temp_chessboard[1][INDEX] = cols4_4[0][0];
+      temp_chessboard[3][INDEX] = cols4_4[0][1];
+      temp_chessboard[4][INDEX] = cols4_4[0][2];
+      temp_chessboard[6][INDEX] = cols4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_4(temp_chessboard);
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      temp_chessboard[1][INDEX] = cols4_0[0][0];
+      temp_chessboard[3][INDEX] = cols4_0[0][1];
+      temp_chessboard[4][INDEX] = cols4_0[0][2];
+      temp_chessboard[6][INDEX] = cols4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_cols_4(temp_chessboard);
+    }
+  }
+}
+
+void complete_4_cols_4( bool ** temp_chessboard )
+{
+  int INDEX = 7;
+  int sum = (int)
+  temp_chessboard[0][INDEX] +
+  temp_chessboard[2][INDEX] +
+  temp_chessboard[5][INDEX] +
+  temp_chessboard[7][INDEX];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      return; //No answer
+    }
+    else if ( sum == 1 )
+    {
+      temp_chessboard[1][INDEX] = cols4_4[0][0];
+      temp_chessboard[3][INDEX] = cols4_4[0][1];
+      temp_chessboard[4][INDEX] = cols4_4[0][2];
+      temp_chessboard[6][INDEX] = cols4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->next_nested_function(temp_chessboard);
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+        temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+        temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+        temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      temp_chessboard[1][INDEX] = cols4_0[0][0];
+      temp_chessboard[3][INDEX] = cols4_0[0][1];
+      temp_chessboard[4][INDEX] = cols4_0[0][2];
+      temp_chessboard[6][INDEX] = cols4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->next_nested_function(temp_chessboard);
     }
   }
 }
 
 void complete_4_rows_1( bool ** temp_chessboard )
 {
+  int INDEX = 0;
   int sum = (int)
-  temp_chessboard[0][0] +
-  temp_chessboard[2][0] +
-  temp_chessboard[5][0] +
-  temp_chessboard[7][0];
+  temp_chessboard[INDEX][0] +
+  temp_chessboard[INDEX][2] +
+  temp_chessboard[INDEX][5] +
+  temp_chessboard[INDEX][7];
   if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
   {
     if ( sum == 0 )
     {
-      return; //No amswer
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 1 )
     {
-      
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 2 )
     {
-      
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 3 )
     {
-      
+      temp_chessboard[INDEX][1] = rows4_0[0][0];
+      temp_chessboard[INDEX][3] = rows4_0[0][1];
+      temp_chessboard[INDEX][4] = rows4_0[0][2];
+      temp_chessboard[INDEX][6] = rows4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_2(temp_chessboard);
     }
     else if ( sum == 4 )
     {
-      
+      return; //No answer
     }
   }
   else //Means: "<=4" PV: 0,1,2,3,4
   {
     if ( sum == 0 )
     {
-
+      temp_chessboard[INDEX][1] = rows4_4[0][0];
+      temp_chessboard[INDEX][3] = rows4_4[0][1];
+      temp_chessboard[INDEX][4] = rows4_4[0][2];
+      temp_chessboard[INDEX][6] = rows4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_2(temp_chessboard);
     }
     else if ( sum == 1 )
     {
-      
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 2 )
     {
-      
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 3 )
     {
-      
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
     }
     else if ( sum == 4 )
     {
-      
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1_0[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_2(temp_chessboard);
+      }
+    }
+  }
+}
+
+void complete_4_rows_2( bool ** temp_chessboard )
+{
+  int INDEX = 2;
+  int sum = (int)
+  temp_chessboard[INDEX][0] +
+  temp_chessboard[INDEX][2] +
+  temp_chessboard[INDEX][5] +
+  temp_chessboard[INDEX][7];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      temp_chessboard[INDEX][1] = rows4_0[0][0];
+      temp_chessboard[INDEX][3] = rows4_0[0][1];
+      temp_chessboard[INDEX][4] = rows4_0[0][2];
+      temp_chessboard[INDEX][6] = rows4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_3(temp_chessboard);
+    }
+    else if ( sum == 4 )
+    {
+      return; //No answer
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      temp_chessboard[INDEX][1] = rows4_4[0][0];
+      temp_chessboard[INDEX][3] = rows4_4[0][1];
+      temp_chessboard[INDEX][4] = rows4_4[0][2];
+      temp_chessboard[INDEX][6] = rows4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_3(temp_chessboard);
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1_0[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_3(temp_chessboard);
+      }
+    }
+  }
+}
+
+void complete_4_rows_3( bool ** temp_chessboard )
+{
+  int INDEX = 5;
+  int sum = (int)
+  temp_chessboard[INDEX][0] +
+  temp_chessboard[INDEX][2] +
+  temp_chessboard[INDEX][5] +
+  temp_chessboard[INDEX][7];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      temp_chessboard[INDEX][1] = rows4_0[0][0];
+      temp_chessboard[INDEX][3] = rows4_0[0][1];
+      temp_chessboard[INDEX][4] = rows4_0[0][2];
+      temp_chessboard[INDEX][6] = rows4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_4(temp_chessboard);
+    }
+    else if ( sum == 4 )
+    {
+      return; //No answer
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      temp_chessboard[INDEX][1] = rows4_4[0][0];
+      temp_chessboard[INDEX][3] = rows4_4[0][1];
+      temp_chessboard[INDEX][4] = rows4_4[0][2];
+      temp_chessboard[INDEX][6] = rows4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->complete_4_rows_4(temp_chessboard);
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1_0[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->complete_4_rows_4(temp_chessboard);
+      }
+    }
+  }
+}
+
+void complete_4_rows_4( bool ** temp_chessboard )
+{
+  int INDEX = 7;
+  int sum = (int)
+  temp_chessboard[INDEX][0] +
+  temp_chessboard[INDEX][2] +
+  temp_chessboard[INDEX][5] +
+  temp_chessboard[INDEX][7];
+  if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+  {
+    if ( sum == 0 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_0_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_0_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_0_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_0_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      temp_chessboard[INDEX][1] = rows4_0[0][0];
+      temp_chessboard[INDEX][3] = rows4_0[0][1];
+      temp_chessboard[INDEX][4] = rows4_0[0][2];
+      temp_chessboard[INDEX][6] = rows4_0[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->next_nested_function(temp_chessboard);
+    }
+    else if ( sum == 4 )
+    {
+      return; //No answer
+    }
+  }
+  else //Means: "<=4" PV: 0,1,2,3,4
+  {
+    if ( sum == 0 )
+    {
+      temp_chessboard[INDEX][1] = rows4_4[0][0];
+      temp_chessboard[INDEX][3] = rows4_4[0][1];
+      temp_chessboard[INDEX][4] = rows4_4[0][2];
+      temp_chessboard[INDEX][6] = rows4_4[0][3];
+      // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+      //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+      //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+      //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+      //     ) 
+        this->next_nested_function(temp_chessboard);
+    }
+    else if ( sum == 1 )
+    {
+      for ( int i = 0 ; i < 5 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 2 )
+    {
+      for ( int i = 0 ; i < 11 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 3 )
+    {
+      for ( int i = 0 ; i < 15 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
+    }
+    else if ( sum == 4 )
+    {
+      for ( int i = 0 ; i < 16 ; i++ )
+      {
+        temp_chessboard[INDEX][1] = rows4_4_3_2_1_0[i][0];
+        temp_chessboard[INDEX][3] = rows4_4_3_2_1_0[i][1];
+        temp_chessboard[INDEX][4] = rows4_4_3_2_1_0[i][2];
+        temp_chessboard[INDEX][6] = rows4_4_3_2_1_0[i][3];
+        // if (this->check_rules_cols_demo(temp_chessboard, cols) &&
+        //       this->check_rules_rows_demo(temp_chessboard, rows) &&
+        //       this->check_rules_remained_blacks_demo(temp_chessboard, remained_blacks) &&
+        //       this->check_rules_remained_whites_demo(temp_chessboard, remained_whites)
+        //     ) 
+          this->next_nested_function(temp_chessboard);
+      }
     }
   }
 }
