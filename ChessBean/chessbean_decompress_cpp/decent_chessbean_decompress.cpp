@@ -101,6 +101,7 @@ class ChessBean {
 
     bool ** temp_chessboard = new bool * [8]; 
 
+    bool strategy;
 
     bool cols[8];
     bool rows[8];
@@ -780,26 +781,63 @@ class ChessBean {
 
   bool middle_rule_checker(bool ** chessboard)
   {
-    // if( !(this->check_rules_cols_demo(chessboard, this->cols) &&
-    //   this->check_rules_rows_demo(chessboard, this->rows) &&
-    //   this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
-    //   this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
-    // ) )
-    // {
-    //   cout << endl << "++++++DEBUG++++++" << endl;
-    //   cout << "check_rules_cols_demo : " <<this->check_rules_cols_demo(chessboard, this->cols) << endl 
-    //   << "check_rules_rows_demo : " << this->check_rules_rows_demo(chessboard, this->rows) <<endl 
-    //   << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<endl 
-    //   << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
-    //   this->print_chessboard( chessboard );
-    //   cout << endl << "======DEBUG======" << endl;
-    // }
+    if( !(this->check_rules_cols_demo(chessboard, this->cols) &&
+      this->check_rules_rows_demo(chessboard, this->rows) &&
+      this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
+      this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
+    ) )
+    {
+      cout << endl << "++++++DEBUG++++++" << endl;
+      cout << "check_rules_cols_demo : " <<this->check_rules_cols_demo(chessboard, this->cols) << endl 
+      << "check_rules_rows_demo : " << this->check_rules_rows_demo(chessboard, this->rows) <<endl 
+      << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) <<endl 
+      << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(chessboard, this->remained_whites) << endl;
+      this->print_chessboard( chessboard );
+      cout << endl << "======DEBUG======" << endl;
+    }
     return 
     (this->check_rules_cols_demo(chessboard, this->cols) &&
       this->check_rules_rows_demo(chessboard, this->rows) &&
       this->check_rules_remained_blacks_demo(chessboard, this->remained_blacks) &&
       this->check_rules_remained_whites_demo(chessboard, this->remained_whites)
     );
+  }
+
+  bool does_this_chessboard_match_with_real_answer( bool ** chessboard )
+  {
+    // Cheat function :D ============================
+    // ============MUST DELETE THIS LATER!===========
+    // ============MUST DELETE THIS LATER!===========
+    // ============MUST DELETE THIS LATER!===========
+    // ============MUST DELETE THIS LATER!===========
+    // ==============================================
+    // At least one of printed answers must match the
+    // real answer... right?!  
+    // 
+    // Correct decompressed block:
+    // string(64) "01111010010100011000101100001010110
+    // 01111110000010000000010011000"
+    // 0 1 1 1 1 0 1 0 
+    // 0 1 0 1 0 0 0 1 
+    // 1 0 0 0 1 0 1 1 
+    // 0 0 0 0 1 0 1 0 
+    // 1 1 0 0 1 1 1 1 
+    // 1 1 0 0 0 0 0 1 
+    // 0 0 0 0 0 0 0 0 
+    // 1 0 0 1 1 0 0 0 
+    // ==============================================
+    // ==============================================
+    // ==============================================
+
+    if( this->strategy )
+    {
+      // 4 rows selected
+    }
+    else
+    {
+      // 4 cols selected
+    }
+    return 0;
   }
 
   void copy_chessboard(bool ** chessboard, bool temp_chessboard[8][8]) {
@@ -1917,16 +1955,24 @@ void choosing_strategy( bool ** temp_chessboard )
     else if( sum == 4 )
       row_result *= 16;
   }
-  // ---------------------------------------------
+  // // ---------------------------------------------
   // if( has_answer )
   //   cout << col_result << "\tvs\t" << row_result << endl;
   // else 
   //   cout << "No-Answers: Droping calculations." << endl;
-  if( has_answer )
+  if( has_answer ) {
     if ( col_result > row_result )
-      this->complete_4_cols_1( temp_chessboard );
-    else 
+    {
+      this->strategy = 0;
       this->complete_4_rows_1( temp_chessboard );
+    }
+    else
+    {
+      this->strategy = 1;
+      this->complete_4_cols_1( temp_chessboard );
+    } 
+  }
+
 }
 
 void complete_4_cols_1( bool ** temp_chessboard )
