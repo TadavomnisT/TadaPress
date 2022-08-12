@@ -2,6 +2,18 @@
 
 
 dump_cpp_var_definition(
+    "fill_2_cells",
+    array_merge(
+        p_binary_combination( 2 , 0 ),
+        p_binary_combination( 2 , 1 ),
+        p_binary_combination( 2 , 2 )
+    ),
+    "fill 2 cells"
+);
+
+die;
+
+dump_cpp_var_definition(
     "cols4_4",
     array_merge(
         p_binary_combination( 4 , 4 )
