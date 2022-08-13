@@ -378,6 +378,14 @@ class ChessBean {
     {0,0,0,0}
     };
 
+    /*fill 2 cells*/
+    bool fill_2_cells[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+
 
     // ===========================================================================
     // ---------------------------------------------------------------------------
@@ -2493,7 +2501,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_cols(temp_chessboard);
     }
     else if ( sum == 2 )
     {
@@ -2506,7 +2514,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -2520,7 +2528,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -2534,7 +2542,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
   }
@@ -2551,7 +2559,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 1 )
@@ -2565,7 +2573,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -2579,7 +2587,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -2593,7 +2601,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -2605,7 +2613,7 @@ void complete_4_cols_4( bool ** temp_chessboard )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_cols(temp_chessboard);
     }
   }
 }
@@ -3051,7 +3059,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 1 )
@@ -3065,7 +3073,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -3079,7 +3087,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -3091,7 +3099,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_rows(temp_chessboard);
     }
     else if ( sum == 4 )
     {
@@ -3109,7 +3117,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_rows(temp_chessboard);
     }
     else if ( sum == 1 )
     {
@@ -3122,7 +3130,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -3136,7 +3144,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -3150,7 +3158,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -3164,7 +3172,7 @@ void complete_4_rows_4( bool ** temp_chessboard )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
   }
@@ -4493,7 +4501,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_cols(temp_chessboard);
     }
     else if ( sum == 2 )
     {
@@ -4506,7 +4514,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -4520,7 +4528,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -4534,7 +4542,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
   }
@@ -4551,7 +4559,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 1 )
@@ -4565,7 +4573,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -4579,7 +4587,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -4593,7 +4601,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_cols(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -4605,7 +4613,7 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_cols(temp_chessboard);
     }
   }
 }
@@ -5051,7 +5059,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 1 )
@@ -5065,7 +5073,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -5079,7 +5087,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -5091,7 +5099,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_rows(temp_chessboard);
     }
     else if ( sum == 4 )
     {
@@ -5109,7 +5117,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
       #ifdef MIDDLE_RULE_CHECKER_ON
       if (this->middle_rule_checker( temp_chessboard ) )
       #endif
-        this->end_point(temp_chessboard);
+        this->came_from_rows(temp_chessboard);
     }
     else if ( sum == 1 )
     {
@@ -5122,7 +5130,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 2 )
@@ -5136,7 +5144,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 3 )
@@ -5150,7 +5158,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
     else if ( sum == 4 )
@@ -5164,7 +5172,7 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
         #ifdef MIDDLE_RULE_CHECKER_ON
         if (this->middle_rule_checker( temp_chessboard ) )
         #endif
-          this->end_point(temp_chessboard);
+          this->came_from_rows(temp_chessboard);
       }
     }
   }
@@ -5172,8 +5180,73 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
 
 // ======================****
 
+void came_from_cols( bool ** temp_chessboard )
+{
+  this->choose_stg_over_cols( temp_chessboard );
+}
+
+void came_from_cols( bool temp_chessboard[8][8] )
+{
+  this->choose_stg_over_cols( temp_chessboard );
+}
+
+void came_from_rows( bool ** temp_chessboard )
+{
+  this->choose_stg_over_rows( temp_chessboard );
+}
+
+void came_from_rows( bool temp_chessboard[8][8] )
+{
+  this->choose_stg_over_rows( temp_chessboard );
+}
+
+// ===============
+
+void choose_stg_over_rows( bool temp_chessboard[8][8] )
+{
+  // strategy: 1
+  int stg1 = 0, stg2 = 0,
+  sum1 = (int)
+  temp_chessboard[1][0]+
+  temp_chessboard[1][1]+
+  temp_chessboard[1][2]+
+  temp_chessboard[1][5]+
+  temp_chessboard[1][6]+
+  temp_chessboard[1][7],
+  sum2 = (int)
+  temp_chessboard[6][0]+
+  temp_chessboard[6][1]+
+  temp_chessboard[6][2]+
+  temp_chessboard[6][5]+
+  temp_chessboard[6][6]+
+  temp_chessboard[6][7],
+  sum3 = (int)
+  temp_chessboard[3][0]+
+  temp_chessboard[3][2]+
+  temp_chessboard[3][3]+
+  temp_chessboard[3][4]+
+  temp_chessboard[3][5]+
+  temp_chessboard[3][7],
+  sum3 = (int)
+  temp_chessboard[4][0]+
+  temp_chessboard[4][2]+
+  temp_chessboard[4][3]+
+  temp_chessboard[4][4]+
+  temp_chessboard[4][5]+
+  temp_chessboard[4][7];
+  
+}
+
+void fill_2_cells_for_rows_1 ()
+{
+
+}
+
+// bool **
+
 void end_point( bool ** temp_chessboard )
 {
+  this->reached_end_point = true;
   this->print_chessboard( temp_chessboard );
   cout << endl;
 }
