@@ -2058,8 +2058,11 @@ void choosing_strategy( bool ** temp_chessboard )
   // this->complete_4_cols_1( temp_chessboard );
 }
 
-void complete_4_cols_1( bool ** temp_chessboard )
+void complete_4_cols_1( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 0;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -2198,8 +2201,11 @@ void complete_4_cols_1( bool ** temp_chessboard )
   }
 }
 
-void complete_4_cols_2( bool ** temp_chessboard )
+void complete_4_cols_2( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 2;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -2338,8 +2344,11 @@ void complete_4_cols_2( bool ** temp_chessboard )
   }
 }
 
-void complete_4_cols_3( bool ** temp_chessboard )
+void complete_4_cols_3( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 5;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -2478,8 +2487,11 @@ void complete_4_cols_3( bool ** temp_chessboard )
   }
 }
 
-void complete_4_cols_4( bool ** temp_chessboard )
+void complete_4_cols_4( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 7;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -2618,8 +2630,11 @@ void complete_4_cols_4( bool ** temp_chessboard )
   }
 }
 
-void complete_4_rows_1( bool ** temp_chessboard )
+void complete_4_rows_1( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 0;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -2758,8 +2773,11 @@ void complete_4_rows_1( bool ** temp_chessboard )
   }
 }
 
-void complete_4_rows_2( bool ** temp_chessboard )
+void complete_4_rows_2( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 2;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -2898,8 +2916,11 @@ void complete_4_rows_2( bool ** temp_chessboard )
   }
 }
 
-void complete_4_rows_3( bool ** temp_chessboard )
+void complete_4_rows_3( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 5;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -3038,8 +3059,11 @@ void complete_4_rows_3( bool ** temp_chessboard )
   }
 }
 
-void complete_4_rows_4( bool ** temp_chessboard )
+void complete_4_rows_4( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 7;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -3743,8 +3767,11 @@ void little_black_diagonal_2( bool  chessboard[8][8] )
   }
 }
 
-void choosing_strategy( bool temp_chessboard[8][8] )
+void choosing_strategy( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int sum = 0 , col_result = 1 , row_result = 1 ;
   bool has_answer = true;
   // starting with columns :
@@ -4058,8 +4085,11 @@ void choosing_strategy( bool temp_chessboard[8][8] )
   // this->complete_4_cols_1( temp_chessboard );
 }
 
-void complete_4_cols_1( bool temp_chessboard[8][8] )
+void complete_4_cols_1( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 0;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -4198,8 +4228,11 @@ void complete_4_cols_1( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_cols_2( bool temp_chessboard[8][8] )
+void complete_4_cols_2( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 2;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -4338,8 +4371,11 @@ void complete_4_cols_2( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_cols_3( bool temp_chessboard[8][8] )
+void complete_4_cols_3( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 5;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -4478,8 +4514,11 @@ void complete_4_cols_3( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_cols_4( bool temp_chessboard[8][8] )
+void complete_4_cols_4( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 7;
   int sum = (int)
   temp_chessboard[0][INDEX] +
@@ -4618,8 +4657,11 @@ void complete_4_cols_4( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_rows_1( bool temp_chessboard[8][8] )
+void complete_4_rows_1( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 0;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -4758,8 +4800,11 @@ void complete_4_rows_1( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_rows_2( bool temp_chessboard[8][8] )
+void complete_4_rows_2( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 2;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -4898,8 +4943,11 @@ void complete_4_rows_2( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_rows_3( bool temp_chessboard[8][8] )
+void complete_4_rows_3( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 5;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -5038,8 +5086,11 @@ void complete_4_rows_3( bool temp_chessboard[8][8] )
   }
 }
 
-void complete_4_rows_4( bool temp_chessboard[8][8] )
+void complete_4_rows_4( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   int INDEX = 7;
   int sum = (int)
   temp_chessboard[INDEX][0] +
@@ -5180,8 +5231,11 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
 
 // ======================****
 
-void came_from_cols( bool ** temp_chessboard )
+void came_from_cols( bool ** chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   // bool has_answer = true;
   int stg1 = 0, stg2 = 0,
   answer_1 = 1, answer_6 = 1,
@@ -5356,8 +5410,11 @@ void came_from_cols( bool ** temp_chessboard )
   // }
 }
 
-void came_from_cols( bool temp_chessboard[8][8] )
+void came_from_cols( bool chessboard[8][8] )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
   // bool has_answer = true;
   int stg1 = 0, stg2 = 0,
   answer_1 = 1, answer_6 = 1,
@@ -5507,29 +5564,187 @@ void came_from_cols( bool temp_chessboard[8][8] )
     if( ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) > ( int (answer_3 / 10) * (int (answer_4 / 10))) )
     {
       // choose 3-4
-      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << ">" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+      this->choose_3_4_from_cols( temp_chessboard , answer_3 , answer_4 );
+      // cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << ">" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
     }
     else
     {
       // choose 1-6
-      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << "<=" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+      this->choose_1_6_from_cols( temp_chessboard , answer_1 , answer_6 );      
+      // cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << "<=" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
     }
   } 
   else if( (answer_1 * answer_6) && !(answer_3 * answer_4) )
   {
     // 1-6 is valid
-    cout << (int (answer_1 / 10)) * (int (answer_6 / 10)) << "> 0" << endl;
+    this->choose_1_6_from_cols( temp_chessboard , answer_1 , answer_6 );      
+    // cout << (int (answer_1 / 10)) * (int (answer_6 / 10)) << "> 0" << endl;
   }
   else if( !(answer_1 * answer_6) && (answer_3 * answer_4) )
   {
     // 3-4 is valid
-    cout << (int (answer_3 / 10)) * (int (answer_4 / 10)) << "> 0" << endl;
+      this->choose_3_4_from_cols( temp_chessboard , answer_3 , answer_4 );
+    // cout << (int (answer_3 / 10)) * (int (answer_4 / 10)) << "> 0" << endl;
   }
   // else
   // {
   //   // both not valid
   //   cout << "droping" << endl;
   // }
+}
+
+void choose_1_6_from_cols( bool ** chessboard , int answer_1 , int answer_6 ) 
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  // cout << answer_1 << " " << answer_6 << endl;
+  // this->end_point( temp_chessboard );
+}
+
+void choose_3_4_from_cols( bool ** chessboard , int answer_3 , int answer_4 ) 
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  // cout << answer_3 << " " << answer_4 << endl;
+  // this->end_point( temp_chessboard );
+}
+
+void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 ) 
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  if( answer_1 % 1 == 0 )
+  {
+    if( answer_6 % 1 == 0 )
+    {
+
+    }
+    else if( answer_6 % 3 == 0 )
+    {
+
+    }
+    else if( answer_6 % 7 == 0 )
+    {
+
+    }
+    else if( answer_6 % 6 == 0 )
+    {
+
+    }
+    else if( answer_6 % 4 == 0 )
+    {
+
+    }
+  }
+  else if( answer_1 % 3 == 0 )
+  {
+    if( answer_6 % 1 == 0 )
+    {
+
+    }
+    else if( answer_6 % 3 == 0 )
+    {
+
+    }
+    else if( answer_6 % 7 == 0 )
+    {
+
+    }
+    else if( answer_6 % 6 == 0 )
+    {
+
+    }
+    else if( answer_6 % 4 == 0 )
+    {
+
+    }
+  }
+  else if( answer_1 % 7 == 0 )
+  {
+    if( answer_6 % 1 == 0 )
+    {
+
+    }
+    else if( answer_6 % 3 == 0 )
+    {
+
+    }
+    else if( answer_6 % 7 == 0 )
+    {
+
+    }
+    else if( answer_6 % 6 == 0 )
+    {
+
+    }
+    else if( answer_6 % 4 == 0 )
+    {
+
+    }
+  }
+  else if( answer_1 % 6 == 0 )
+  {
+    if( answer_6 % 1 == 0 )
+    {
+
+    }
+    else if( answer_6 % 3 == 0 )
+    {
+
+    }
+    else if( answer_6 % 7 == 0 )
+    {
+
+    }
+    else if( answer_6 % 6 == 0 )
+    {
+
+    }
+    else if( answer_6 % 4 == 0 )
+    {
+
+    }
+  }
+  else if( answer_1 % 4 == 0 )
+  {
+    if( answer_6 % 1 == 0 )
+    {
+
+    }
+    else if( answer_6 % 3 == 0 )
+    {
+
+    }
+    else if( answer_6 % 7 == 0 )
+    {
+
+    }
+    else if( answer_6 % 6 == 0 )
+    {
+
+    }
+    else if( answer_6 % 4 == 0 )
+    {
+
+    }
+  }
+  
+  
+
+  // cout << answer_1 << " " << answer_6 << endl;
+  // this->end_point( temp_chessboard );
+}
+
+void choose_3_4_from_cols( bool chessboard[8][8] , int answer_3 , int answer_4 ) 
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  // cout << answer_3 << " " << answer_4 << endl;
+  // this->end_point( temp_chessboard );
 }
 
 void came_from_rows( bool ** temp_chessboard )
@@ -5548,7 +5763,8 @@ void came_from_rows( bool temp_chessboard[8][8] )
 
 void fill_2_cells_for_rows_1 ()
 {
-
+// ?? what is this function?!
+// what does it do ?!
 }
 
 // bool **
