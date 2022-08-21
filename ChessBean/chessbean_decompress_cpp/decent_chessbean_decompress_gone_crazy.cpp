@@ -5182,52 +5182,32 @@ void complete_4_rows_4( bool temp_chessboard[8][8] )
 
 void came_from_cols( bool ** temp_chessboard )
 {
-  this->choose_stg_over_cols( temp_chessboard );
-}
-
-void came_from_cols( bool temp_chessboard[8][8] )
-{
-  this->choose_stg_over_cols( temp_chessboard );
-}
-
-void came_from_rows( bool ** temp_chessboard )
-{
-  this->choose_stg_over_rows( temp_chessboard );
-}
-
-void came_from_rows( bool temp_chessboard[8][8] )
-{
-  this->choose_stg_over_rows( temp_chessboard );
-}
-
-// ===============
-
-void choose_stg_over_rows( bool temp_chessboard[8][8] )
-{
-  // strategy: 1
+  // bool has_answer = true;
   int stg1 = 0, stg2 = 0,
-  sum1 = (int)
+  answer_1 = 1, answer_6 = 1,
+  answer_3 = 1, answer_4 = 1,
+  sum_1 = (int)
   temp_chessboard[1][0]+
   temp_chessboard[1][1]+
   temp_chessboard[1][2]+
   temp_chessboard[1][5]+
   temp_chessboard[1][6]+
   temp_chessboard[1][7],
-  sum2 = (int)
+  sum_6 = (int)
   temp_chessboard[6][0]+
   temp_chessboard[6][1]+
   temp_chessboard[6][2]+
   temp_chessboard[6][5]+
   temp_chessboard[6][6]+
   temp_chessboard[6][7],
-  sum3 = (int)
+  sum_3 = (int)
   temp_chessboard[3][0]+
   temp_chessboard[3][2]+
   temp_chessboard[3][3]+
   temp_chessboard[3][4]+
   temp_chessboard[3][5]+
   temp_chessboard[3][7],
-  sum3 = (int)
+  sum_4 = (int)
   temp_chessboard[4][0]+
   temp_chessboard[4][2]+
   temp_chessboard[4][3]+
@@ -5235,7 +5215,336 @@ void choose_stg_over_rows( bool temp_chessboard[8][8] )
   temp_chessboard[4][5]+
   temp_chessboard[4][7];
   
+  if( this->rows[ 1 ] )
+  {
+    if( sum_1 == 0 )
+      answer_1 = 47;
+    else if( sum_1 == 1 )
+      answer_1 = 47;
+    else if( sum_1 == 2 )
+      answer_1 = 36;
+    else if( sum_1 == 3 )
+      answer_1 = 14;
+    else answer_1 = 0;
+  }
+  else
+  {
+    if( sum_1 == 2 )
+      answer_1 = 11;
+    else if( sum_1 == 3 )
+      answer_1 = 33;
+    else if( sum_1 == 4 )
+      answer_1 = 47;
+    else if( sum_1 == 5 )
+      answer_1 = 47;
+    else if( sum_1 == 6 )
+      answer_1 = 47;
+    else answer_1 = 0;
+  }
+
+  if( this->rows[ 6 ] )
+  {
+    if( sum_6 == 0 )
+      answer_6 = 47;
+    else if( sum_6 == 1 )
+      answer_6 = 47;
+    else if( sum_6 == 2 )
+      answer_6 = 36;
+    else if( sum_6 == 3 )
+      answer_6 = 14;
+    else answer_6 = 0;
+  }
+  else
+  {
+    if( sum_6 == 2 )
+      answer_6 = 11;
+    else if( sum_6 == 3 )
+      answer_6 = 33;
+    else if( sum_6 == 4 )
+      answer_6 = 47;
+    else if( sum_6 == 5 )
+      answer_6 = 47;
+    else if( sum_6 == 6 )
+      answer_6 = 47;
+    else answer_6 = 0;
+  }
+
+  if( this->rows[ 3 ] )
+  {
+    if( sum_3 == 0 )
+      answer_3 = 47;
+    else if( sum_3 == 1 )
+      answer_3 = 47;
+    else if( sum_3 == 2 )
+      answer_3 = 36;
+    else if( sum_3 == 3 )
+      answer_3 = 14;
+    else answer_3 = 0;
+  }
+  else
+  {
+    if( sum_3 == 2 )
+      answer_3 = 11;
+    else if( sum_3 == 3 )
+      answer_3 = 33;
+    else if( sum_3 == 4 )
+      answer_3 = 47;
+    else if( sum_3 == 5 )
+      answer_3 = 47;
+    else if( sum_3 == 6 )
+      answer_3 = 47;
+    else answer_3 = 0;
+  }
+
+  if( this->rows[ 4 ] )
+  {
+    if( sum_4 == 0 )
+      answer_4 = 47;
+    else if( sum_4 == 1 )
+      answer_4 = 47;
+    else if( sum_4 == 2 )
+      answer_4 = 36;
+    else if( sum_4 == 3 )
+      answer_4 = 14;
+    else answer_4 = 0;
+  }
+  else
+  {
+    if( sum_4 == 2 )
+      answer_4 = 11;
+    else if( sum_4 == 3 )
+      answer_4 = 33;
+    else if( sum_4 == 4 )
+      answer_4 = 47;
+    else if( sum_4 == 5 )
+      answer_4 = 47;
+    else if( sum_4 == 6 )
+      answer_4 = 47;
+    else answer_4 = 0;
+  }
+
+  // mirio_mano_hesabi_daqun_mikoni </3
+
+  if( (answer_1 * answer_6) && (answer_3 * answer_4) )
+  {
+    // both valid
+    if( ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) > ( int (answer_3 / 10) * (int (answer_4 / 10))) )
+    {
+      // choose 3-4
+      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << ">" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+    }
+    else
+    {
+      // choose 1-6
+      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << "<=" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+    }
+  } 
+  else if( (answer_1 * answer_6) && !(answer_3 * answer_4) )
+  {
+    // 1-6 is valid
+    cout << (int (answer_1 / 10)) * (int (answer_6 / 10)) << "> 0" << endl;
+  }
+  else if( !(answer_1 * answer_6) && (answer_3 * answer_4) )
+  {
+    // 3-4 is valid
+    cout << (int (answer_3 / 10)) * (int (answer_4 / 10)) << "> 0" << endl;
+  }
+  // else
+  // {
+  //   // both not valid
+  //   cout << "droping" << endl;
+  // }
 }
+
+void came_from_cols( bool temp_chessboard[8][8] )
+{
+  // bool has_answer = true;
+  int stg1 = 0, stg2 = 0,
+  answer_1 = 1, answer_6 = 1,
+  answer_3 = 1, answer_4 = 1,
+  sum_1 = (int)
+  temp_chessboard[1][0]+
+  temp_chessboard[1][1]+
+  temp_chessboard[1][2]+
+  temp_chessboard[1][5]+
+  temp_chessboard[1][6]+
+  temp_chessboard[1][7],
+  sum_6 = (int)
+  temp_chessboard[6][0]+
+  temp_chessboard[6][1]+
+  temp_chessboard[6][2]+
+  temp_chessboard[6][5]+
+  temp_chessboard[6][6]+
+  temp_chessboard[6][7],
+  sum_3 = (int)
+  temp_chessboard[3][0]+
+  temp_chessboard[3][2]+
+  temp_chessboard[3][3]+
+  temp_chessboard[3][4]+
+  temp_chessboard[3][5]+
+  temp_chessboard[3][7],
+  sum_4 = (int)
+  temp_chessboard[4][0]+
+  temp_chessboard[4][2]+
+  temp_chessboard[4][3]+
+  temp_chessboard[4][4]+
+  temp_chessboard[4][5]+
+  temp_chessboard[4][7];
+  
+  if( this->rows[ 1 ] )
+  {
+    if( sum_1 == 0 )
+      answer_1 = 47;
+    else if( sum_1 == 1 )
+      answer_1 = 47;
+    else if( sum_1 == 2 )
+      answer_1 = 36;
+    else if( sum_1 == 3 )
+      answer_1 = 14;
+    else answer_1 = 0;
+  }
+  else
+  {
+    if( sum_1 == 2 )
+      answer_1 = 11;
+    else if( sum_1 == 3 )
+      answer_1 = 33;
+    else if( sum_1 == 4 )
+      answer_1 = 47;
+    else if( sum_1 == 5 )
+      answer_1 = 47;
+    else if( sum_1 == 6 )
+      answer_1 = 47;
+    else answer_1 = 0;
+  }
+
+  if( this->rows[ 6 ] )
+  {
+    if( sum_6 == 0 )
+      answer_6 = 47;
+    else if( sum_6 == 1 )
+      answer_6 = 47;
+    else if( sum_6 == 2 )
+      answer_6 = 36;
+    else if( sum_6 == 3 )
+      answer_6 = 14;
+    else answer_6 = 0;
+  }
+  else
+  {
+    if( sum_6 == 2 )
+      answer_6 = 11;
+    else if( sum_6 == 3 )
+      answer_6 = 33;
+    else if( sum_6 == 4 )
+      answer_6 = 47;
+    else if( sum_6 == 5 )
+      answer_6 = 47;
+    else if( sum_6 == 6 )
+      answer_6 = 47;
+    else answer_6 = 0;
+  }
+
+  if( this->rows[ 3 ] )
+  {
+    if( sum_3 == 0 )
+      answer_3 = 47;
+    else if( sum_3 == 1 )
+      answer_3 = 47;
+    else if( sum_3 == 2 )
+      answer_3 = 36;
+    else if( sum_3 == 3 )
+      answer_3 = 14;
+    else answer_3 = 0;
+  }
+  else
+  {
+    if( sum_3 == 2 )
+      answer_3 = 11;
+    else if( sum_3 == 3 )
+      answer_3 = 33;
+    else if( sum_3 == 4 )
+      answer_3 = 47;
+    else if( sum_3 == 5 )
+      answer_3 = 47;
+    else if( sum_3 == 6 )
+      answer_3 = 47;
+    else answer_3 = 0;
+  }
+
+  if( this->rows[ 4 ] )
+  {
+    if( sum_4 == 0 )
+      answer_4 = 47;
+    else if( sum_4 == 1 )
+      answer_4 = 47;
+    else if( sum_4 == 2 )
+      answer_4 = 36;
+    else if( sum_4 == 3 )
+      answer_4 = 14;
+    else answer_4 = 0;
+  }
+  else
+  {
+    if( sum_4 == 2 )
+      answer_4 = 11;
+    else if( sum_4 == 3 )
+      answer_4 = 33;
+    else if( sum_4 == 4 )
+      answer_4 = 47;
+    else if( sum_4 == 5 )
+      answer_4 = 47;
+    else if( sum_4 == 6 )
+      answer_4 = 47;
+    else answer_4 = 0;
+  }
+
+  // mirio_mano_hesabi_daqun_mikoni </3
+
+  if( (answer_1 * answer_6) && (answer_3 * answer_4) )
+  {
+    // both valid
+    if( ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) > ( int (answer_3 / 10) * (int (answer_4 / 10))) )
+    {
+      // choose 3-4
+      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << ">" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+    }
+    else
+    {
+      // choose 1-6
+      cout << ( (int (answer_1 / 10)) * (int (answer_6 / 10)) ) << "<=" << ( int (answer_3 / 10) * (int (answer_4 / 10)))  << endl;
+    }
+  } 
+  else if( (answer_1 * answer_6) && !(answer_3 * answer_4) )
+  {
+    // 1-6 is valid
+    cout << (int (answer_1 / 10)) * (int (answer_6 / 10)) << "> 0" << endl;
+  }
+  else if( !(answer_1 * answer_6) && (answer_3 * answer_4) )
+  {
+    // 3-4 is valid
+    cout << (int (answer_3 / 10)) * (int (answer_4 / 10)) << "> 0" << endl;
+  }
+  // else
+  // {
+  //   // both not valid
+  //   cout << "droping" << endl;
+  // }
+}
+
+void came_from_rows( bool ** temp_chessboard )
+{
+  // I should put sth here
+}
+
+void came_from_rows( bool temp_chessboard[8][8] )
+{
+  // I should put sth here
+}
+
+// ===============
+
+
 
 void fill_2_cells_for_rows_1 ()
 {
