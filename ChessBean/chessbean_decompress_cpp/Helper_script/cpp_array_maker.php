@@ -1,5 +1,59 @@
 <?php
 
+dump_cpp_var_definition(
+    "put_2_in_2",
+    array_merge(
+        p_binary_combination( 2 , 2 )
+    ),
+    "put 2 in 2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "put_1_2_in_2",
+    array_merge(
+        p_binary_combination( 2 , 1 ),
+        p_binary_combination( 2 , 2 )
+    ),
+    "put 1,2 in 2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "put_0_1_2_in_2",
+    array_merge(
+        p_binary_combination( 2 , 0 ),
+        p_binary_combination( 2 , 1 ),
+        p_binary_combination( 2 , 2 )
+    ),
+    "put 0,1,2 in 2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "put_0_1_in_2",
+    array_merge(
+        p_binary_combination( 2 , 0 ),
+        p_binary_combination( 2 , 1 )
+    ),
+    "put 0,1 in 2"
+);
+
+echo PHP_EOL;
+
+dump_cpp_var_definition(
+    "put_0_in_2",
+    array_merge(
+        p_binary_combination( 2 , 0 )
+
+    ),
+    "put 0 in 2"
+);
+
+die;
 
 dump_cpp_var_definition(
     "fill_2_cells",
