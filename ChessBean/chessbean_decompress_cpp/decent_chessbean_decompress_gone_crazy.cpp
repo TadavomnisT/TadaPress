@@ -5616,119 +5616,144 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
   bool temp_chessboard[8][8]; 
   this->copy_chessboard( chessboard , temp_chessboard );
 
-  if( answer_1 % 1 == 0 )
+  if( answer_1 % 10 == 1 )
   {
-    if( answer_6 % 1 == 0 )
+    if( answer_6 % 10 == 1 )
     {
-
+      // for 1: 2
+      // for 6: 2
     }
-    else if( answer_6 % 3 == 0 )
+    else if( answer_6 % 10 == 3 )
     {
-
+      // for 1: 2
+      // for 6: 1-2
     }
-    else if( answer_6 % 7 == 0 )
+    else if( answer_6 % 10 == 7 )
     {
-
+      // for 1: 2
+      // for 6: 0-1-2
     }
-    else if( answer_6 % 6 == 0 )
+    else if( answer_6 % 10 == 6 )
     {
-
+      // for 1: 2
+      // for 6: 0-1
     }
-    else if( answer_6 % 4 == 0 )
+    else if( answer_6 % 10 == 4 )
     {
-
+      // for 1: 2
+      // for 6: 0
     }
   }
-  else if( answer_1 % 3 == 0 )
+  else if( answer_1 % 10 == 3 )
   {
-    if( answer_6 % 1 == 0 )
+    if( answer_6 % 10 == 1 )
     {
-
+      // for 1: 1-2
+      // for 6: 2
     }
-    else if( answer_6 % 3 == 0 )
+    else if( answer_6 % 10 == 3 )
     {
-
+      // for 1: 1-2
+      // for 6: 1-2
     }
-    else if( answer_6 % 7 == 0 )
+    else if( answer_6 % 10 == 7 )
     {
-
+      // for 1: 1-2
+      // for 6: 0-1-2
     }
-    else if( answer_6 % 6 == 0 )
+    else if( answer_6 % 10 == 6 )
     {
-
+      // for 1: 1-2
+      // for 6: 0-1
     }
-    else if( answer_6 % 4 == 0 )
+    else if( answer_6 % 10 == 4 )
     {
-
+      // for 1: 1-2
+      // for 6: 0
     }
   }
-  else if( answer_1 % 7 == 0 )
+  else if( answer_1 % 10 == 7 )
   {
-    if( answer_6 % 1 == 0 )
+    if( answer_6 % 10 == 1 )
     {
-
+      // for 1: 0-1-2
+      // for 6: 2
     }
-    else if( answer_6 % 3 == 0 )
+    else if( answer_6 % 10 == 3 )
     {
-
+      // for 1: 0-1-2
+      // for 6: 1-2
     }
-    else if( answer_6 % 7 == 0 )
+    else if( answer_6 % 10 == 7 )
     {
-
+      // for 1: 0-1-2
+      // for 6: 0-1-2
     }
-    else if( answer_6 % 6 == 0 )
+    else if( answer_6 % 10 == 6 )
     {
-
+      // for 1: 0-1-2
+      // for 6: 0-1
     }
-    else if( answer_6 % 4 == 0 )
+    else if( answer_6 % 10 == 4 )
     {
-
+      // for 1: 0-1-2
+      // for 6: 0
     }
   }
-  else if( answer_1 % 6 == 0 )
+  else if( answer_1 % 10 == 6 )
   {
-    if( answer_6 % 1 == 0 )
+    if( answer_6 % 10 == 1 )
     {
-
+      // for 1: 0-1
+      // for 6: 2
     }
-    else if( answer_6 % 3 == 0 )
+    else if( answer_6 % 10 == 3 )
     {
-
+      // for 1: 0-1
+      // for 6: 1-2
     }
-    else if( answer_6 % 7 == 0 )
+    else if( answer_6 % 10 == 7 )
     {
-
+      // for 1: 0-1
+      // for 6: 0-1-2
     }
-    else if( answer_6 % 6 == 0 )
+    else if( answer_6 % 10 == 6 )
     {
-
+      // for 1: 0-1
+      // for 6: 0-1
     }
-    else if( answer_6 % 4 == 0 )
+    else if( answer_6 % 10 == 4 )
     {
-
+      // for 1: 0-1
+      // for 6: 0
     }
   }
-  else if( answer_1 % 4 == 0 )
+  else if( answer_1 % 10 == 4 )
   {
-    if( answer_6 % 1 == 0 )
+    if( answer_6 % 10 == 1 )
     {
-
+      // for 1: 0
+      // for 6: 2
     }
-    else if( answer_6 % 3 == 0 )
+    else if( answer_6 % 10 == 3 )
     {
-
+      // for 1: 0
+      // for 6: 1-2
     }
-    else if( answer_6 % 7 == 0 )
+    else if( answer_6 % 10 == 7 )
     {
-
+      // for 1: 0
+      // for 6: 0-1-2
     }
-    else if( answer_6 % 6 == 0 )
+    else if( answer_6 % 10 == 6 )
     {
-
+      // for 1: 0
+      // for 6: 0-1
     }
-    else if( answer_6 % 4 == 0 )
+    else if( answer_6 % 10 == 4 )
     {
-
+      // for 1: 0
+      // for 6: 0
     }
   }
   
