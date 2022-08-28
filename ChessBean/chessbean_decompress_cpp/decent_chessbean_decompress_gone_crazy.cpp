@@ -5593,23 +5593,23 @@ void came_from_cols( bool chessboard[8][8] )
   // }
 }
 
-void choose_1_6_from_cols( bool ** chessboard , int answer_1 , int answer_6 ) 
-{
-  bool temp_chessboard[8][8]; 
-  this->copy_chessboard( chessboard , temp_chessboard );
+// void choose_1_6_from_cols( bool ** chessboard , int answer_1 , int answer_6 ) 
+// {
+//   bool temp_chessboard[8][8]; 
+//   this->copy_chessboard( chessboard , temp_chessboard );
 
-  // cout << answer_1 << " " << answer_6 << endl;
-  // this->end_point( temp_chessboard );
-}
+//   // cout << answer_1 << " " << answer_6 << endl;
+//   // this->end_point( temp_chessboard );
+// }
 
-void choose_3_4_from_cols( bool ** chessboard , int answer_3 , int answer_4 ) 
-{
-  bool temp_chessboard[8][8]; 
-  this->copy_chessboard( chessboard , temp_chessboard );
+// void choose_3_4_from_cols( bool ** chessboard , int answer_3 , int answer_4 ) 
+// {
+//   bool temp_chessboard[8][8]; 
+//   this->copy_chessboard( chessboard , temp_chessboard );
 
-  // cout << answer_3 << " " << answer_4 << endl;
-  // this->end_point( temp_chessboard );
-}
+//   // cout << answer_3 << " " << answer_4 << endl;
+//   // this->end_point( temp_chessboard );
+// }
 
 void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 ) 
 {
@@ -5645,7 +5645,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       } 
     }
@@ -5677,7 +5677,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5710,7 +5710,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5742,7 +5742,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5772,7 +5772,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5807,7 +5807,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5834,7 +5834,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
     }
@@ -5869,7 +5869,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -5904,7 +5904,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -5937,7 +5937,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -5974,7 +5974,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6010,7 +6010,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6039,7 +6039,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6075,7 +6075,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6109,7 +6109,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6145,7 +6145,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6180,7 +6180,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6216,7 +6216,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6244,7 +6244,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6278,7 +6278,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6312,7 +6312,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6345,7 +6345,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6379,7 +6379,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6412,7 +6412,7 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
         }
       }
 
@@ -6438,27 +6438,890 @@ void choose_1_6_from_cols( bool chessboard[8][8] , int answer_1 , int answer_6 )
           #ifdef MIDDLE_RULE_CHECKER_ON
           if (this->middle_rule_checker( temp_chessboard ) )
           #endif
-          next_nested_function( temp_chessboard );
+          choosed_1_6_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+  }
+
+}
+
+void choose_3_4_from_cols( bool chessboard[8][8] , int answer_3 , int answer_4 ) 
+{
+  
+    int
+  ONE_X   = 3,  ONE_Y   = 1,
+  TWO_X   = 3,  TWO_Y   = 6,
+  THREE_X = 4,  THREE_Y = 1,
+  FOUR_X  = 4,  FOUR_Y  = 6;
+
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  if( answer_3 % 10 == 1 )
+  {
+    if( answer_4 % 10 == 1 )
+    {
+      // for 1: 2
+      // for 6: 2
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      } 
+    }
+    else if( answer_4 % 10 == 3 )
+    {
+      // for 1: 2
+      // for 6: 1-2
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+    else if( answer_4 % 10 == 7 )
+    {
+      // for 1: 2
+      // for 6: 0-1-2
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_2_in_2[i][1];  
+        for( int j = 0 ; j < 4 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+    else if( answer_4 % 10 == 6 )
+    {
+      // for 1: 2
+      // for 6: 0-1
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+    else if( answer_4 % 10 == 4 )
+    {
+      // for 1: 2
+      // for 6: 0
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+  }
+  else if( answer_3 % 10 == 3 )
+  {
+    if( answer_4 % 10 == 1 )
+    {
+      // for 1: 1-2
+      // for 6: 2
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+    else if( answer_4 % 10 == 3 )
+    {
+      // for 1: 1-2
+      // for 6: 1-2
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+    }
+    else if( answer_4 % 10 == 7 )
+    {
+      // for 1: 1-2
+      // for 6: 0-1-2
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 4 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 6 )
+    {
+      // for 1: 1-2
+      // for 6: 0-1
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 4 )
+    {
+      // for 1: 1-2
+      // for 6: 0
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+  }
+  else if( answer_3 % 10 == 7 )
+  {
+    if( answer_4 % 10 == 1 )
+    {
+      // for 1: 0-1-2
+      // for 6: 2
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 4 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 3 )
+    {
+      // for 1: 0-1-2
+      // for 6: 1-2
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 4 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 7 )
+    {
+      // for 1: 0-1-2
+      // for 6: 0-1-2
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 4 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 4 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 6 )
+    {
+      // for 1: 0-1-2
+      // for 6: 0-1
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      for( int i = 0 ; i < 4 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 4 )
+    {
+      // for 1: 0-1-2
+      // for 6: 0
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      for( int i = 0 ; i < 4 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_2_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_2_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+  }
+  else if( answer_3 % 10 == 6 )
+  {
+    if( answer_4 % 10 == 1 )
+    {
+      // for 1: 0-1
+      // for 6: 2
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 3 )
+    {
+      // for 1: 0-1
+      // for 6: 1-2
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 7 )
+    {
+      // for 1: 0-1
+      // for 6: 0-1-2
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_in_2[i][1];  
+        for( int j = 0 ; j < 4 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 6 )
+    {
+      // for 1: 0-1
+      // for 6: 0-1
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+
+    }
+    else if( answer_4 % 10 == 4 )
+    {
+      // for 1: 0-1
+      // for 6: 0
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      for( int i = 0 ; i < 3 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_1_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_1_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+  }
+  else if( answer_3 % 10 == 4 )
+  {
+    if( answer_4 % 10 == 1 )
+    {
+      // for 1: 0
+      // for 6: 2
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      /*put 2 in 2*/
+      bool put_2_in_2[1][2] = {
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 3 )
+    {
+      // for 1: 0
+      // for 6: 1-2
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      /*put 1,2 in 2*/
+      bool put_1_2_in_2[3][2] = {
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 7 )
+    {
+      // for 1: 0
+      // for 6: 0-1-2
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      /*put 0,1,2 in 2*/
+      bool put_0_1_2_in_2[4][2] = {
+      {0,0},
+      {1,0},
+      {0,1},
+      {1,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_in_2[i][1];  
+        for( int j = 0 ; j < 4 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_2_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_2_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 6 )
+    {
+      // for 1: 0
+      // for 6: 0-1
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      /*put 0,1 in 2*/
+      bool put_0_1_in_2[3][2] = {
+      {0,0},
+      {1,0},
+      {0,1}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_in_2[i][1];  
+        for( int j = 0 ; j < 3 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_1_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_1_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
+        }
+      }
+
+    }
+    else if( answer_4 % 10 == 4 )
+    {
+      // for 1: 0
+      // for 6: 0
+
+      /*put 0 in 2*/
+      bool put_0_in_2[1][2] = {
+      {0,0}
+      };
+
+      for( int i = 0 ; i < 1 ; i++ )
+      {
+        temp_chessboard[ONE_X][ONE_Y] = put_0_in_2[i][0];
+        temp_chessboard[TWO_X][TWO_Y] = put_0_in_2[i][1];  
+        for( int j = 0 ; j < 1 ; j++ )
+        {
+          temp_chessboard[THREE_X][THREE_Y] = put_0_in_2[i][0];
+          temp_chessboard[FOUR_X][FOUR_Y] = put_0_in_2[i][1];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+          choosed_3_4_from_cols( temp_chessboard );
         }
       }
 
     }
   }
   
-  
-
-  // cout << answer_1 << " " << answer_6 << endl;
-  // this->end_point( temp_chessboard );
 }
 
-void choose_3_4_from_cols( bool chessboard[8][8] , int answer_3 , int answer_4 ) 
+void choosed_1_6_from_cols(  bool chessboard[8][8]  )
 {
   bool temp_chessboard[8][8]; 
   this->copy_chessboard( chessboard , temp_chessboard );
 
-  // cout << answer_3 << " " << answer_4 << endl;
-  // this->end_point( temp_chessboard );
+  end_point( temp_chessboard );
+
 }
+
+// void choosed_1_6_from_cols(  bool ** chessboard  )
+// {
+//   bool temp_chessboard[8][8]; 
+//   this->copy_chessboard( chessboard , temp_chessboard );
+
+//   end_point( temp_chessboard );
+
+// }
+
+void choosed_3_4_from_cols(  bool chessboard[8][8]  )
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+
+  end_point( temp_chessboard );
+
+}
+
+// void choosed_3_4_from_cols(  bool ** chessboard  )
+// {
+//   bool temp_chessboard[8][8]; 
+//   this->copy_chessboard( chessboard , temp_chessboard );
+
+//   end_point( temp_chessboard );
+
+// }
+
+// ===============
+
 
 void came_from_rows( bool ** temp_chessboard )
 {
