@@ -838,6 +838,16 @@ class ChessBean {
     );
   }
 
+  bool end_rule_checker(bool chessboard[8][8])
+  { //*-*
+    return 
+    (this->check_rules_cols(chessboard, this->cols) &&
+      this->check_rules_rows(chessboard, this->rows) &&
+      this->check_rules_sum_whites(chessboard, this->remained_blacks) &&
+      this->check_rules_sum_blacks(chessboard, this->remained_whites)
+    );
+  }
+
   bool does_this_chessboard_match_with_real_answer( bool ** chessboard )
   {
     // Cheat function :D ============================
@@ -14050,13 +14060,3220 @@ void final2s_2( bool chessboard[8][8] )
   
   int
   sum1 =
-  temp_chessboard[0][0] + temp_chessboard[0][2] + temp_chessboard[0][3] +
-  temp_chessboard[0][4] + temp_chessboard[0][5] + temp_chessboard[0][7] ,
+  temp_chessboard[0][1] + temp_chessboard[1][1] + temp_chessboard[3][1] +
+  temp_chessboard[4][1] + temp_chessboard[6][1] + temp_chessboard[7][1] ,
   sum2 =
-  temp_chessboard[7][0] + temp_chessboard[7][2] + temp_chessboard[7][3] +
-  temp_chessboard[7][4] + temp_chessboard[7][5] + temp_chessboard[7][7],
-  FIRST_ONE_X  = 0, FIRST_ONE_Y  = 1, FIRST_TWO_X  = 0, FIRST_TWO_Y  = 6,
-  SECOND_ONE_X = 7, SECOND_ONE_Y = 1, SECOND_TWO_X = 7, SECOND_TWO_Y = 6;
+  temp_chessboard[5][0] + temp_chessboard[5][1] + temp_chessboard[5][2] +
+  temp_chessboard[5][5] + temp_chessboard[5][6] + temp_chessboard[5][7],
+  FIRST_ONE_X  = 2, FIRST_ONE_Y  = 1, FIRST_TWO_X  = 5, FIRST_TWO_Y  = 1,
+  SECOND_ONE_X = 2, SECOND_ONE_Y = 6, SECOND_TWO_X = 5, SECOND_TWO_Y = 6;
+
+  if( sum1 == 0 && this->cols[FIRST_ONE_Y] == 0 )
+    { // 012
+        /*put 0,1,2 in 2*/
+        bool put_0_1_2_in_2[4][2] = {
+        {0,0},
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 4 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 1 && this->cols[FIRST_ONE_Y] == 0 )
+    { // 012
+        /*put 0,1,2 in 2*/
+        bool put_0_1_2_in_2[4][2] = {
+        {0,0},
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 4 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 2 && this->cols[FIRST_ONE_Y] == 0 )
+    {  // 012
+        /*put 0,1,2 in 2*/
+        bool put_0_1_2_in_2[4][2] = {
+        {0,0},
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 4 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 3 && this->cols[FIRST_ONE_Y] == 1 )
+    { // 2
+        /*put 2 in 2*/
+        bool put_2_in_2[1][2] = {
+        {1,1}
+        };
+        for( int i = 0 ; i < 1 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 3 && this->cols[FIRST_ONE_Y] == 0 )
+    { // 01
+        /*put 0,1 in 2*/
+        bool put_0_1_in_2[3][2] = {
+        {0,0},
+        {1,0},
+        {0,1}
+        };
+        for( int i = 0 ; i < 3 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 4 && this->cols[FIRST_ONE_Y] == 1 )
+    { // 12
+        /*put 1,2 in 2*/
+        bool put_1_2_in_2[3][2] = {
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 3 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 4 && this->cols[FIRST_ONE_Y] == 0 )
+    { // 0
+        /*put 0 in 2*/
+        bool put_0_in_2[1][2] = {
+        {0,0}
+        };
+        for( int i = 0 ; i < 1 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 5 && this->cols[FIRST_ONE_Y] == 1 )
+    { // 012
+        /*put 0,1,2 in 2*/
+        bool put_0_1_2_in_2[4][2] = {
+        {0,0},
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 4 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+    else if ( sum1 == 6 && this->cols[FIRST_ONE_Y] == 1 )
+    { // 012
+        /*put 0,1,2 in 2*/
+        bool put_0_1_2_in_2[4][2] = {
+        {0,0},
+        {1,0},
+        {0,1},
+        {1,1}
+        };
+        for( int i = 0 ; i < 4 ; i++ )
+        {
+            temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+            temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+            if( sum2 == 0 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 1 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 2 && this->cols[SECOND_ONE_Y] == 0 )
+            {  // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 2
+                /*put 2 in 2*/
+                bool newput_2_in_2[1][2] = {
+                {1,1}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 3 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 01
+                /*put 0,1 in 2*/
+                bool put_0_1_in_2[3][2] = {
+                {0,0},
+                {1,0},
+                {0,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_1_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_1_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 12
+                /*put 1,2 in 2*/
+                bool newput_1_2_in_2[3][2] = {
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 3 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 4 && this->cols[SECOND_ONE_Y] == 0 )
+            { // 0
+                /*put 0 in 2*/
+                bool put_0_in_2[1][2] = {
+                {0,0}
+                };
+                for( int i = 0 ; i < 1 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = put_0_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = put_0_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 5 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+            else if ( sum2 == 6 && this->cols[SECOND_ONE_Y] == 1 )
+            { // 012
+                /*put 0,1,2 in 2*/
+                bool newput_0_1_2_in_2[4][2] = {
+                {0,0},
+                {1,0},
+                {0,1},
+                {1,1}
+                };
+                for( int i = 0 ; i < 4 ; i++ )
+                {
+                    temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+                    temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+                    #ifdef MIDDLE_RULE_CHECKER_ON
+                    if (this->middle_rule_checker( temp_chessboard ) )
+                    #endif
+                    this->final2s_3( temp_chessboard );
+                }
+            }
+        }
+    }
+
+}
+
+void final2s_3( bool chessboard[8][8] )
+{
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( chessboard , temp_chessboard );
+  
+  int
+  sum1 =
+  temp_chessboard[2][0] + temp_chessboard[2][1] + temp_chessboard[2][2] +
+  temp_chessboard[2][5] + temp_chessboard[2][6] + temp_chessboard[2][7] ,
+  sum2 =
+  temp_chessboard[5][0] + temp_chessboard[5][1] + temp_chessboard[5][2] +
+  temp_chessboard[5][5] + temp_chessboard[5][6] + temp_chessboard[5][7],
+  FIRST_ONE_X  = 2, FIRST_ONE_Y  = 3, FIRST_TWO_X  = 2, FIRST_TWO_Y  = 4,
+  SECOND_ONE_X = 5, SECOND_ONE_Y = 3, SECOND_TWO_X = 5, SECOND_TWO_Y = 4;
+
+  if( sum1 == 0 && this->rows[FIRST_ONE_X] == 1 )
+  { // 012
+    /*put 0,1,2 in 2*/
+    bool put_0_1_2_in_2[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 1 && this->rows[FIRST_ONE_X] == 1 )
+  { // 012
+    /*put 0,1,2 in 2*/
+    bool put_0_1_2_in_2[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 2 && this->rows[FIRST_ONE_X] == 1 )
+  { // 01
+    /*put 0,1 in 2*/
+    bool put_0_1_in_2[3][2] = {
+    {0,0},
+    {1,0},
+    {0,1}
+    };
+    for( int i = 0 ; i < 3 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 2 && this->rows[FIRST_ONE_X] == 0 )
+  { // 2
+    /*put 2 in 2*/
+    bool put_2_in_2[1][2] = {
+    {1,1}
+    };
+    for( int i = 0 ; i < 1 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 3 && this->rows[FIRST_ONE_X] == 1 )
+  { // 0
+    /*put 0 in 2*/
+    bool put_0_in_2[1][2] = {
+    {0,0}
+    };
+    for( int i = 0 ; i < 1 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 3 && this->rows[FIRST_ONE_X] == 0 )
+  { // 12
+    /*put 1,2 in 2*/
+    bool put_1_2_in_2[3][2] = {
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 3 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 4 && this->rows[FIRST_ONE_X] == 0 )
+  { // 012
+    /*put 0,1,2 in 2*/
+    bool put_0_1_2_in_2[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 5 && this->rows[FIRST_ONE_X] == 0 )
+  { // 012
+    /*put 0,1,2 in 2*/
+    bool put_0_1_2_in_2[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
+  else if ( sum1 == 6 && this->rows[FIRST_ONE_X] == 0 )
+  { // 012
+    /*put 0,1,2 in 2*/
+    bool put_0_1_2_in_2[4][2] = {
+    {0,0},
+    {1,0},
+    {0,1},
+    {1,1}
+    };
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+      temp_chessboard[FIRST_ONE_X][FIRST_ONE_Y] = put_0_1_2_in_2[i][0];
+      temp_chessboard[FIRST_TWO_X][FIRST_TWO_Y] = put_0_1_2_in_2[i][1];
+      if( sum2 == 0 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 1 && this->rows[SECOND_ONE_X] == 1 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 1 )
+        { // 01
+            /*put 0,1 in 2*/
+            bool newput_0_1_in_2[3][2] = {
+            {0,0},
+            {1,0},
+            {0,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 2 && this->rows[SECOND_ONE_X] == 0 )
+        { // 2
+            /*put 2 in 2*/
+            bool newput_2_in_2[1][2] = {
+            {1,1}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 1 )
+        { // 0
+            /*put 0 in 2*/
+            bool newput_0_in_2[1][2] = {
+            {0,0}
+            };
+            for( int i = 0 ; i < 1 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 3 && this->rows[SECOND_ONE_X] == 0 )
+        { // 12
+            /*put 1,2 in 2*/
+            bool newput_1_2_in_2[3][2] = {
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 3 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 4 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 5 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+        else if ( sum2 == 6 && this->rows[SECOND_ONE_X] == 0 )
+        { // 012
+            /*put 0,1,2 in 2*/
+            bool newput_0_1_2_in_2[4][2] = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+            };
+            for( int i = 0 ; i < 4 ; i++ )
+            {
+            temp_chessboard[SECOND_ONE_X][SECOND_ONE_Y] = newput_0_1_2_in_2[i][0];
+            temp_chessboard[SECOND_TWO_X][SECOND_TWO_Y] = newput_0_1_2_in_2[i][1];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+            this->end_point( temp_chessboard );
+            }
+        }
+    }
+  }
 
 }
 
@@ -14094,18 +17311,21 @@ void fill_2_cells_for_rows_1 ()
 
 // bool **
 
-void end_point( bool ** temp_chessboard )
-{
-  this->reached_end_point = true;
-  this->print_chessboard( temp_chessboard );
-  cout << endl;
-}
+// void end_point( bool ** temp_chessboard )
+// {
+//   this->reached_end_point = true;
+//   this->print_chessboard( temp_chessboard );
+//   cout << endl;
+// }
 
 void end_point( bool temp_chessboard[8][8] )
 {
   this->reached_end_point = true;
-  this->print_chessboard( temp_chessboard );
-  cout << endl;
+  if( this->end_rule_checker( temp_chessboard ) )
+  {
+    this->print_chessboard( temp_chessboard );
+    cout << endl;
+  }
 }
 
 void start_nested_functions( bool ** temp_chessboard )
