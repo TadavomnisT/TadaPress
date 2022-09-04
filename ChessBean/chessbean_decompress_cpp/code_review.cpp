@@ -11,11 +11,17 @@
 
 
 #include <iostream>
+
+#ifndef NO_MIDDLE_RULE_CHECKER
 #define MIDDLE_RULE_CHECKER_ON
+#endif
+
 using namespace std;
 
 class ChessBean {
   public:
+
+  int debug_counter = 0;
 
   string input_buffer;
   bool
@@ -24,7 +30,7 @@ class ChessBean {
   rows[8],
   black_diagonals[7],
   white_diagonals[7];
-  unsigned char
+  int
   all_blacks,
   all_whites,
   remained_blacks,
@@ -53,6 +59,10 @@ class ChessBean {
   };
 
 
+  void debug_counter_plus_plus()
+  {
+    this->debug_counter++;
+  }
   void print_chessboard(bool the_chessboard[8][8])
   {
     for (size_t i = 0; i < 8; i++) {
@@ -260,6 +270,23 @@ class ChessBean {
   }
   bool middle_rule_checker(bool the_chessboard[8][8])
   {
+    #ifdef DUMP_WHY_FAILED
+    if( !(
+      this->check_rules_cols_demo(the_chessboard) &&
+      this->check_rules_rows_demo(the_chessboard) &&
+      this->check_rules_remained_blacks_demo(the_chessboard) &&
+      this->check_rules_remained_whites_demo(the_chessboard)
+    ) )
+    {
+      cout << endl << "++++++DEBUG++++++" << endl;
+      cout << "check_rules_cols_demo : " << this->check_rules_cols_demo(the_chessboard) << endl 
+      << "check_rules_rows_demo : " << this->check_rules_rows_demo(the_chessboard) << endl 
+      << "check_rules_remained_blacks_demo : " << this->check_rules_remained_blacks_demo(the_chessboard) << endl 
+      << "check_rules_remained_whites_demo : " << this->check_rules_remained_whites_demo(the_chessboard) << endl;
+      this->print_chessboard( the_chessboard );
+      cout << endl << "======DEBUG======" << endl;
+    }
+    #endif
     return (
       this->check_rules_cols_demo(the_chessboard) &&
       this->check_rules_rows_demo(the_chessboard) &&
@@ -400,10 +427,429 @@ class ChessBean {
       }
     }
   }
-  void black_diagonal( bool chessboard[8][8] )
+  void black_diagonal( bool the_chessboard[8][8] )
   {
-    this->print_chessboard( this->chessboard ); cout<<endl;
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    int black_diagonal_placed_beans = (int)
+    (temp_chessboard[0][7] +
+      temp_chessboard[3][4] +
+      temp_chessboard[4][3] +
+      temp_chessboard[7][0]
+    );
+    if (black_diagonal_placed_beans == 0) {
+      if (black_diagonals[0]) {
+        for (int i = 0; i < 8; i++) {
+          temp_chessboard[1][6] = this->diagonal_1_3[i][0];
+          temp_chessboard[2][5] = this->diagonal_1_3[i][1];
+          temp_chessboard[5][2] = this->diagonal_1_3[i][2];
+          temp_chessboard[6][1] = this->diagonal_1_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->little_white_diagonal_1(temp_chessboard);
+        }
+      } else {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_0_2_4[i][0];
+            temp_chessboard[2][5] = this->diagonal_0_2_4[i][1];
+            temp_chessboard[5][2] = this->diagonal_0_2_4[i][2];
+            temp_chessboard[6][1] = this->diagonal_0_2_4[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      }
+    } else if (black_diagonal_placed_beans == 1) {
+      if (black_diagonals[0]) {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_0_2_4[i][0];
+            temp_chessboard[2][5] = this->diagonal_0_2_4[i][1];
+            temp_chessboard[5][2] = this->diagonal_0_2_4[i][2];
+            temp_chessboard[6][1] = this->diagonal_0_2_4[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif 
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      } else {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_1_3[i][0];
+            temp_chessboard[2][5] = this->diagonal_1_3[i][1];
+            temp_chessboard[5][2] = this->diagonal_1_3[i][2];
+            temp_chessboard[6][1] = this->diagonal_1_3[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      }
+    } else if (black_diagonal_placed_beans == 2) {
+      if (black_diagonals[0]) {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_1_3[i][0];
+            temp_chessboard[2][5] = this->diagonal_1_3[i][1];
+            temp_chessboard[5][2] = this->diagonal_1_3[i][2];
+            temp_chessboard[6][1] = this->diagonal_1_3[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      } else {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_0_2_4[i][0];
+            temp_chessboard[2][5] = this->diagonal_0_2_4[i][1];
+            temp_chessboard[5][2] = this->diagonal_0_2_4[i][2];
+            temp_chessboard[6][1] = this->diagonal_0_2_4[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      }
+    } else if (black_diagonal_placed_beans == 3) {
+      if (black_diagonals[0]) {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_0_2_4[i][0];
+            temp_chessboard[2][5] = this->diagonal_0_2_4[i][1];
+            temp_chessboard[5][2] = this->diagonal_0_2_4[i][2];
+            temp_chessboard[6][1] = this->diagonal_0_2_4[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      } else {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_1_3[i][0];
+            temp_chessboard[2][5] = this->diagonal_1_3[i][1];
+            temp_chessboard[5][2] = this->diagonal_1_3[i][2];
+            temp_chessboard[6][1] = this->diagonal_1_3[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      }
+    } else if (black_diagonal_placed_beans == 4) {
+      if (black_diagonals[0]) {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_1_3[i][0];
+            temp_chessboard[2][5] = this->diagonal_1_3[i][1];
+            temp_chessboard[5][2] = this->diagonal_1_3[i][2];
+            temp_chessboard[6][1] = this->diagonal_1_3[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      } else {
+        for (int i = 0; i < 8; i++) {
+            temp_chessboard[1][6] = this->diagonal_0_2_4[i][0];
+            temp_chessboard[2][5] = this->diagonal_0_2_4[i][1];
+            temp_chessboard[5][2] = this->diagonal_0_2_4[i][2];
+            temp_chessboard[6][1] = this->diagonal_0_2_4[i][3];
+            #ifdef MIDDLE_RULE_CHECKER_ON
+            if (this->middle_rule_checker( temp_chessboard ) )
+            #endif
+              this->little_white_diagonal_1(temp_chessboard);
+        }
+      }
+    }
   }
+  void little_white_diagonal_1( bool the_chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    if( this->white_diagonals[1] )
+    {
+      if( temp_chessboard[1][1] )
+      {
+        temp_chessboard[0][2] = 0;
+        temp_chessboard[2][0] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+        temp_chessboard[0][2] = 1;
+        temp_chessboard[2][0] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[0][2] = 1;
+        temp_chessboard[2][0] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+        temp_chessboard[0][2] = 0;
+        temp_chessboard[2][0] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+      }
+    }
+    else
+    {
+      if( temp_chessboard[1][1] )
+      {
+        temp_chessboard[0][2] = 1;
+        temp_chessboard[2][0] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+        temp_chessboard[0][2] = 0;
+        temp_chessboard[2][0] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[0][2] = 0;
+        temp_chessboard[2][0] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+        temp_chessboard[0][2] = 1;
+        temp_chessboard[2][0] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_white_diagonal_2(temp_chessboard);
+      }
+    }
+  }
+  void little_white_diagonal_2( bool the_chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    if( this->white_diagonals[6] )
+    {
+      if( temp_chessboard[6][6] )
+      {
+        temp_chessboard[5][7] = 0;
+        temp_chessboard[7][5] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+        temp_chessboard[5][7] = 1;
+        temp_chessboard[7][5] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[5][7] = 1;
+        temp_chessboard[7][5] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+        temp_chessboard[5][7] = 0;
+        temp_chessboard[7][5] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+      }
+    }
+    else
+    {
+      if( temp_chessboard[6][6] )
+      {
+        temp_chessboard[5][7] = 1;
+        temp_chessboard[7][5] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+        temp_chessboard[5][7] = 0;
+        temp_chessboard[7][5] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[5][7] = 0;
+        temp_chessboard[7][5] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+        temp_chessboard[5][7] = 1;
+        temp_chessboard[7][5] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_1(temp_chessboard);
+      }
+    }
+  }
+  void little_black_diagonal_1( bool the_chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+
+    if( this->black_diagonals[1] )
+    {
+      if( temp_chessboard[1][6] )
+      {
+        temp_chessboard[0][5] = 0;
+        temp_chessboard[2][7] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+        temp_chessboard[0][5] = 1;
+        temp_chessboard[2][7] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[0][5] = 1;
+        temp_chessboard[2][7] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+        temp_chessboard[0][5] = 0;
+        temp_chessboard[2][7] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+      }
+    }
+    else
+    {
+      if( temp_chessboard[1][6] )
+      {
+        temp_chessboard[0][5] = 1;
+        temp_chessboard[2][7] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+        temp_chessboard[0][5] = 0;
+        temp_chessboard[2][7] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[0][5] = 0;
+        temp_chessboard[2][7] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+        temp_chessboard[0][5] = 1;
+        temp_chessboard[2][7] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->little_black_diagonal_2(temp_chessboard);
+      }
+    }
+  }
+  void little_black_diagonal_2( bool the_chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    if( this->black_diagonals[6] )
+    {
+      if( temp_chessboard[6][1] )
+      {
+        temp_chessboard[5][0] = 0;
+        temp_chessboard[7][2] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+        temp_chessboard[5][0] = 1;
+        temp_chessboard[7][2] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[5][0] = 1;
+        temp_chessboard[7][2] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+        temp_chessboard[5][0] = 0;
+        temp_chessboard[7][2] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+      }
+    }
+    else
+    {
+      if( temp_chessboard[6][1] )
+      {
+        temp_chessboard[5][0] = 1;
+        temp_chessboard[7][2] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+        temp_chessboard[5][0] = 0;
+        temp_chessboard[7][2] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+      } 
+      else
+      {
+        temp_chessboard[5][0] = 0;
+        temp_chessboard[7][2] = 0;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+        temp_chessboard[5][0] = 1;
+        temp_chessboard[7][2] = 1;
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->choosing_strategy(temp_chessboard);
+      }
+    }
+  }
+  void choosing_strategy( bool the_chessboard[8][8] )
+  {
+    this->print_chessboard( the_chessboard ); cout<<endl;
+    debug_counter_plus_plus();
+  }
+  // this->print_chessboard( chessboard ); cout<<endl;
   void decompress_block( string block )
   {
     this->setInputBuffer( block );  
@@ -414,7 +860,7 @@ class ChessBean {
     this->extract_rules_cols_rows();
     this->extract_rules_diagonals();
     this->start_nested_functions( this->chessboard );
-    // this->print_chessboard( this->chessboard ); cout<<endl;
+    cout<<this->debug_counter<<endl;
   }
 
 
