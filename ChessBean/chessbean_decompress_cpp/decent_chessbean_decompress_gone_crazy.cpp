@@ -9,8 +9,8 @@ white 7 bits:      0111101
 black 7 bits:      0111001 
 sum white 5 bits:  01111 
 sum black 5 bits:  01011 
-sum col 8 bits:    00001000 
-sum row 8 bits:    01010111
+sum col 8 bits:    00001000 if < 4 => 1
+sum row 8 bits:    01010111 if > 4 => 1
 corner 4 bits:     0010
 center 4 bits:     0101
 hash:              00000000
@@ -84,8 +84,10 @@ In large scale computing, once the code is compiled, it behaves more optimised!
 
 */
 
-// // Comment following line if wanna skip the middle-rule-checkers 
+#ifndef NO_MIDDLE_RULE_CHECKER
 #define MIDDLE_RULE_CHECKER_ON
+#endif
+
 
 #include <iostream>
 
@@ -94,6 +96,8 @@ using namespace std;
 
 class ChessBean {
   public:
+
+    int max = 0;
 
     string input_buffer;
     char one = '1', zero = '0';
@@ -840,6 +844,91 @@ class ChessBean {
 
   bool end_rule_checker(bool chessboard[8][8])
   { //*-*
+
+int value = 
+( chessboard[0][0] == 0 ) +
+( chessboard[0][1] == 1 ) +
+( chessboard[0][2] == 1 ) +
+( chessboard[0][3] == 1 ) +
+( chessboard[0][4] == 1 ) +
+( chessboard[0][5] == 0 ) +
+( chessboard[0][6] == 1 ) +
+( chessboard[0][7] == 0 ) +
+( chessboard[1][0] == 0 ) +
+( chessboard[1][1] == 1 ) +
+( chessboard[1][2] == 0 ) +
+( chessboard[1][3] == 1 ) +
+( chessboard[1][4] == 0 ) +
+( chessboard[1][5] == 0 ) +
+( chessboard[1][6] == 0 ) +
+( chessboard[1][7] == 1 ) +
+( chessboard[2][0] == 1 ) +
+( chessboard[2][1] == 0 ) +
+( chessboard[2][2] == 0 ) +
+( chessboard[2][3] == 0 ) +
+( chessboard[2][4] == 1 ) +
+( chessboard[2][5] == 0 ) +
+( chessboard[2][6] == 1 ) +
+( chessboard[2][7] == 1 ) +
+( chessboard[3][0] == 0 ) +
+( chessboard[3][1] == 0 ) +
+( chessboard[3][2] == 0 ) +
+( chessboard[3][3] == 0 ) +
+( chessboard[3][4] == 1 ) +
+( chessboard[3][5] == 0 ) +
+( chessboard[3][6] == 1 ) +
+( chessboard[3][7] == 0 ) +
+( chessboard[4][0] == 1 ) +
+( chessboard[4][1] == 1 ) +
+( chessboard[4][2] == 0 ) +
+( chessboard[4][3] == 0 ) +
+( chessboard[4][4] == 1 ) +
+( chessboard[4][5] == 1 ) +
+( chessboard[4][6] == 1 ) +
+( chessboard[4][7] == 1 ) +
+( chessboard[5][0] == 1 ) +
+( chessboard[5][1] == 1 ) +
+( chessboard[5][2] == 0 ) +
+( chessboard[5][3] == 0 ) +
+( chessboard[5][4] == 0 ) +
+( chessboard[5][5] == 0 ) +
+( chessboard[5][6] == 0 ) +
+( chessboard[5][7] == 1 ) +
+( chessboard[6][0] == 0 ) +
+( chessboard[6][1] == 0 ) +
+( chessboard[6][2] == 0 ) +
+( chessboard[6][3] == 0 ) +
+( chessboard[6][4] == 0 ) +
+( chessboard[6][5] == 0 ) +
+( chessboard[6][6] == 0 ) +
+( chessboard[6][7] == 0 ) +
+( chessboard[7][0] == 1 ) +
+( chessboard[7][1] == 0 ) +
+( chessboard[7][2] == 0 ) +
+( chessboard[7][3] == 1 ) +
+( chessboard[7][4] == 1 ) +
+( chessboard[7][5] == 0 ) +
+( chessboard[7][6] == 0 ) +
+( chessboard[7][7] == 0 ) ;
+
+if( value > this->max ) this->max = value; 
+
+
+// if( !(this->check_rules_cols(chessboard, this->cols) &&
+//       this->check_rules_rows(chessboard, this->rows) &&
+//       this->check_rules_sum_whites(chessboard, this->remained_blacks) &&
+//       this->check_rules_sum_blacks(chessboard, this->remained_whites)
+//     ) )
+//     {
+//       cout << endl << "++++++DEBUG++++++" << endl;
+//       cout << "check_rules_cols : " <<this->check_rules_cols(chessboard, this->cols) << endl 
+//       << "check_rules_rows : " << this->check_rules_rows(chessboard, this->rows) <<endl 
+//       << "check_rules_sum_whites : " << this->check_rules_sum_whites(chessboard, this->remained_blacks) <<endl 
+//       << "check_rules_sum_blacks : " << this->check_rules_sum_blacks(chessboard, this->remained_whites) << endl;
+//       this->print_chessboard( chessboard );
+//       cout << endl << "======DEBUG======" << endl;
+//     }
+
     return 
     (this->check_rules_cols(chessboard, this->cols) &&
       this->check_rules_rows(chessboard, this->rows) &&
@@ -17289,13 +17378,14 @@ void final2s_3( bool chessboard[8][8] )
 // ===============
 
 
-void came_from_rows( bool ** temp_chessboard )
-{
-  // I should put sth here
-}
+// void came_from_rows( bool ** temp_chessboard )
+// {
+//   // I should put sth here
+// }
 
 void came_from_rows( bool temp_chessboard[8][8] )
 {
+  // cout<< "called but not implemented" <<endl;
   // I should put sth here
 }
 
@@ -17318,18 +17408,49 @@ void fill_2_cells_for_rows_1 ()
 //   cout << endl;
 // }
 
+void print_chessboard_as_buffer( bool chessboard[8][8] )
+{
+  for (size_t i = 0; i < 8; i++) {
+      for (size_t j = 0; j < 8; j++) {
+        cout << chessboard[i][j];
+      }
+    }
+}
+
+string get_chessboard_as_buffer( bool chessboard[8][8] )
+{
+  string result;
+  int counter = 0;
+  for (size_t i = 0; i < 8; i++) {
+      for (size_t j = 0; j < 8; j++) {
+        result[ ++counter ] = (chessboard[i][j] ? '1': '0') ;
+      }
+    }
+  return result;
+}
+
 void end_point( bool temp_chessboard[8][8] )
 {
   this->reached_end_point = true;
   if( this->end_rule_checker( temp_chessboard ) )
   {
-    this->print_chessboard( temp_chessboard );
+    
+    cout << "TRUE   ANSWER : 0101110011100000010110101010100000101100100000000010010010010100" ;
+    cout << endl;
+    cout << "FOUND  ANSWER : " << this->get_chessboard_as_buffer( temp_chessboard );
+    cout << endl;
+    cout << "INPUT  BUFFER : " << this->input_buffer ;
+    cout << endl;
+    cout << "OUTPUT BUFFER : " << ("php test.php " + this->get_chessboard_as_buffer( temp_chessboard )).c_str() ;
+    // system( ;
     cout << endl;
   }
 }
 
-void start_nested_functions( bool ** temp_chessboard )
+void start_nested_functions( bool ** the_chessboard )
 {
+  bool temp_chessboard[8][8]; 
+  this->copy_chessboard( the_chessboard , temp_chessboard );
   this->white_diagonal( temp_chessboard );
 }
 
@@ -17379,7 +17500,7 @@ void decompress_block( string block )
     this->start_nested_functions( this->temp_chessboard );
   }
 
-
+  // cout << "max:" <<this->max << endl;
   
 }
 

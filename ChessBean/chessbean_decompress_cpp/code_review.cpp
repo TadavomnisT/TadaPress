@@ -57,6 +57,115 @@ class ChessBean {
   {0,0,1,1},
   {1,1,1,1}
   };
+  /*cols4: 4*/
+  bool cols4_4[1][4] = {
+  {1,1,1,1}
+  };
+  /*cols4: 4,3*/
+  bool cols4_4_3[5][4] = {
+  {1,1,1,1},
+  {1,1,1,0},
+  {1,1,0,1},
+  {1,0,1,1},
+  {0,1,1,1}
+  };
+  /*cols4: 4,3,2*/
+  bool cols4_4_3_2[11][4] = {
+  {1,1,1,1},
+  {1,1,1,0},
+  {1,1,0,1},
+  {1,0,1,1},
+  {0,1,1,1},
+  {1,1,0,0},
+  {1,0,1,0},
+  {1,0,0,1},
+  {0,1,1,0},
+  {0,1,0,1},
+  {0,0,1,1}
+  };
+  /*cols4: 4,3,2,1*/
+  bool cols4_4_3_2_1[15][4] = {
+  {1,1,1,1},
+  {1,1,1,0},
+  {1,1,0,1},
+  {1,0,1,1},
+  {0,1,1,1},
+  {1,1,0,0},
+  {1,0,1,0},
+  {1,0,0,1},
+  {0,1,1,0},
+  {0,1,0,1},
+  {0,0,1,1},
+  {1,0,0,0},
+  {0,1,0,0},
+  {0,0,1,0},
+  {0,0,0,1}
+  };
+  //=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+  /*cols4: 0,1,2,3,4*/
+  bool cols4_0_1_2_3_4[16][4] = {
+  {0,0,0,0},
+  {1,0,0,0},
+  {0,1,0,0},
+  {0,0,1,0},
+  {0,0,0,1},
+  {1,1,0,0},
+  {1,0,1,0},
+  {1,0,0,1},
+  {0,1,1,0},
+  {0,1,0,1},
+  {0,0,1,1},
+  {1,1,1,0},
+  {1,1,0,1},
+  {1,0,1,1},
+  {0,1,1,1},
+  {1,1,1,1}
+  };
+  /*cols4: 0,1,2,3*/
+  bool cols4_0_1_2_3[15][4] = {
+  {0,0,0,0},
+  {1,0,0,0},
+  {0,1,0,0},
+  {0,0,1,0},
+  {0,0,0,1},
+  {1,1,0,0},
+  {1,0,1,0},
+  {1,0,0,1},
+  {0,1,1,0},
+  {0,1,0,1},
+  {0,0,1,1},
+  {1,1,1,0},
+  {1,1,0,1},
+  {1,0,1,1},
+  {0,1,1,1}
+  };
+  /*cols4: 0,1,2*/
+  bool cols4_0_1_2[11][4] = {
+  {0,0,0,0},
+  {1,0,0,0},
+  {0,1,0,0},
+  {0,0,1,0},
+  {0,0,0,1},
+  {1,1,0,0},
+  {1,0,1,0},
+  {1,0,0,1},
+  {0,1,1,0},
+  {0,1,0,1},
+  {0,0,1,1}
+  };
+  /*cols4: 0,1*/
+  bool cols4_0_1[5][4] = {
+  {0,0,0,0},
+  {1,0,0,0},
+  {0,1,0,0},
+  {0,0,1,0},
+  {0,0,0,1}
+  };
+  /*cols4: 0*/
+  bool cols4_0[1][4] = {
+  {0,0,0,0}
+  };
+
 
 
   void debug_counter_plus_plus()
@@ -846,7 +955,577 @@ class ChessBean {
   }
   void choosing_strategy( bool the_chessboard[8][8] )
   {
-    this->print_chessboard( the_chessboard ); cout<<endl;
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    this->complete_4_cols_1( temp_chessboard ); 
+  }
+  void complete_4_cols_1( bool the_chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( the_chessboard , temp_chessboard );
+    int INDEX = 0;
+    int sum = (int)
+    temp_chessboard[0][INDEX] +
+    temp_chessboard[2][INDEX] +
+    temp_chessboard[5][INDEX] +
+    temp_chessboard[7][INDEX];
+    if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+    {
+      if ( sum == 0 )
+      {
+        return; //No answer
+      }
+      else if ( sum == 1 )
+      {
+        temp_chessboard[1][INDEX] = cols4_4[0][0];
+        temp_chessboard[3][INDEX] = cols4_4[0][1];
+        temp_chessboard[4][INDEX] = cols4_4[0][2];
+        temp_chessboard[6][INDEX] = cols4_4[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_2(temp_chessboard);
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+    }
+    else //Means: "<=4" PV: 0,1,2,3,4
+    {
+      if ( sum == 0 )
+      {
+        for ( int i = 0 ; i < 16 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 1 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_2(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        temp_chessboard[1][INDEX] = cols4_0[0][0];
+        temp_chessboard[3][INDEX] = cols4_0[0][1];
+        temp_chessboard[4][INDEX] = cols4_0[0][2];
+        temp_chessboard[6][INDEX] = cols4_0[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_2(temp_chessboard);
+      }
+    }
+  }
+  void complete_4_cols_2( bool chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( chessboard , temp_chessboard );
+    int INDEX = 2;
+    int sum = (int)
+    temp_chessboard[0][INDEX] +
+    temp_chessboard[2][INDEX] +
+    temp_chessboard[5][INDEX] +
+    temp_chessboard[7][INDEX];
+    if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+    {
+      if ( sum == 0 )
+      {
+        return; //No answer
+      }
+      else if ( sum == 1 )
+      {
+        temp_chessboard[1][INDEX] = cols4_4[0][0];
+        temp_chessboard[3][INDEX] = cols4_4[0][1];
+        temp_chessboard[4][INDEX] = cols4_4[0][2];
+        temp_chessboard[6][INDEX] = cols4_4[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_3(temp_chessboard);
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+    }
+    else //Means: "<=4" PV: 0,1,2,3,4
+    {
+      if ( sum == 0 )
+      {
+        for ( int i = 0 ; i < 16 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 1 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_3(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        temp_chessboard[1][INDEX] = cols4_0[0][0];
+        temp_chessboard[3][INDEX] = cols4_0[0][1];
+        temp_chessboard[4][INDEX] = cols4_0[0][2];
+        temp_chessboard[6][INDEX] = cols4_0[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_3(temp_chessboard);
+      }
+    }
+  }
+  void complete_4_cols_3( bool chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( chessboard , temp_chessboard );
+    int INDEX = 5;
+    int sum = (int)
+    temp_chessboard[0][INDEX] +
+    temp_chessboard[2][INDEX] +
+    temp_chessboard[5][INDEX] +
+    temp_chessboard[7][INDEX];
+    if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+    {
+      if ( sum == 0 )
+      {
+        return; //No answer
+      }
+      else if ( sum == 1 )
+      {
+        temp_chessboard[1][INDEX] = cols4_4[0][0];
+        temp_chessboard[3][INDEX] = cols4_4[0][1];
+        temp_chessboard[4][INDEX] = cols4_4[0][2];
+        temp_chessboard[6][INDEX] = cols4_4[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_4(temp_chessboard);
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+    }
+    else //Means: "<=4" PV: 0,1,2,3,4
+    {
+      if ( sum == 0 )
+      {
+        for ( int i = 0 ; i < 16 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 1 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->complete_4_cols_4(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        temp_chessboard[1][INDEX] = cols4_0[0][0];
+        temp_chessboard[3][INDEX] = cols4_0[0][1];
+        temp_chessboard[4][INDEX] = cols4_0[0][2];
+        temp_chessboard[6][INDEX] = cols4_0[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->complete_4_cols_4(temp_chessboard);
+      }
+    }
+  }
+  void complete_4_cols_4( bool chessboard[8][8] )
+  {
+    bool temp_chessboard[8][8]; 
+    this->copy_chessboard( chessboard , temp_chessboard );
+    int INDEX = 7;
+    int sum = (int)
+    temp_chessboard[0][INDEX] +
+    temp_chessboard[2][INDEX] +
+    temp_chessboard[5][INDEX] +
+    temp_chessboard[7][INDEX];
+    if( this->cols[ 0 ] ) //Means: ">4" PV: 5,6,7,8
+    {
+      if ( sum == 0 )
+      {
+        return; //No answer
+      }
+      else if ( sum == 1 )
+      {
+        temp_chessboard[1][INDEX] = cols4_4[0][0];
+        temp_chessboard[3][INDEX] = cols4_4[0][1];
+        temp_chessboard[4][INDEX] = cols4_4[0][2];
+        temp_chessboard[6][INDEX] = cols4_4[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->came_from_cols(temp_chessboard);
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_4_3_2_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_4_3_2_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_4_3_2_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_4_3_2_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+    }
+    else //Means: "<=4" PV: 0,1,2,3,4
+    {
+      if ( sum == 0 )
+      {
+        for ( int i = 0 ; i < 16 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3_4[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3_4[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3_4[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3_4[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 1 )
+      {
+        for ( int i = 0 ; i < 15 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2_3[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2_3[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2_3[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2_3[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 2 )
+      {
+        for ( int i = 0 ; i < 11 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1_2[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1_2[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1_2[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1_2[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 3 )
+      {
+        for ( int i = 0 ; i < 5 ; i++ )
+        {
+          temp_chessboard[1][INDEX] = cols4_0_1[i][0];
+          temp_chessboard[3][INDEX] = cols4_0_1[i][1];
+          temp_chessboard[4][INDEX] = cols4_0_1[i][2];
+          temp_chessboard[6][INDEX] = cols4_0_1[i][3];
+          #ifdef MIDDLE_RULE_CHECKER_ON
+          if (this->middle_rule_checker( temp_chessboard ) )
+          #endif
+            this->came_from_cols(temp_chessboard);
+        }
+      }
+      else if ( sum == 4 )
+      {
+        temp_chessboard[1][INDEX] = cols4_0[0][0];
+        temp_chessboard[3][INDEX] = cols4_0[0][1];
+        temp_chessboard[4][INDEX] = cols4_0[0][2];
+        temp_chessboard[6][INDEX] = cols4_0[0][3];
+        #ifdef MIDDLE_RULE_CHECKER_ON
+        if (this->middle_rule_checker( temp_chessboard ) )
+        #endif
+          this->came_from_cols(temp_chessboard);
+      }
+    }
+  }
+  void came_from_cols( bool the_chessboard[8][8] )
+  {
+    // this->print_chessboard( the_chessboard ); cout<<endl;
     debug_counter_plus_plus();
   }
   // this->print_chessboard( chessboard ); cout<<endl;
