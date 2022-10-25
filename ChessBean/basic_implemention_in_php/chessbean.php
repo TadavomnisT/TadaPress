@@ -242,10 +242,66 @@ class ChessBean
     $chessboard[4][4] -
     $chessboard[7][7];
 
+    // Step #4 - calculate how many blacks shall be placed: 
+    $all_blacks =
+    ($block[19] == '1') * 16 +
+    ($block[20] == '1') * 8 +
+    ($block[21] == '1') * 4 +
+    ($block[22] == '1') * 2 +
+    ($block[23] == '1') * 1;
+    if ($all_blacks == 0)
+      $all_blacks = ($block[8] == '1') ? 32 : 0;
+    $remained_blacks = $all_blacks -
+    $chessboard[0][7] -
+    $chessboard[3][4] -
+    $chessboard[4][3] -
+    $chessboard[7][0];
+
+
     var_dump(
       $all_whites,
-      $remained_whites
+      $remained_whites,
+      $all_blacks,
+      $remained_blacks
     );
+
+    // Step #5 - extract rules for columns:
+    $cols[0] = ($block[24] == '1');
+    $cols[1] = ($block[25] == '1');
+    $cols[2] = ($block[26] == '1');
+    $cols[3] = ($block[27] == '1');
+    $cols[4] = ($block[28] == '1');
+    $cols[5] = ($block[29] == '1');
+    $cols[6] = ($block[30] == '1');
+    $cols[7] = ($block[31] == '1');
+
+    // Step #6 - extract rules for rows:
+    $rows[0] = ($block[32] == '1');
+    $rows[1] = ($block[33] == '1');
+    $rows[2] = ($block[34] == '1');
+    $rows[3] = ($block[35] == '1');
+    $rows[4] = ($block[36] == '1');
+    $rows[5] = ($block[37] == '1');
+    $rows[6] = ($block[38] == '1');
+    $rows[7] = ($block[39] == '1');
+
+    var_dump($cols);  
+    var_dump($rows);
+    
+    // Step #7 - extract rules for white diagonal:
+    $white_diagonals[0] = ($block[0] == '1');
+    $white_diagonals[1] = ($block[1] == '1');
+    $white_diagonals[2] = ($block[2] == '1');
+    $white_diagonals[3] = ($block[3] == '1');
+    $white_diagonals[4] = ($block[4] == '1');
+    $white_diagonals[5] = ($block[5] == '1');
+    $white_diagonals[6] = ($block[6] == '1');
+
+    var_dump(
+      $whites_7_bits,
+      $white_diagonals,
+    );  
+
 
     die; // !!!
     die; // !!!
@@ -360,6 +416,19 @@ class ChessBean
       	}
     }
     echo implode("" , $chess_board_array) . PHP_EOL;
+  }
+  // DEBUG FUNCTIONS:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:
+  private function file_get_first_block(string $file_name)
+  {
+    return file_get_contents( $file_name, false, null, 0, 8 );
+  }
+  public function DEBUG_print_file_first_block(string $file_name)
+  {
+    $bin_block = $this->file_get_first_block( $file_name);
+    echo $this->stringToBinary_bytesSeprated($bin_block) . PHP_EOL;
+    echo $block = $this->stringToBinary($bin_block) . PHP_EOL;
+    $this->printBlockAsMatrix( $block );
+    $this->printBlockAsChessBoard( $block );
   }
 }
 
