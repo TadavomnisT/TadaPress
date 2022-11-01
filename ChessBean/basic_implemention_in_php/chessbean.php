@@ -161,44 +161,44 @@ class ChessBean
   }
   private function decompressBlock( string $block )
   {
-    // let's work on this part:
-    $whites_7_bits = substr( $block , 0 , 7 );
-    $blacks_7_bits = substr( $block , 7 , 7 );
-    $sum_whites_5_bits = substr( $block , 14 , 5 );
-    $sum_blacks_5_bits = substr( $block , 19 , 5 );
-    $sum_columns_8_bits = substr( $block , 24 , 8 );
-    $sum_rows_8_bits = substr( $block , 32 , 8 );
-    $corner_4_bits = substr( $block , 40 , 4 );
-    $center_4_bits = substr( $block , 44 , 4 );
-    $blockHash = substr( $block , 48 , 8 );
+    // // let's work on this part:
+    // $whites_7_bits = substr( $block , 0 , 7 );
+    // $blacks_7_bits = substr( $block , 7 , 7 );
+    // $sum_whites_5_bits = substr( $block , 14 , 5 );
+    // $sum_blacks_5_bits = substr( $block , 19 , 5 );
+    // $sum_columns_8_bits = substr( $block , 24 , 8 );
+    // $sum_rows_8_bits = substr( $block , 32 , 8 );
+    // $corner_4_bits = substr( $block , 40 , 4 );
+    // $center_4_bits = substr( $block , 44 , 4 );
+    // $blockHash = substr( $block , 48 , 8 );
 
-    var_dump( $block );
+    // var_dump( $block );
 
-    echo "whites_7_bits " . $whites_7_bits . PHP_EOL;
-    echo "blacks_7_bits " . $blacks_7_bits . PHP_EOL;
-    echo "sum_whites_5_bits " . $sum_whites_5_bits . PHP_EOL;
-    echo "sum_blacks_5_bits " . $sum_blacks_5_bits . PHP_EOL;
-    echo "sum_columns_8_bits " . $sum_columns_8_bits . PHP_EOL;
-    echo "sum_rows_8_bits " . $sum_rows_8_bits . PHP_EOL;
-    echo "corner_4_bits " . $corner_4_bits . PHP_EOL;
-    echo "center_4_bits " . $center_4_bits . PHP_EOL;
-    echo "blockHash " . $blockHash . PHP_EOL;
+    // echo "whites_7_bits " . $whites_7_bits . PHP_EOL;
+    // echo "blacks_7_bits " . $blacks_7_bits . PHP_EOL;
+    // echo "sum_whites_5_bits " . $sum_whites_5_bits . PHP_EOL;
+    // echo "sum_blacks_5_bits " . $sum_blacks_5_bits . PHP_EOL;
+    // echo "sum_columns_8_bits " . $sum_columns_8_bits . PHP_EOL;
+    // echo "sum_rows_8_bits " . $sum_rows_8_bits . PHP_EOL;
+    // echo "corner_4_bits " . $corner_4_bits . PHP_EOL;
+    // echo "center_4_bits " . $center_4_bits . PHP_EOL;
+    // echo "blockHash " . $blockHash . PHP_EOL;
 
-    if( $sum_whites_5_bits == "00000" )
-    {
-        if ( $whites_7_bits == "0111111" )
-            $sum_whites = 32;
-        else $sum_whites = 0;
-    }
-    else $sum_whites = bindec( $sum_whites_5_bits );
+    // if( $sum_whites_5_bits == "00000" )
+    // {
+    //     if ( $whites_7_bits == "0111111" )
+    //         $sum_whites = 32;
+    //     else $sum_whites = 0;
+    // }
+    // else $sum_whites = bindec( $sum_whites_5_bits );
 
-    if( $sum_blacks_5_bits == "00000" )
-    {
-        if ( $blacks_7_bits == "0111111" )
-            $sum_blacks = 32;
-        else $sum_blacks = 0;
-    }
-    else $sum_blacks = bindec( $sum_blacks_5_bits );
+    // if( $sum_blacks_5_bits == "00000" )
+    // {
+    //     if ( $blacks_7_bits == "0111111" )
+    //         $sum_blacks = 32;
+    //     else $sum_blacks = 0;
+    // }
+    // else $sum_blacks = bindec( $sum_blacks_5_bits );
 
     $chessboard = [
       [0, 0, 0, 0, 0, 0, 0, 0], 
@@ -217,7 +217,7 @@ class ChessBean
     $chessboard[7][0] = ($block[42] == '1');
     $chessboard[7][7] = ($block[43] == '1');
 
-    $this->printBlockAsChessBoard( $chessboard );
+    // $this->printBlockAsChessBoard( $chessboard );
 
     // Step #2 - Fill 4 centers:
     $chessboard[3][3] = ($block[44] == '1');
@@ -225,7 +225,7 @@ class ChessBean
     $chessboard[4][3] = ($block[46] == '1');
     $chessboard[4][4] = ($block[47] == '1');
 
-    $this->printBlockAsChessBoard( $chessboard );
+    // $this->printBlockAsChessBoard( $chessboard );
 
     // Step #3 - calculate how many whites shall be placed:
     $all_whites =
@@ -289,19 +289,31 @@ class ChessBean
     var_dump($rows);
     
     // Step #7 - extract rules for white diagonal:
-    $white_diagonals[0] = ($block[0] == '1');
-    $white_diagonals[1] = ($block[1] == '1');
-    $white_diagonals[2] = ($block[2] == '1');
-    $white_diagonals[3] = ($block[3] == '1');
-    $white_diagonals[4] = ($block[4] == '1');
-    $white_diagonals[5] = ($block[5] == '1');
-    $white_diagonals[6] = ($block[6] == '1');
+    $GLOBALS["white_diagonals"][0] = (int) ($block[0] == '1');
+    $GLOBALS["white_diagonals"][1] = (int) ($block[1] == '1');
+    $GLOBALS["white_diagonals"][2] = (int) ($block[2] == '1');
+    $GLOBALS["white_diagonals"][3] = (int) ($block[3] == '1');
+    $GLOBALS["white_diagonals"][4] = (int) ($block[4] == '1');
+    $GLOBALS["white_diagonals"][5] = (int) ($block[5] == '1');
+    $GLOBALS["white_diagonals"][6] = (int) ($block[6] == '1');
+
+    // Step #8 - extract rules for black diagonal:
+    $GLOBALS["black_diagonals"][0] = (int) ($block[7] == '1');
+    $GLOBALS["black_diagonals"][1] = (int) ($block[8] == '1');
+    $GLOBALS["black_diagonals"][2] = (int) ($block[9] == '1');
+    $GLOBALS["black_diagonals"][3] = (int) ($block[10] == '1');
+    $GLOBALS["black_diagonals"][4] = (int) ($block[11] == '1');
+    $GLOBALS["black_diagonals"][5] = (int) ($block[12] == '1');
+    $GLOBALS["black_diagonals"][6] = (int) ($block[13] == '1');
 
     var_dump(
-      $whites_7_bits,
-      $white_diagonals,
+      $GLOBALS["white_diagonals"],
+      $GLOBALS["black_diagonals"],
     );  
 
+    echo "[*]Starting nested functions." . PHP_EOL;
+
+    $this->start_nested_functions( $chessboard );
 
     die; // !!!
     die; // !!!
@@ -328,10 +340,241 @@ class ChessBean
     //   $sum_whites
     // );die;
   }
+  private function start_nested_functions( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    // $this->printBlockAsChessBoard( $temp_chessboard );
+    $this->white_diagonal( $temp_chessboard );
+  }
+  private function white_diagonal( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    echo "[*]Filling white digonal." . PHP_EOL;
+    /*All possible values for putting 0 or 2 or 4 in 4.*/
+    $put_0_2_4_in_4 = [
+      [0,0,0,0],
+      [1,1,0,0],
+      [1,0,1,0],
+      [1,0,0,1],
+      [0,1,1,0],
+      [0,1,0,1],
+      [0,0,1,1],
+      [1,1,1,1]
+    ];
+    /*All possible values for putting 1 or 3 in 4.*/
+    $put_1_3_in_4 = [
+      [1,0,0,0],
+      [0,1,0,0],
+      [0,0,1,0],
+      [0,0,0,1],
+      [1,1,1,0],
+      [1,1,0,1],
+      [1,0,1,1],
+      [0,1,1,1]
+    ];
+    $white_diagonal_placed_beans = (int)
+    ( $temp_chessboard[0][0] +
+      $temp_chessboard[3][3] +
+      $temp_chessboard[4][4] +
+      $temp_chessboard[7][7]
+    );
+    if( ( $white_diagonal_placed_beans + $GLOBALS["white_diagonals"][0] ) % 2 )
+      for ($i = 0; $i < 8 ; $i++) { 
+        $temp_chessboard[1][1] = $put_1_3_in_4[$i][0];
+        $temp_chessboard[2][2] = $put_1_3_in_4[$i][1];
+        $temp_chessboard[5][5] = $put_1_3_in_4[$i][2];
+        $temp_chessboard[6][6] = $put_1_3_in_4[$i][3];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->black_diagonal( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 8 ; $i++) { 
+        $temp_chessboard[1][1] = $put_0_2_4_in_4[$i][0];
+        $temp_chessboard[2][2] = $put_0_2_4_in_4[$i][1];
+        $temp_chessboard[5][5] = $put_0_2_4_in_4[$i][2];
+        $temp_chessboard[6][6] = $put_0_2_4_in_4[$i][3];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->black_diagonal( $temp_chessboard );
+      }
+  }
+  private function black_diagonal( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    echo "[*]Filling black digonal." . PHP_EOL;
+    /*All possible values for putting 0 or 2 or 4 in 4.*/
+    $put_0_2_4_in_4 = [
+      [0,0,0,0],
+      [1,1,0,0],
+      [1,0,1,0],
+      [1,0,0,1],
+      [0,1,1,0],
+      [0,1,0,1],
+      [0,0,1,1],
+      [1,1,1,1]
+    ];
+    /*All possible values for putting 1 or 3 in 4.*/
+    $put_1_3_in_4 = [
+      [1,0,0,0],
+      [0,1,0,0],
+      [0,0,1,0],
+      [0,0,0,1],
+      [1,1,1,0],
+      [1,1,0,1],
+      [1,0,1,1],
+      [0,1,1,1]
+    ];
+    $black_diagonal_placed_beans = (int)
+    ( $temp_chessboard[0][7] +
+      $temp_chessboard[3][4] +
+      $temp_chessboard[4][3] +
+      $temp_chessboard[7][0]
+    );
+    if( ( $black_diagonal_placed_beans + $GLOBALS["black_diagonals"][0] ) % 2 )
+      for ($i = 0; $i < 8 ; $i++) { 
+        $temp_chessboard[1][6] = $put_1_3_in_4[$i][0];
+        $temp_chessboard[2][5] = $put_1_3_in_4[$i][1];
+        $temp_chessboard[5][2] = $put_1_3_in_4[$i][2];
+        $temp_chessboard[6][1] = $put_1_3_in_4[$i][3];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_1( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 8 ; $i++) { 
+        $temp_chessboard[1][6] = $put_0_2_4_in_4[$i][0];
+        $temp_chessboard[2][5] = $put_0_2_4_in_4[$i][1];
+        $temp_chessboard[5][2] = $put_0_2_4_in_4[$i][2];
+        $temp_chessboard[6][1] = $put_0_2_4_in_4[$i][3];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_1( $temp_chessboard );
+      }
+  }
+  private function little_diagonal_1( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    /*All possible values for putting 1 in 2.*/
+    $put_1_in_2 = [
+      [1,0],
+      [0,1]
+    ];
+    /*All possible values for putting 0 or 2 in 2.*/
+    $put_0_2_in_2 = [
+      [0,0],
+      [1,1]
+    ];
+    if( ((int) $temp_chessboard[1][1]) ^ ((int) $GLOBALS["white_diagonals"][1]) )
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[2][0] = $put_1_in_2[$i][0];
+        $temp_chessboard[0][2] = $put_1_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_2( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[2][0] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[0][2] = $put_0_2_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_2( $temp_chessboard );
+      }
+  }
+  private function little_diagonal_2( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    /*All possible values for putting 1 in 2.*/
+    $put_1_in_2 = [
+      [1,0],
+      [0,1]
+    ];
+    /*All possible values for putting 0 or 2 in 2.*/
+    $put_0_2_in_2 = [
+      [0,0],
+      [1,1]
+    ];
+    if( ((int) $temp_chessboard[1][6]) ^ ((int) $GLOBALS["black_diagonals"][1]) )
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[2][5] = $put_1_in_2[$i][0];
+        $temp_chessboard[0][7] = $put_1_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_3( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[2][5] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[0][7] = $put_0_2_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_3( $temp_chessboard );
+      }
+  }
+  private function little_diagonal_3( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    /*All possible values for putting 1 in 2.*/
+    $put_1_in_2 = [
+      [1,0],
+      [0,1]
+    ];
+    /*All possible values for putting 0 or 2 in 2.*/
+    $put_0_2_in_2 = [
+      [0,0],
+      [1,1]
+    ];
+    if( ((int) $temp_chessboard[6][1]) ^ ((int) $GLOBALS["white_diagonals"][6]) )
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[2][0] = $put_1_in_2[$i][0];
+        $temp_chessboard[0][2] = $put_1_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_4( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[7][5] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[5][7] = $put_0_2_in_2[$i][1];
+        // $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->little_diagonal_4( $temp_chessboard );
+      }
+  }
+  private function little_diagonal_4( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    /*All possible values for putting 1 in 2.*/
+    $put_1_in_2 = [
+      [1,0],
+      [0,1]
+    ];
+    /*All possible values for putting 0 or 2 in 2.*/
+    $put_0_2_in_2 = [
+      [0,0],
+      [1,1]
+    ];
+    if( ((int) $temp_chessboard[6][6]) ^ ((int) $GLOBALS["black_diagonals"][6]) )
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[5][0] = $put_1_in_2[$i][0];
+        $temp_chessboard[7][2] = $put_1_in_2[$i][1];
+        $this->printBlockAsChessBoard( $temp_chessboard );
+        // $this->little_diagonal_4( $temp_chessboard );
+      }
+    else
+      for ($i = 0; $i < 2 ; $i++) { 
+        $temp_chessboard[7][5] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[5][7] = $put_0_2_in_2[$i][1];
+        $this->printBlockAsChessBoard( $temp_chessboard );
+        // $this->little_diagonal_4( $temp_chessboard );
+      }
+  }
+  private function strToBin ( $number ){
+    $result = '';
+    for ( $i = 0; $i < strlen($number); $i++ ){
+        $conv = base_convert($number[$i], 16, 2);
+        $result .= str_pad($conv, 4, '0', STR_PAD_LEFT);
+    }
+    return $result;
+  }
   private function hashBlock( string $block )
   {
-    // I should implement this later, after we decompressed data successfully.
-    return "00000000";
+    return substr(
+      $this->strToBin( hash("sha256" , hash( "sha256" , $block ) . $block . md5($block) )  ),
+      64,
+      8
+    );
   }
   private function hashCompressedData( string $still_not_implemented )
   {
