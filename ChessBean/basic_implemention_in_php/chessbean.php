@@ -212,18 +212,18 @@ class ChessBean
     ];
 
     // Step #1 - Fill 4 corners:
-    $chessboard[0][0] = ($block[40] == '1');
-    $chessboard[0][7] = ($block[41] == '1');
-    $chessboard[7][0] = ($block[42] == '1');
-    $chessboard[7][7] = ($block[43] == '1');
+    $chessboard[0][0] = (int) ($block[40] == '1');
+    $chessboard[0][7] = (int) ($block[41] == '1');
+    $chessboard[7][0] = (int) ($block[42] == '1');
+    $chessboard[7][7] = (int) ($block[43] == '1');
 
     // $this->printBlockAsChessBoard( $chessboard );
 
     // Step #2 - Fill 4 centers:
-    $chessboard[3][3] = ($block[44] == '1');
-    $chessboard[3][4] = ($block[45] == '1');
-    $chessboard[4][3] = ($block[46] == '1');
-    $chessboard[4][4] = ($block[47] == '1');
+    $chessboard[3][3] = (int) ($block[44] == '1');
+    $chessboard[3][4] = (int) ($block[45] == '1');
+    $chessboard[4][3] = (int) ($block[46] == '1');
+    $chessboard[4][4] = (int) ($block[47] == '1');
 
     // $this->printBlockAsChessBoard( $chessboard );
 
@@ -491,15 +491,15 @@ class ChessBean
     ];
     if( ((int) $temp_chessboard[1][6]) ^ ((int) $GLOBALS["black_diagonals"][1]) )
       for ($i = 0; $i < 2 ; $i++) { 
-        $temp_chessboard[2][5] = $put_1_in_2[$i][0];
-        $temp_chessboard[0][7] = $put_1_in_2[$i][1];
+        $temp_chessboard[2][7] = $put_1_in_2[$i][0];
+        $temp_chessboard[0][5] = $put_1_in_2[$i][1];
         // $this->printBlockAsChessBoard( $temp_chessboard );
         $this->little_diagonal_3( $temp_chessboard );
       }
     else
       for ($i = 0; $i < 2 ; $i++) { 
-        $temp_chessboard[2][5] = $put_0_2_in_2[$i][0];
-        $temp_chessboard[0][7] = $put_0_2_in_2[$i][1];
+        $temp_chessboard[2][7] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[0][5] = $put_0_2_in_2[$i][1];
         // $this->printBlockAsChessBoard( $temp_chessboard );
         $this->little_diagonal_3( $temp_chessboard );
       }
@@ -517,10 +517,10 @@ class ChessBean
       [0,0],
       [1,1]
     ];
-    if( ((int) $temp_chessboard[6][1]) ^ ((int) $GLOBALS["white_diagonals"][6]) )
+    if( ((int) $temp_chessboard[6][6]) ^ ((int) $GLOBALS["white_diagonals"][6]) )
       for ($i = 0; $i < 2 ; $i++) { 
-        $temp_chessboard[2][0] = $put_1_in_2[$i][0];
-        $temp_chessboard[0][2] = $put_1_in_2[$i][1];
+        $temp_chessboard[7][5] = $put_1_in_2[$i][0];
+        $temp_chessboard[5][7] = $put_1_in_2[$i][1];
         // $this->printBlockAsChessBoard( $temp_chessboard );
         $this->little_diagonal_4( $temp_chessboard );
       }
@@ -545,18 +545,18 @@ class ChessBean
       [0,0],
       [1,1]
     ];
-    if( ((int) $temp_chessboard[6][6]) ^ ((int) $GLOBALS["black_diagonals"][6]) )
+    if( ((int) $temp_chessboard[6][1]) ^ ((int) $GLOBALS["black_diagonals"][6]) )
       for ($i = 0; $i < 2 ; $i++) { 
         $temp_chessboard[5][0] = $put_1_in_2[$i][0];
         $temp_chessboard[7][2] = $put_1_in_2[$i][1];
-        $this->printBlockAsChessBoard( $temp_chessboard );
+        $this->printChessBoardAsBlock( $temp_chessboard );
         // $this->little_diagonal_4( $temp_chessboard );
       }
     else
       for ($i = 0; $i < 2 ; $i++) { 
-        $temp_chessboard[7][5] = $put_0_2_in_2[$i][0];
-        $temp_chessboard[5][7] = $put_0_2_in_2[$i][1];
-        $this->printBlockAsChessBoard( $temp_chessboard );
+        $temp_chessboard[5][0] = $put_0_2_in_2[$i][0];
+        $temp_chessboard[7][2] = $put_0_2_in_2[$i][1];
+        $this->printChessBoardAsBlock( $temp_chessboard );
         // $this->little_diagonal_4( $temp_chessboard );
       }
   }
@@ -629,6 +629,13 @@ class ChessBean
         }
     }
     echo PHP_EOL;
+  }
+  private function printChessBoardAsBlock( array $chessboard )
+  {
+    $block = "";
+    foreach ($chessboard as $row)
+      $block .= implode("" , $row);
+    echo $block . PHP_EOL;
   }
   private function printBlockAsChessBoard( $block )
   {
