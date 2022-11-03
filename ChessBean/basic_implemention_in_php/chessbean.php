@@ -161,28 +161,28 @@ class ChessBean
   }
   private function decompressBlock( string $block )
   {
-    // // let's work on this part:
-    // $whites_7_bits = substr( $block , 0 , 7 );
-    // $blacks_7_bits = substr( $block , 7 , 7 );
-    // $sum_whites_5_bits = substr( $block , 14 , 5 );
-    // $sum_blacks_5_bits = substr( $block , 19 , 5 );
-    // $sum_columns_8_bits = substr( $block , 24 , 8 );
-    // $sum_rows_8_bits = substr( $block , 32 , 8 );
-    // $corner_4_bits = substr( $block , 40 , 4 );
-    // $center_4_bits = substr( $block , 44 , 4 );
-    // $blockHash = substr( $block , 48 , 8 );
+    // let's work on this part:
+    $whites_7_bits = substr( $block , 0 , 7 );
+    $blacks_7_bits = substr( $block , 7 , 7 );
+    $sum_whites_5_bits = substr( $block , 14 , 5 );
+    $sum_blacks_5_bits = substr( $block , 19 , 5 );
+    $sum_columns_8_bits = substr( $block , 24 , 8 );
+    $sum_rows_8_bits = substr( $block , 32 , 8 );
+    $corner_4_bits = substr( $block , 40 , 4 );
+    $center_4_bits = substr( $block , 44 , 4 );
+    $blockHash = substr( $block , 48 , 8 );
 
-    // var_dump( $block );
+    var_dump( $block );
 
-    // echo "whites_7_bits " . $whites_7_bits . PHP_EOL;
-    // echo "blacks_7_bits " . $blacks_7_bits . PHP_EOL;
-    // echo "sum_whites_5_bits " . $sum_whites_5_bits . PHP_EOL;
-    // echo "sum_blacks_5_bits " . $sum_blacks_5_bits . PHP_EOL;
-    // echo "sum_columns_8_bits " . $sum_columns_8_bits . PHP_EOL;
-    // echo "sum_rows_8_bits " . $sum_rows_8_bits . PHP_EOL;
-    // echo "corner_4_bits " . $corner_4_bits . PHP_EOL;
-    // echo "center_4_bits " . $center_4_bits . PHP_EOL;
-    // echo "blockHash " . $blockHash . PHP_EOL;
+    echo "whites_7_bits " . $whites_7_bits . PHP_EOL;
+    echo "blacks_7_bits " . $blacks_7_bits . PHP_EOL;
+    echo "sum_whites_5_bits " . $sum_whites_5_bits . PHP_EOL;
+    echo "sum_blacks_5_bits " . $sum_blacks_5_bits . PHP_EOL;
+    echo "sum_columns_8_bits " . $sum_columns_8_bits . PHP_EOL;
+    echo "sum_rows_8_bits " . $sum_rows_8_bits . PHP_EOL;
+    echo "corner_4_bits " . $corner_4_bits . PHP_EOL;
+    echo "center_4_bits " . $center_4_bits . PHP_EOL;
+    echo "blockHash " . $blockHash . PHP_EOL;
 
     // if( $sum_whites_5_bits == "00000" )
     // {
