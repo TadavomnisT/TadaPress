@@ -549,16 +549,21 @@ class ChessBean
       for ($i = 0; $i < 2 ; $i++) { 
         $temp_chessboard[5][0] = $put_1_in_2[$i][0];
         $temp_chessboard[7][2] = $put_1_in_2[$i][1];
-        $this->printChessBoardAsBlock( $temp_chessboard );
-        // $this->little_diagonal_4( $temp_chessboard );
+        // $this->printChessBoardAsBlock( $temp_chessboard );
+        $this->choose_strategy( $temp_chessboard );
       }
     else
       for ($i = 0; $i < 2 ; $i++) { 
         $temp_chessboard[5][0] = $put_0_2_in_2[$i][0];
         $temp_chessboard[7][2] = $put_0_2_in_2[$i][1];
-        $this->printChessBoardAsBlock( $temp_chessboard );
-        // $this->little_diagonal_4( $temp_chessboard );
+        // $this->printChessBoardAsBlock( $temp_chessboard );
+        $this->choose_strategy( $temp_chessboard );
       }
+  }
+  private function choose_strategy( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    $this->printChessBoardAsBlock( $temp_chessboard );
   }
   private function strToBin ( $number ){
     $result = '';
