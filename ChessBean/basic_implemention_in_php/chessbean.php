@@ -33,6 +33,7 @@
  */
 class ChessBean
 {
+  private $decompressing_strategy;
 
   function __construct(  )
   {
@@ -266,24 +267,24 @@ class ChessBean
     );
 
     // Step #5 - extract rules for columns:
-    $cols[0] = ($block[24] == '1');
-    $cols[1] = ($block[25] == '1');
-    $cols[2] = ($block[26] == '1');
-    $cols[3] = ($block[27] == '1');
-    $cols[4] = ($block[28] == '1');
-    $cols[5] = ($block[29] == '1');
-    $cols[6] = ($block[30] == '1');
-    $cols[7] = ($block[31] == '1');
+    $GLOBALS["cols"][0] = ($block[24] == '1');
+    $GLOBALS["cols"][1] = ($block[25] == '1');
+    $GLOBALS["cols"][2] = ($block[26] == '1');
+    $GLOBALS["cols"][3] = ($block[27] == '1');
+    $GLOBALS["cols"][4] = ($block[28] == '1');
+    $GLOBALS["cols"][5] = ($block[29] == '1');
+    $GLOBALS["cols"][6] = ($block[30] == '1');
+    $GLOBALS["cols"][7] = ($block[31] == '1');
 
     // Step #6 - extract rules for rows:
-    $rows[0] = ($block[32] == '1');
-    $rows[1] = ($block[33] == '1');
-    $rows[2] = ($block[34] == '1');
-    $rows[3] = ($block[35] == '1');
-    $rows[4] = ($block[36] == '1');
-    $rows[5] = ($block[37] == '1');
-    $rows[6] = ($block[38] == '1');
-    $rows[7] = ($block[39] == '1');
+    $GLOBALS["rows"][0] = ($block[32] == '1');
+    $GLOBALS["rows"][1] = ($block[33] == '1');
+    $GLOBALS["rows"][2] = ($block[34] == '1');
+    $GLOBALS["rows"][3] = ($block[35] == '1');
+    $GLOBALS["rows"][4] = ($block[36] == '1');
+    $GLOBALS["rows"][5] = ($block[37] == '1');
+    $GLOBALS["rows"][6] = ($block[38] == '1');
+    $GLOBALS["rows"][7] = ($block[39] == '1');
 
     var_dump($cols);  
     var_dump($rows);
@@ -561,6 +562,101 @@ class ChessBean
       }
   }
   private function choose_strategy( array $chessboard )
+  {
+    $temp_chessboard = $chessboard;
+    $indexes = [ 0, 2, 5, 7 ];
+    // for cols:
+      $col_answers = 1;  
+      foreach ($indexes as $index) {
+        $sum = 
+        $chessboard[0][$index]+
+        $chessboard[2][$index]+
+        $chessboard[5][$index]+
+        $chessboard[7][$index];
+        switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+          case '01':
+            throw new Exception("[*] Undecompressable Data.");
+            break;
+          case '00':
+            $col_answers *= 16;
+            break;
+          case '11':
+            $col_answers *= 1;
+            break;
+          case '10':
+            $col_answers *= 15;
+            break;
+          case '21':
+            $col_answers *= 5;
+            break;
+          case '20':
+            $col_answers *= 11;
+            break;
+          case '31':
+            $col_answers *= 11;
+            break;
+          case '30':
+            $col_answers *= 5;
+            break;
+          case '41':
+            $col_answers *= 15;
+            break;
+          case '40':
+            $col_answers *= 1;
+            break;
+          default:
+            throw new Exception("[*] Undecompressable Data.");
+            break;
+        }
+      }
+    // for rows:
+      $rows_answers = 1;  
+      foreach ($indexes as $index) {
+        $sum = 
+        $chessboard[$index][0]+
+        $chessboard[$index][2]+
+        $chessboard[$index][5]+
+        $chessboard[$index][7];
+        switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+          case '01':
+            $rows_answers *= 15;
+            break;
+          case '00':
+            $rows_answers *= 1;
+            break;
+          case '11':
+            $rows_answers *= 11;
+            break;
+          case '10':
+            $rows_answers *= 5;
+            break;
+          case '21':
+            $rows_answers *= 5;
+            break;
+          case '20':
+            $rows_answers *= 11;
+            break;
+          case '31':
+            $rows_answers *= 1;
+            break;
+          case '30':
+            $rows_answers *= 15;
+            break;
+          case '41':
+            throw new Exception("[*] Undecompressable Data.");
+            break;
+          case '40':
+            $rows_answers *= 16;
+            break;
+          default:
+            throw new Exception("[*] Undecompressable Data.");
+            break;
+        }
+      }
+
+    var_dump( "cols:" . $col_answers . " rows:". $rows_answers );
+  }
+  private function perform_strategy( array $chessboard )
   {
     $temp_chessboard = $chessboard;
     $this->printChessBoardAsBlock( $temp_chessboard );
