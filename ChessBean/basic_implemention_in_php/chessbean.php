@@ -571,6 +571,7 @@ class ChessBean
     // try {
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if( $this->reliability_check($temp_chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 1) ) $this->printBlockAsChessBoard($temp_chessboard);
     $indexes = [ 0, 2, 5, 7 ];
     // for cols:
       $col_answers = 1;  
@@ -675,6 +676,47 @@ class ChessBean
     $temp_chessboard = $chessboard;
     $this->printChessBoardAsBlock( $temp_chessboard );
   }
+  private function reliability_check($chessboard , $block , int $state)
+  {
+    $array = str_split( $block , 8);
+    // $state == 1 => choosing strategy step
+    if ( $state == 1 )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+  }
   private function middle_rule_checker(array $chessboard)
   {
     $current_whites =
@@ -687,7 +729,6 @@ class ChessBean
     $chessboard[6][0] + $chessboard[6][2] + $chessboard[6][4] + $chessboard[6][6] +
     $chessboard[7][1] + $chessboard[7][3] + $chessboard[7][5] + $chessboard[7][7] ;
     if ( $current_whites > $GLOBALS["all_whites"] ) return false;
-
     $current_blacks =
     $chessboard[0][1] + $chessboard[0][3] + $chessboard[0][5] + $chessboard[0][7] +
     $chessboard[1][0] + $chessboard[1][2] + $chessboard[1][4] + $chessboard[1][6] +
@@ -698,7 +739,6 @@ class ChessBean
     $chessboard[6][1] + $chessboard[6][3] + $chessboard[6][5] + $chessboard[6][7] +
     $chessboard[7][0] + $chessboard[7][2] + $chessboard[7][4] + $chessboard[7][6] ;
     if ( $current_blacks > $GLOBALS["all_blacks"] ) return false;
-
     for ($i=0; $i < 8 ; $i++) {
       $sum_cols = 0;
       $sum_rows = 0; 
@@ -709,7 +749,6 @@ class ChessBean
       if( $sum_cols > 4 && $GLOBALS["cols"][$i] == 0 ) return false;
       if( $sum_rows >= 4 && $GLOBALS["rows"][$i] == 1 ) return false;
     }
-
     return true;
   }
   private function strToBin ( $number ){
