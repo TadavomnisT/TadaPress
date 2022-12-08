@@ -33,8 +33,6 @@
  */
 class ChessBean
 {
-  private $decompressing_strategy;
-
   function __construct(  )
   {
     // maybe later...
@@ -569,9 +567,8 @@ class ChessBean
   private function choose_strategy( array $chessboard )
   {
     // try {
-    $temp_chessboard = $chessboard;
-    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->reliability_check($temp_chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 1) ) $this->printBlockAsChessBoard($temp_chessboard);
+    if( !$this->middle_rule_checker($chessboard) ) return false;
+    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 1) ) $this->printBlockAsChessBoard($temp_chessboard);
     $indexes = [ 0, 2, 5, 7 ];
     // for cols:
       $col_answers = 1;  
@@ -670,13 +667,1606 @@ class ChessBean
     //   die;
     // }
     
+    $this->perform_strategy( $chessboard , ($col_answers < $rows_answers) );
   }
-  private function perform_strategy( array $chessboard )
+  private function perform_strategy( array $chessboard , bool $strategy )
   {
     $temp_chessboard = $chessboard;
-    $this->printChessBoardAsBlock( $temp_chessboard );
+    // $this->printChessBoardAsBlock( $temp_chessboard );
+    $this->perform_0( $temp_chessboard , $strategy );
   }
-  private function reliability_check($chessboard , $block , int $state)
+  private function perform_0( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    $index = 0;
+    if( $strategy ) //Go with cols
+    {
+      $sum = 
+      $temp_chessboard[0][$index]+
+      $temp_chessboard[2][$index]+
+      $temp_chessboard[5][$index]+
+      $temp_chessboard[7][$index];
+      switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+        case '01':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '00':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }    
+          break;
+        case '21':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }  
+          break;
+        case '20':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }       
+          break;
+        case '31':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '40':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }      
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+    else //Go with rows
+    {
+      $sum = 
+      $temp_chessboard[$index][0]+
+      $temp_chessboard[$index][2]+
+      $temp_chessboard[$index][5]+
+      $temp_chessboard[$index][7];
+      switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+        case '01':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '00':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '21':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '20':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '31':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '40':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_2( $temp_chessboard , $strategy );
+          }
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+  }
+  private function perform_2( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    $index = 2;
+    if( $strategy ) //Go with cols
+    {
+      $sum = 
+      $temp_chessboard[0][$index]+
+      $temp_chessboard[2][$index]+
+      $temp_chessboard[5][$index]+
+      $temp_chessboard[7][$index];
+      switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+        case '01':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '00':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }    
+          break;
+        case '21':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }  
+          break;
+        case '20':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }       
+          break;
+        case '31':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '40':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }      
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+    else //Go with rows
+    {
+      $sum = 
+      $temp_chessboard[$index][0]+
+      $temp_chessboard[$index][2]+
+      $temp_chessboard[$index][5]+
+      $temp_chessboard[$index][7];
+      switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+        case '01':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '00':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '21':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '20':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '31':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '40':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_5( $temp_chessboard , $strategy );
+          }
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+  }
+  private function perform_5( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    $index = 5;
+    if( $strategy ) //Go with cols
+    {
+      $sum = 
+      $temp_chessboard[0][$index]+
+      $temp_chessboard[2][$index]+
+      $temp_chessboard[5][$index]+
+      $temp_chessboard[7][$index];
+      switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+        case '01':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '00':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }    
+          break;
+        case '21':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }  
+          break;
+        case '20':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }       
+          break;
+        case '31':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '40':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }      
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+    else //Go with rows
+    {
+      $sum = 
+      $temp_chessboard[$index][0]+
+      $temp_chessboard[$index][2]+
+      $temp_chessboard[$index][5]+
+      $temp_chessboard[$index][7];
+      switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+        case '01':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '00':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '21':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '20':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '31':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '40':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->perform_7( $temp_chessboard , $strategy );
+          }
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+  }
+  private function perform_7( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    $index = 7;
+    if( $strategy ) //Go with cols
+    {
+      $sum = 
+      $temp_chessboard[0][$index]+
+      $temp_chessboard[2][$index]+
+      $temp_chessboard[5][$index]+
+      $temp_chessboard[7][$index];
+      switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+        case '01':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '00':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }    
+          break;
+        case '21':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }  
+          break;
+        case '20':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_2_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }       
+          break;
+        case '31':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_1_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '40':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[1][$index] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[3][$index] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[4][$index] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[6][$index] = $put_0_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }      
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+    else //Go with rows
+    {
+      $sum = 
+      $temp_chessboard[$index][0]+
+      $temp_chessboard[$index][2]+
+      $temp_chessboard[$index][5]+
+      $temp_chessboard[$index][7];
+      switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+        case '01':
+          $put_0_1_2_3_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '00':
+          $put_4_in_4 = [
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '11':
+          $put_0_1_2_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '10':
+          $put_3_4_in_4 = [
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '21':
+          $put_0_1_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1]
+          ];
+          for ($i=0; $i < 5 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '20':
+          $put_2_3_4_in_4 = [
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 11 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '31':
+          $put_0_in_4 = [
+            [0,0,0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '30':
+          $put_1_2_3_4_in_4 = [
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 15 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_1_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        case '41':
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+        case '40':
+          $put_0_1_2_3_4_in_4 = [
+            [0,0,0,0],
+            [1,0,0,0],
+            [0,1,0,0],
+            [0,0,1,0],
+            [0,0,0,1],
+            [1,1,0,0],
+            [1,0,1,0],
+            [1,0,0,1],
+            [0,1,1,0],
+            [0,1,0,1],
+            [0,0,1,1],
+            [1,1,1,0],
+            [1,1,0,1],
+            [1,0,1,1],
+            [0,1,1,1],
+            [1,1,1,1]
+          ];
+          for ($i=0; $i < 16 ; $i++) { 
+            $temp_chessboard[$index][1] = $put_0_1_2_3_4_in_4[ $i ][0];
+            $temp_chessboard[$index][3] = $put_0_1_2_3_4_in_4[ $i ][1];
+            $temp_chessboard[$index][4] = $put_0_1_2_3_4_in_4[ $i ][2];
+            $temp_chessboard[$index][6] = $put_0_1_2_3_4_in_4[ $i ][3];
+            $this->after_strategy( $temp_chessboard , $strategy );
+          }
+          break;
+        default:
+          throw new Exception("[*] Undecompressable Data.");
+          break;
+      }
+    }
+  }
+  private function after_strategy( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    // $this->printChessBoardAsBlock( $temp_chessboard );
+  }
+  private function reliability_check($chessboard, $block, int $state, bool $strategy = NULL)
   {
     $array = str_split( $block , 8);
     // $state == 1 => choosing strategy step
@@ -712,6 +2302,378 @@ class ChessBean
       if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
       if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
       if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    // $state == 2 => choosing perform 0 step
+    if ( $state == 2 && $strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    if ( $state == 2 && !$strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
+      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    // $state == 3 => choosing perform 2 step
+    if ( $state == 3 && $strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
+      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
+      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    if ( $state == 3 && !$strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
+      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
+      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    // $state == 4 => choosing perform 5 step
+    if ( $state == 4 && $strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
+      if ( (int) $chessboard[1][5] != (int) $array[1][5] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
+      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+      if ( (int) $chessboard[3][5] != (int) $array[3][5] ) return false;
+
+      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
+      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+      if ( (int) $chessboard[4][5] != (int) $array[4][5] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
+      if ( (int) $chessboard[6][5] != (int) $array[6][5] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    if ( $state == 4 && !$strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
+      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
+      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][1] != (int) $array[5][1] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][3] != (int) $array[5][3] ) return false;
+      if ( (int) $chessboard[5][4] != (int) $array[5][4] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][6] != (int) $array[5][6] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    // $state == 5 => choosing perform 7 step
+    if ( $state == 5 && $strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
+      if ( (int) $chessboard[1][5] != (int) $array[1][5] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+      if ( (int) $chessboard[1][7] != (int) $array[1][7] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
+      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+      if ( (int) $chessboard[3][5] != (int) $array[3][5] ) return false;
+      if ( (int) $chessboard[3][7] != (int) $array[3][7] ) return false;
+
+      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
+      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+      if ( (int) $chessboard[4][5] != (int) $array[4][5] ) return false;
+      if ( (int) $chessboard[4][7] != (int) $array[4][7] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
+      if ( (int) $chessboard[6][5] != (int) $array[6][5] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+      if ( (int) $chessboard[6][7] != (int) $array[6][7] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
+
+      return true;
+    }
+    if ( $state == 5 && !$strategy )
+    {
+      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
+      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
+      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
+      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
+      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
+      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
+      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
+      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
+
+      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
+      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
+
+      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
+      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
+      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
+      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
+      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
+      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
+      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
+      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
+
+      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
+      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
+
+      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
+      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
+
+      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
+      if ( (int) $chessboard[5][1] != (int) $array[5][1] ) return false;
+      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
+      if ( (int) $chessboard[5][3] != (int) $array[5][3] ) return false;
+      if ( (int) $chessboard[5][4] != (int) $array[5][4] ) return false;
+      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
+      if ( (int) $chessboard[5][6] != (int) $array[5][6] ) return false;
+      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
+
+      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
+      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
+
+      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
+      if ( (int) $chessboard[7][1] != (int) $array[7][1] ) return false;
+      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
+      if ( (int) $chessboard[7][3] != (int) $array[7][3] ) return false;
+      if ( (int) $chessboard[7][4] != (int) $array[7][4] ) return false;
+      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
+      if ( (int) $chessboard[7][6] != (int) $array[7][6] ) return false;
       if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
 
       return true;
