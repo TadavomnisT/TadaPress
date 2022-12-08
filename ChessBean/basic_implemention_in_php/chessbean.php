@@ -259,6 +259,11 @@ class ChessBean
     $chessboard[7][0];
 
 
+    $GLOBALS["all_whites"] = $all_whites;
+    $GLOBALS["remained_whites"] = $remained_whites;
+    $GLOBALS["all_blacks"] = $all_blacks;
+    $GLOBALS["remained_blacks"] = $remained_blacks;
+
     var_dump(
       $all_whites,
       $remained_whites,
@@ -286,8 +291,8 @@ class ChessBean
     $GLOBALS["rows"][6] = ($block[38] == '1');
     $GLOBALS["rows"][7] = ($block[39] == '1');
 
-    var_dump($cols);  
-    var_dump($rows);
+    var_dump($GLOBALS["cols"]);  
+    var_dump($GLOBALS["rows"]);
     
     // Step #7 - extract rules for white diagonal:
     $GLOBALS["white_diagonals"][0] = (int) ($block[0] == '1');
@@ -563,7 +568,9 @@ class ChessBean
   }
   private function choose_strategy( array $chessboard )
   {
+    // try {
     $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
     $indexes = [ 0, 2, 5, 7 ];
     // for cols:
       $col_answers = 1;  
@@ -655,11 +662,55 @@ class ChessBean
       }
 
     var_dump( "cols:" . $col_answers . " rows:". $rows_answers );
+    // } catch (\Throwable $th) {
+    //   var_dump( $th );
+    //   $this->printBlockAsChessBoard( $temp_chessboard );
+    //   var_dump( $this->middle_rule_checker($temp_chessboard) );
+    //   die;
+    // }
+    
   }
   private function perform_strategy( array $chessboard )
   {
     $temp_chessboard = $chessboard;
     $this->printChessBoardAsBlock( $temp_chessboard );
+  }
+  private function middle_rule_checker(array $chessboard)
+  {
+    $current_whites =
+    $chessboard[0][0] + $chessboard[0][2] + $chessboard[0][4] + $chessboard[0][6] +
+    $chessboard[1][1] + $chessboard[1][3] + $chessboard[1][5] + $chessboard[1][7] +
+    $chessboard[2][0] + $chessboard[2][2] + $chessboard[2][4] + $chessboard[2][6] +
+    $chessboard[3][1] + $chessboard[3][3] + $chessboard[3][5] + $chessboard[3][7] +
+    $chessboard[4][0] + $chessboard[4][2] + $chessboard[4][4] + $chessboard[4][6] +
+    $chessboard[5][1] + $chessboard[5][3] + $chessboard[5][5] + $chessboard[5][7] +
+    $chessboard[6][0] + $chessboard[6][2] + $chessboard[6][4] + $chessboard[6][6] +
+    $chessboard[7][1] + $chessboard[7][3] + $chessboard[7][5] + $chessboard[7][7] ;
+    if ( $current_whites > $GLOBALS["all_whites"] ) return false;
+
+    $current_blacks =
+    $chessboard[0][1] + $chessboard[0][3] + $chessboard[0][5] + $chessboard[0][7] +
+    $chessboard[1][0] + $chessboard[1][2] + $chessboard[1][4] + $chessboard[1][6] +
+    $chessboard[2][1] + $chessboard[2][3] + $chessboard[2][5] + $chessboard[2][7] +
+    $chessboard[3][0] + $chessboard[3][2] + $chessboard[3][4] + $chessboard[3][6] +
+    $chessboard[4][1] + $chessboard[4][3] + $chessboard[4][5] + $chessboard[4][7] +
+    $chessboard[5][0] + $chessboard[5][2] + $chessboard[5][4] + $chessboard[5][6] +
+    $chessboard[6][1] + $chessboard[6][3] + $chessboard[6][5] + $chessboard[6][7] +
+    $chessboard[7][0] + $chessboard[7][2] + $chessboard[7][4] + $chessboard[7][6] ;
+    if ( $current_blacks > $GLOBALS["all_blacks"] ) return false;
+
+    for ($i=0; $i < 8 ; $i++) {
+      $sum_cols = 0;
+      $sum_rows = 0; 
+      for ($j=0; $j < 8 ; $j++) { 
+        $sum_cols += $chessboard[$j][$i];
+        $sum_rows += $chessboard[$i][$j];
+      }
+      if( $sum_cols > 4 && $GLOBALS["cols"][$i] == 0 ) return false;
+      if( $sum_rows >= 4 && $GLOBALS["rows"][$i] == 1 ) return false;
+    }
+
+    return true;
   }
   private function strToBin ( $number ){
     $result = '';
