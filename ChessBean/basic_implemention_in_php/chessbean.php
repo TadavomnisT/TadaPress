@@ -2263,7 +2263,127 @@ class ChessBean
   {
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    $this->after_strategy_1( $temp_chessboard );
+  }
+  private function after_strategy_1( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if ( $strategy ) {
+      $index = 1;
+      $sum =
+      $chessboard[$index][0] +  
+      $chessboard[$index][1] +  
+      $chessboard[$index][2] +  
+      $chessboard[$index][5] +  
+      $chessboard[$index][6] +  
+      $chessboard[$index][7] ;
+      switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
+        case '01':
+          # code...
+          break;
+        case '00':
+          # code...
+          break;
+        case '11':
+          # code...
+          break;
+        case '10':
+          # code...
+          break;
+        case '21':
+          # code...
+          break;
+        case '20':
+          # code...
+          break;
+        case '31':
+          # code...
+          break;
+        case '30':
+          # code...
+          break;
+        case '41':
+          # code...
+          break;
+        case '40':
+          # code...
+          break;
+        case '51':
+          # code...
+          break;
+        case '50':
+          # code...
+          break;
+        case '61':
+          # code...
+          break;
+        case '60':
+          # code...
+          break;
+        default:
+          # code...
+          break;
+      }
+    }
+    else {
+      $index = 6;
+      $sum =
+      $chessboard[0][$index] +  
+      $chessboard[1][$index] +  
+      $chessboard[2][$index] +  
+      $chessboard[5][$index] +  
+      $chessboard[6][$index] +  
+      $chessboard[7][$index] ;
+      switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
+        case '01':
+          # code...
+          break;
+        case '00':
+          # code...
+          break;
+        case '11':
+          # code...
+          break;
+        case '10':
+          # code...
+          break;
+        case '21':
+          # code...
+          break;
+        case '20':
+          # code...
+          break;
+        case '31':
+          # code...
+          break;
+        case '30':
+          # code...
+          break;
+        case '41':
+          # code...
+          break;
+        case '40':
+          # code...
+          break;
+        case '51':
+          # code...
+          break;
+        case '50':
+          # code...
+          break;
+        case '61':
+          # code...
+          break;
+        case '60':
+          # code...
+          break;
+        default:
+          # code...
+          break;
+      }
+    }
     // $this->printChessBoardAsBlock( $temp_chessboard );
   }
   private function reliability_check($chessboard, $block, int $state, bool $strategy = NULL)
