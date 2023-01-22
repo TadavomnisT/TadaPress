@@ -2264,7 +2264,7 @@ class ChessBean
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
     // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
-    $this->after_strategy_1( $temp_chessboard );
+    $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   private function after_strategy_1( array $chessboard , bool $strategy )
   {
