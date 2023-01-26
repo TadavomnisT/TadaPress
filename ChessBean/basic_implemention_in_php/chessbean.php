@@ -2260,7 +2260,7 @@ class ChessBean
     }
   }
   private function after_strategy( array $chessboard , bool $strategy )
-  {
+  { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
     // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
@@ -2281,22 +2281,58 @@ class ChessBean
       $chessboard[$index][7] ;
       switch ( (string) $sum . (int) $GLOBALS["rows"][ $index ] ) {
         case '01':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[$index][3] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '00':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '11':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[$index][3] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[$index][4] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '10':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '21':
-          # code...
+          $put_0_1_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1]
+          ];
+          for ($i=0; $i < 3 ; $i++) { 
+            $temp_chessboard[$index][3] = $put_0_1_in_2[ $i ][0];
+            $temp_chessboard[$index][4] = $put_0_1_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '20':
-          # code...
+          $put_2_in_2 = [
+              [1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[$index][3] = $put_2_in_2[ $i ][0];
+            $temp_chessboard[$index][4] = $put_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '31':
           # code...
@@ -2385,6 +2421,13 @@ class ChessBean
       }
     }
     // $this->printChessBoardAsBlock( $temp_chessboard );
+  }
+  private function next_bloody_function( array $chessboard , bool $strategy )
+  { //EXTRA COMPUTATIONS : MUST DO STH
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   private function reliability_check($chessboard, $block, int $state, bool $strategy = NULL)
   {
