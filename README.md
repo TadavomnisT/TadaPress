@@ -1,4 +1,5 @@
 # TadaPress
+## WIP⚠️ 
 Supposed to be open-source compressing package, but...
 
 ChessBean Algorithm was supposed to bahave like this:
