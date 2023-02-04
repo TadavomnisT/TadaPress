@@ -2420,49 +2420,131 @@ class ChessBean
       $chessboard[7][$index] ;
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '00':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '11':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '10':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '21':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '20':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '31':
-          # code...
+          $put_2_in_2 = [
+              [1,1]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '30':
-          # code...
+          $put_0_1_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1]
+          ];
+          for ($i=0; $i < 3 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '41':
-          # code...
+          $put_1_2_in_2 = [
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 3 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '40':
-          # code...
+          $put_0_in_2 = [
+              [0,0]
+          ];
+          for ($i=0; $i < 1 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '51':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '50':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         case '61':
-          # code...
+          $put_0_1_2_in_2 = [
+              [0,0],
+              [1,0],
+              [0,1],
+              [1,1]
+          ];
+          for ($i=0; $i < 4 ; $i++) { 
+            $temp_chessboard[3][$index] = $put_0_1_2_in_2[ $i ][0];
+            $temp_chessboard[4][$index] = $put_0_1_2_in_2[ $i ][1];
+            $this->next_bloody_function( $temp_chessboard , $strategy );
+          }
           break;
         case '60':
-          # code...
+          throw new Exception("[*] Undecompressable Data.");
           break;
         default:
-          # code...
+        throw new Exception("[*] Undecompressable Data.");
           break;
       }
     }
