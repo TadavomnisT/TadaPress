@@ -1,6 +1,48 @@
 <?php
 
 dump_php_var_definition(
+    "put_1_2_in_2" ,
+    array_merge(
+        p_binary_combination( 2 , 1 ),
+        p_binary_combination( 2 , 2 )
+    ),
+);
+
+dump_php_var_definition(
+    "put_0_in_2" ,
+    array_merge(
+        p_binary_combination( 2 , 0 )
+    ),
+);
+
+dump_php_var_definition(
+    "put_2_in_2" ,
+    array_merge(
+        p_binary_combination( 2 , 2 )
+    ),
+);
+
+dump_php_var_definition(
+    "put_0_1_in_2" ,
+    array_merge(
+        p_binary_combination( 2 , 0 ),
+        p_binary_combination( 2 , 1 )
+    ),
+);
+
+dump_php_var_definition(
+    "put_0_1_2_in_2" ,
+    array_merge(
+        p_binary_combination( 2 , 0 ),
+        p_binary_combination( 2 , 1 ),
+        p_binary_combination( 2 , 2 )
+    ),
+);
+
+
+die;
+
+dump_php_var_definition(
     "put_0_in_4" ,
     array_merge(
         p_binary_combination( 4 , 0 )
