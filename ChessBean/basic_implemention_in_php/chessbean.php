@@ -31,11 +31,20 @@
  * but optimised tests will come later (probably with C++)
  *
  */
+
+// DEBUG
+require_once "reliability_testing.php";
+
 class ChessBean
 {
+  // DEBUG
+  private $_DEBUG_rt;
+  private $_DEBUG_rt_block;
+
   function __construct(  )
   {
-    // maybe later...
+    // DEBUG
+    $this->_DEBUG_rt = new Reliability_Testing;
   }
   public function compressFile( string $inputName , string $outputName )
   {
@@ -568,7 +577,7 @@ class ChessBean
   {
     // try {
     if( !$this->middle_rule_checker($chessboard) ) return false;
-    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 1) ) $this->printBlockAsChessBoard($temp_chessboard);
+    // if( $this->_DEBUG_rt->reliability_check($chessboard , $this->DEBUG_rt_block , 1) ) $this->printBlockAsChessBoard($temp_chessboard);
     $indexes = [ 0, 2, 5, 7 ];
     // for cols:
       $col_answers = 1;  
@@ -580,7 +589,7 @@ class ChessBean
         $chessboard[7][$index];
         switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
           case '01':
-            throw new Exception("[*] Undecompressable Data.");
+            return false;
             break;
           case '00':
             $col_answers *= 16;
@@ -648,7 +657,7 @@ class ChessBean
             $rows_answers *= 15;
             break;
           case '41':
-            throw new Exception("[*] Undecompressable Data.");
+            return false;
             break;
           case '40':
             $rows_answers *= 16;
@@ -689,7 +698,7 @@ class ChessBean
       $temp_chessboard[7][$index];
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '00':
           $put_0_1_2_3_4_in_4 = [
@@ -1036,7 +1045,7 @@ class ChessBean
           }
           break;
         case '41':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '40':
           $put_0_1_2_3_4_in_4 = [
@@ -1085,7 +1094,7 @@ class ChessBean
       $temp_chessboard[7][$index];
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '00':
           $put_0_1_2_3_4_in_4 = [
@@ -1432,7 +1441,7 @@ class ChessBean
           }
           break;
         case '41':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '40':
           $put_0_1_2_3_4_in_4 = [
@@ -1481,7 +1490,7 @@ class ChessBean
       $temp_chessboard[7][$index];
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '00':
           $put_0_1_2_3_4_in_4 = [
@@ -1828,7 +1837,7 @@ class ChessBean
           }
           break;
         case '41':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '40':
           $put_0_1_2_3_4_in_4 = [
@@ -1877,7 +1886,7 @@ class ChessBean
       $temp_chessboard[7][$index];
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '00':
           $put_0_1_2_3_4_in_4 = [
@@ -2224,7 +2233,7 @@ class ChessBean
           }
           break;
         case '41':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '40':
           $put_0_1_2_3_4_in_4 = [
@@ -2263,7 +2272,7 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    // if( $this->_DEBUG_rt->reliability_check($chessboard , $this->DEBUG_rt_block , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   private function after_strategy_1( array $chessboard , bool $strategy )
@@ -2294,7 +2303,7 @@ class ChessBean
           }
           break;
         case '00':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '11':
           $put_0_1_2_in_2 = [
@@ -2310,7 +2319,7 @@ class ChessBean
           }
           break;
         case '10':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '21':
           $put_0_1_in_2 = [
@@ -2357,7 +2366,7 @@ class ChessBean
           }
           break;
         case '41':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '40':
           $put_0_1_2_in_2 = [
@@ -2373,7 +2382,7 @@ class ChessBean
           }
           break;
         case '51':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '50':
           $put_0_1_2_in_2 = [
@@ -2389,7 +2398,7 @@ class ChessBean
           }
           break;
         case '61':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '60':
           $put_0_1_2_in_2 = [
@@ -2420,7 +2429,7 @@ class ChessBean
       $chessboard[7][$index] ;
       switch ( (string) $sum . (int) $GLOBALS["cols"][ $index ] ) {
         case '01':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '00':
           $put_0_1_2_in_2 = [
@@ -2436,7 +2445,7 @@ class ChessBean
           }
           break;
         case '11':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '10':
           $put_0_1_2_in_2 = [
@@ -2452,7 +2461,7 @@ class ChessBean
           }
           break;
         case '21':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '20':
           $put_0_1_2_in_2 = [
@@ -2525,7 +2534,7 @@ class ChessBean
           }
           break;
         case '50':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         case '61':
           $put_0_1_2_in_2 = [
@@ -2541,7 +2550,7 @@ class ChessBean
           }
           break;
         case '60':
-          throw new Exception("[*] Undecompressable Data.");
+          return false;
           break;
         default:
         throw new Exception("[*] Undecompressable Data.");
@@ -2554,422 +2563,10 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    // if( $this->reliability_check($chessboard , "1000100101010000010011100100011100001101000010100001101000001010" , 5 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
-    $this->after_strategy_1( $temp_chessboard , $strategy );
+    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 6 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
-  private function reliability_check($chessboard, $block, int $state, bool $strategy = NULL)
-  {
-    $array = str_split( $block , 8);
-    // $state == 1 => choosing strategy step
-    if ( $state == 1 )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    // $state == 2 => choosing perform 0 step
-    if ( $state == 2 && $strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    if ( $state == 2 && !$strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
-      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    // $state == 3 => choosing perform 2 step
-    if ( $state == 3 && $strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
-      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
-      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    if ( $state == 3 && !$strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
-      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
-      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    // $state == 4 => choosing perform 5 step
-    if ( $state == 4 && $strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
-      if ( (int) $chessboard[1][5] != (int) $array[1][5] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
-      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-      if ( (int) $chessboard[3][5] != (int) $array[3][5] ) return false;
-
-      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
-      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-      if ( (int) $chessboard[4][5] != (int) $array[4][5] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
-      if ( (int) $chessboard[6][5] != (int) $array[6][5] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    if ( $state == 4 && !$strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
-      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
-      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][1] != (int) $array[5][1] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][3] != (int) $array[5][3] ) return false;
-      if ( (int) $chessboard[5][4] != (int) $array[5][4] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][6] != (int) $array[5][6] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    // $state == 5 => choosing perform 7 step
-    if ( $state == 5 && $strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][0] != (int) $array[1][0] ) return false;
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][2] != (int) $array[1][2] ) return false;
-      if ( (int) $chessboard[1][5] != (int) $array[1][5] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-      if ( (int) $chessboard[1][7] != (int) $array[1][7] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][0] != (int) $array[3][0] ) return false;
-      if ( (int) $chessboard[3][2] != (int) $array[3][2] ) return false;
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-      if ( (int) $chessboard[3][5] != (int) $array[3][5] ) return false;
-      if ( (int) $chessboard[3][7] != (int) $array[3][7] ) return false;
-
-      if ( (int) $chessboard[4][0] != (int) $array[4][0] ) return false;
-      if ( (int) $chessboard[4][2] != (int) $array[4][2] ) return false;
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-      if ( (int) $chessboard[4][5] != (int) $array[4][5] ) return false;
-      if ( (int) $chessboard[4][7] != (int) $array[4][7] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][0] != (int) $array[6][0] ) return false;
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][2] != (int) $array[6][2] ) return false;
-      if ( (int) $chessboard[6][5] != (int) $array[6][5] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-      if ( (int) $chessboard[6][7] != (int) $array[6][7] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-    if ( $state == 5 && !$strategy )
-    {
-      if ( (int) $chessboard[0][0] != (int) $array[0][0] ) return false;
-      if ( (int) $chessboard[0][1] != (int) $array[0][1] ) return false;
-      if ( (int) $chessboard[0][2] != (int) $array[0][2] ) return false;
-      if ( (int) $chessboard[0][3] != (int) $array[0][3] ) return false;
-      if ( (int) $chessboard[0][4] != (int) $array[0][4] ) return false;
-      if ( (int) $chessboard[0][5] != (int) $array[0][5] ) return false;
-      if ( (int) $chessboard[0][6] != (int) $array[0][6] ) return false;
-      if ( (int) $chessboard[0][7] != (int) $array[0][7] ) return false;
-
-      if ( (int) $chessboard[1][1] != (int) $array[1][1] ) return false;
-      if ( (int) $chessboard[1][6] != (int) $array[1][6] ) return false;
-
-      if ( (int) $chessboard[2][0] != (int) $array[2][0] ) return false;
-      if ( (int) $chessboard[2][1] != (int) $array[2][1] ) return false;
-      if ( (int) $chessboard[2][2] != (int) $array[2][2] ) return false;
-      if ( (int) $chessboard[2][3] != (int) $array[2][3] ) return false;
-      if ( (int) $chessboard[2][4] != (int) $array[2][4] ) return false;
-      if ( (int) $chessboard[2][5] != (int) $array[2][5] ) return false;
-      if ( (int) $chessboard[2][6] != (int) $array[2][6] ) return false;
-      if ( (int) $chessboard[2][7] != (int) $array[2][7] ) return false;
-
-      if ( (int) $chessboard[3][3] != (int) $array[3][3] ) return false;
-      if ( (int) $chessboard[3][4] != (int) $array[3][4] ) return false;
-
-      if ( (int) $chessboard[4][3] != (int) $array[4][3] ) return false;
-      if ( (int) $chessboard[4][4] != (int) $array[4][4] ) return false;
-
-      if ( (int) $chessboard[5][0] != (int) $array[5][0] ) return false;
-      if ( (int) $chessboard[5][1] != (int) $array[5][1] ) return false;
-      if ( (int) $chessboard[5][2] != (int) $array[5][2] ) return false;
-      if ( (int) $chessboard[5][3] != (int) $array[5][3] ) return false;
-      if ( (int) $chessboard[5][4] != (int) $array[5][4] ) return false;
-      if ( (int) $chessboard[5][5] != (int) $array[5][5] ) return false;
-      if ( (int) $chessboard[5][6] != (int) $array[5][6] ) return false;
-      if ( (int) $chessboard[5][7] != (int) $array[5][7] ) return false;
-
-      if ( (int) $chessboard[6][1] != (int) $array[6][1] ) return false;
-      if ( (int) $chessboard[6][6] != (int) $array[6][6] ) return false;
-
-      if ( (int) $chessboard[7][0] != (int) $array[7][0] ) return false;
-      if ( (int) $chessboard[7][1] != (int) $array[7][1] ) return false;
-      if ( (int) $chessboard[7][2] != (int) $array[7][2] ) return false;
-      if ( (int) $chessboard[7][3] != (int) $array[7][3] ) return false;
-      if ( (int) $chessboard[7][4] != (int) $array[7][4] ) return false;
-      if ( (int) $chessboard[7][5] != (int) $array[7][5] ) return false;
-      if ( (int) $chessboard[7][6] != (int) $array[7][6] ) return false;
-      if ( (int) $chessboard[7][7] != (int) $array[7][7] ) return false;
-
-      return true;
-    }
-  }
+  
   private function middle_rule_checker(array $chessboard)
   {
     $current_whites =
@@ -3112,9 +2709,9 @@ class ChessBean
     echo implode("" , $chess_board_array) . PHP_EOL;
   }
   // DEBUG FUNCTIONS:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:
-  private function file_get_first_block(string $file_name)
+  public function file_get_first_block(string $file_name , $return_in_string = false)
   {
-    return file_get_contents( $file_name, false, null, 0, 8 );
+    return ($return_in_string)? $this->stringToBinary( file_get_contents( $file_name, false, null, 0, 8 ) ) : file_get_contents( $file_name, false, null, 0, 8 );
   }
   public function DEBUG_print_file_first_block(string $file_name)
   {
@@ -3123,6 +2720,10 @@ class ChessBean
     echo $block = $this->stringToBinary($bin_block) . PHP_EOL;
     $this->printBlockAsMatrix( $block );
     $this->printBlockAsChessBoard( $block );
+  }
+  public function DEBUG_set_rt_block(string $block)
+  {
+    $this->_DEBUG_rt_block = $block ;
   }
 }
 
