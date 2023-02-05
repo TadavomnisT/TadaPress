@@ -1911,7 +1911,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_0_1_2_3_4_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_0_1_2_3_4_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_0_1_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '11':
@@ -1923,7 +1923,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_4_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_4_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '10':
@@ -1949,7 +1949,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_0_1_2_3_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_0_1_2_3_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_0_1_2_3_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }    
           break;
         case '21':
@@ -1965,7 +1965,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_3_4_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_3_4_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }  
           break;
         case '20':
@@ -1987,7 +1987,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_0_1_2_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_0_1_2_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_0_1_2_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }       
           break;
         case '31':
@@ -2009,7 +2009,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_2_3_4_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_2_3_4_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '30':
@@ -2025,7 +2025,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_0_1_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_0_1_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_0_1_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '41':
@@ -2051,7 +2051,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_1_2_3_4_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_1_2_3_4_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_1_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '40':
@@ -2063,7 +2063,7 @@ class ChessBean
             $temp_chessboard[3][$index] = $put_0_in_4[ $i ][1];
             $temp_chessboard[4][$index] = $put_0_in_4[ $i ][2];
             $temp_chessboard[6][$index] = $put_0_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }      
           break;
         default:
@@ -2102,7 +2102,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_0_1_2_3_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_0_1_2_3_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_0_1_2_3_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '00':
@@ -2114,7 +2114,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_4_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_4_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '11':
@@ -2136,7 +2136,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_0_1_2_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_0_1_2_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_0_1_2_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '10':
@@ -2152,7 +2152,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_3_4_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_3_4_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '21':
@@ -2168,7 +2168,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_0_1_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_0_1_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_0_1_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '20':
@@ -2190,7 +2190,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_2_3_4_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_2_3_4_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '31':
@@ -2202,7 +2202,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_0_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_0_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_0_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '30':
@@ -2228,7 +2228,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_1_2_3_4_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_1_2_3_4_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_1_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         case '41':
@@ -2258,7 +2258,7 @@ class ChessBean
             $temp_chessboard[$index][3] = $put_0_1_2_3_4_in_4[ $i ][1];
             $temp_chessboard[$index][4] = $put_0_1_2_3_4_in_4[ $i ][2];
             $temp_chessboard[$index][6] = $put_0_1_2_3_4_in_4[ $i ][3];
-            $this->after_strategy( $temp_chessboard , $strategy );
+            $this->after_strategy_1( $temp_chessboard , $strategy );
           }
           break;
         default:
@@ -2266,12 +2266,6 @@ class ChessBean
           break;
       }
     }
-  }
-  private function after_strategy( array $chessboard , bool $strategy )
-  { //EXTRA COMPUTATIONS : MUST DO STH
-    $temp_chessboard = $chessboard;
-    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   private function after_strategy_1( array $chessboard , bool $strategy )
   {
