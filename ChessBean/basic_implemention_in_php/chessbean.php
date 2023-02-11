@@ -3140,7 +3140,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '00':
@@ -3156,7 +3156,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '10':
@@ -3171,7 +3171,7 @@ class ChessBean
           for ($i=0; $i < 3 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '20':
@@ -3181,7 +3181,7 @@ class ChessBean
           for ($i=0; $i < 1 ; $i++) { 
             $temp_chessboard[$index][1] = $put_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '31':
@@ -3191,7 +3191,7 @@ class ChessBean
           for ($i=0; $i < 1 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '30':
@@ -3203,7 +3203,7 @@ class ChessBean
           for ($i=0; $i < 3 ; $i++) { 
             $temp_chessboard[$index][1] = $put_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '41':
@@ -3219,7 +3219,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '51':
@@ -3235,7 +3235,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '61':
@@ -3251,7 +3251,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[$index][1] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[$index][6] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         default:
@@ -3282,7 +3282,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '11':
@@ -3298,7 +3298,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '21':
@@ -3314,7 +3314,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '31':
@@ -3324,7 +3324,7 @@ class ChessBean
           for ($i=0; $i < 1 ; $i++) { 
             $temp_chessboard[1][$index] = $put_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '30':
@@ -3336,7 +3336,7 @@ class ChessBean
           for ($i=0; $i < 3 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '41':
@@ -3348,7 +3348,7 @@ class ChessBean
           for ($i=0; $i < 3 ; $i++) { 
             $temp_chessboard[1][$index] = $put_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '40':
@@ -3358,7 +3358,7 @@ class ChessBean
           for ($i=0; $i < 1 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '51':
@@ -3371,7 +3371,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '50':
@@ -3387,7 +3387,7 @@ class ChessBean
           for ($i=0; $i < 4 ; $i++) { 
             $temp_chessboard[1][$index] = $put_0_1_2_in_2[ $i ][0];
             $temp_chessboard[6][$index] = $put_0_1_2_in_2[ $i ][1];
-            $this->next_bloody_function( $temp_chessboard , $strategy );
+            $this->fill_ones( $temp_chessboard , $strategy );
           }
           break;
         case '60':
@@ -3399,11 +3399,71 @@ class ChessBean
       }
     }
   }
+  private function fill_ones( array $chessboard , bool $strategy )
+  {
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if ( $strategy )
+    {
+      if ((($temp_chessboard[1][3]+
+            $temp_chessboard[2][2]+
+            $temp_chessboard[3][1]+
+            $temp_chessboard[4][0]) % 2) == $GLOBALS["white_diagonals"][2]
+          ) $temp_chessboard[0][4] = 0;
+      else  $temp_chessboard[0][4] = 1;
+      if ((($temp_chessboard[1][4]+
+            $temp_chessboard[2][5]+
+            $temp_chessboard[3][6]+
+            $temp_chessboard[4][7]) % 2) == $GLOBALS["black_diagonals"][2]
+          ) $temp_chessboard[0][3] = 0;
+      else  $temp_chessboard[0][3] = 1;
+      if ((($temp_chessboard[6][4]+
+            $temp_chessboard[5][5]+
+            $temp_chessboard[4][6]+
+            $temp_chessboard[3][7]) % 2) == $GLOBALS["white_diagonals"][5]
+          ) $temp_chessboard[7][3] = 0;
+      else  $temp_chessboard[7][3] = 1;
+      if ((($temp_chessboard[6][3]+
+            $temp_chessboard[5][2]+
+            $temp_chessboard[4][1]+
+            $temp_chessboard[3][0]) % 2) == $GLOBALS["black_diagonals"][5]
+          ) $temp_chessboard[7][4] = 0;
+      else  $temp_chessboard[7][4] = 1;
+    }
+    else
+    {
+      if ((($temp_chessboard[0][4]+
+            $temp_chessboard[1][3]+
+            $temp_chessboard[2][2]+
+            $temp_chessboard[3][1]) % 2) == $GLOBALS["white_diagonals"][2]
+          ) $temp_chessboard[4][0] = 0;
+      else  $temp_chessboard[4][0] = 1;
+      if ((($temp_chessboard[0][3]+
+            $temp_chessboard[1][4]+
+            $temp_chessboard[2][5]+
+            $temp_chessboard[3][6]) % 2) == $GLOBALS["black_diagonals"][2]
+          ) $temp_chessboard[4][7] = 0;
+      else  $temp_chessboard[4][7] = 1;
+      if ((($temp_chessboard[7][3]+
+            $temp_chessboard[6][4]+
+            $temp_chessboard[5][5]+
+            $temp_chessboard[4][6]) % 2) == $GLOBALS["white_diagonals"][5]
+          ) $temp_chessboard[3][7] = 0;
+      else  $temp_chessboard[3][7] = 1;
+      if ((($temp_chessboard[7][4]+
+            $temp_chessboard[6][3]+
+            $temp_chessboard[5][2]+
+            $temp_chessboard[4][1]) % 2) == $GLOBALS["black_diagonals"][5]
+          ) $temp_chessboard[3][0] = 0;
+      else  $temp_chessboard[3][0] = 1;
+    }
+    $this->next_bloody_function( $temp_chessboard , $strategy );
+  }
   private function next_bloody_function( array $chessboard , bool $strategy )
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 9 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 10 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   
