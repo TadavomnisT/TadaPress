@@ -267,6 +267,7 @@ class ChessBean
 
 
     $GLOBALS["counter"] = 0;
+    $GLOBALS["compressed_block"] = $block;
     
     $GLOBALS["all_whites"] = $all_whites;
     $GLOBALS["remained_whites"] = $remained_whites;
@@ -3775,10 +3776,25 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 14 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    $this->last_bloody_function($temp_chessboard);
+    // if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 14 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
-  
+  private function last_bloody_function( array $chessboard )
+  {
+    $block = "";
+    for ($i=0; $i < 8 ; $i++) { 
+      for ($j=0; $j < 8 ; $j++) { 
+        $block .= $chessboard[$i][$j];
+      }
+    }
+    if( $this->compressBlock( $block ) == $GLOBALS["compressed_block"] )
+    {
+      echo "Found answer: " . $block . PHP_EOL;
+      $this->printBlockAsChessBoard($chessboard);
+    }
+    
+  }
   private function middle_rule_checker(array $chessboard)
   {
     $current_whites =
