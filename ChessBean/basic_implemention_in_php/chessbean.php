@@ -3492,9 +3492,9 @@ class ChessBean
             [1,1,1]
         ];      
         for ($i=0; $i < 4 ; $i++) { 
-          $temp_chessboard[0][6] = $put_0_2_in_3[ $i ][0];
-          $temp_chessboard[2][4] = $put_0_2_in_3[ $i ][1];
-          $temp_chessboard[5][1] = $put_0_2_in_3[ $i ][2];
+          $temp_chessboard[0][6] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[2][4] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[5][1] = $put_1_3_in_3[ $i ][2];
           $this->next_bloody_function( $temp_chessboard , $strategy );
         }
       }
@@ -3528,9 +3528,9 @@ class ChessBean
             [1,1,1]
         ];      
         for ($i=0; $i < 4 ; $i++) { 
-          $temp_chessboard[1][5] = $put_0_2_in_3[ $i ][0];
-          $temp_chessboard[4][2] = $put_0_2_in_3[ $i ][1];
-          $temp_chessboard[6][0] = $put_0_2_in_3[ $i ][2];
+          $temp_chessboard[1][5] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[4][2] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[6][0] = $put_1_3_in_3[ $i ][2];
           $this->next_bloody_function( $temp_chessboard , $strategy );
         }
       }
