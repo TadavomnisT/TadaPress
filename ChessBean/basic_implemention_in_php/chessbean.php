@@ -3501,7 +3501,39 @@ class ChessBean
     }
     else
     {
-
+      if( (($temp_chessboard[0][6]+
+            $temp_chessboard[2][4]+
+            $temp_chessboard[3][3]+
+            $temp_chessboard[5][1]) % 2) == $GLOBALS["white_diagonals"][3] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][5] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[4][2] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[6][0] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][5] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[4][2] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[6][0] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
     }
   }
   private function next_bloody_function( array $chessboard , bool $strategy )
