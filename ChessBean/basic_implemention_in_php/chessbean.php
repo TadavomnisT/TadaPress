@@ -3480,7 +3480,7 @@ class ChessBean
           $temp_chessboard[0][6] = $put_0_2_in_3[ $i ][0];
           $temp_chessboard[2][4] = $put_0_2_in_3[ $i ][1];
           $temp_chessboard[5][1] = $put_0_2_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_2( $temp_chessboard , $strategy );
         }
       }
       else
@@ -3495,7 +3495,7 @@ class ChessBean
           $temp_chessboard[0][6] = $put_1_3_in_3[ $i ][0];
           $temp_chessboard[2][4] = $put_1_3_in_3[ $i ][1];
           $temp_chessboard[5][1] = $put_1_3_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_2( $temp_chessboard , $strategy );
         }
       }
     }
@@ -3516,7 +3516,7 @@ class ChessBean
           $temp_chessboard[1][5] = $put_0_2_in_3[ $i ][0];
           $temp_chessboard[4][2] = $put_0_2_in_3[ $i ][1];
           $temp_chessboard[6][0] = $put_0_2_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_2( $temp_chessboard , $strategy );
         }
       }
       else
@@ -3531,6 +3531,83 @@ class ChessBean
           $temp_chessboard[1][5] = $put_1_3_in_3[ $i ][0];
           $temp_chessboard[4][2] = $put_1_3_in_3[ $i ][1];
           $temp_chessboard[6][0] = $put_1_3_in_3[ $i ][2];
+          $this->V1_2( $temp_chessboard , $strategy );
+        }
+      }
+    }
+  }
+  private function V1_2( array $chessboard , bool $strategy )
+  { 
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if ( $strategy )
+    {
+      if( (($temp_chessboard[1][7]+
+            $temp_chessboard[3][5]+
+            $temp_chessboard[4][4]+
+            $temp_chessboard[6][2]) % 2) == $GLOBALS["white_diagonals"][4] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[2][6] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[5][3] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[7][1] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[2][6] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[5][3] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[7][1] = $put_1_3_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+    }
+    else
+    {
+      if( (($temp_chessboard[2][6]+
+            $temp_chessboard[4][4]+
+            $temp_chessboard[5][3]+
+            $temp_chessboard[7][1]) % 2) == $GLOBALS["white_diagonals"][4] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][7] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[3][5] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[6][2] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][7] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[3][5] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[6][2] = $put_1_3_in_3[ $i ][2];
           $this->next_bloody_function( $temp_chessboard , $strategy );
         }
       }
@@ -3540,7 +3617,7 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 11 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 12 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   
