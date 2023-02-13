@@ -266,6 +266,8 @@ class ChessBean
     $chessboard[7][0];
 
 
+    $GLOBALS["counter"] = 0;
+    
     $GLOBALS["all_whites"] = $all_whites;
     $GLOBALS["remained_whites"] = $remained_whites;
     $GLOBALS["all_blacks"] = $all_blacks;
@@ -577,6 +579,7 @@ class ChessBean
   {
     // try {
     if( !$this->middle_rule_checker($chessboard) ) return false;
+
     $indexes = [ 0, 2, 5, 7 ];
     // for cols:
       $col_answers = 1;  
@@ -668,6 +671,7 @@ class ChessBean
       }
 
     var_dump( "cols:" . $col_answers . " rows:". $rows_answers );
+    echo "[*] " . (int)(++$GLOBALS["counter"] * 0.1041666670 ) . " % is done..." . PHP_EOL;
     // } catch (\Throwable $th) {
     //   var_dump( $th );
     //   $this->printBlockAsChessBoard( $temp_chessboard );
@@ -3557,7 +3561,7 @@ class ChessBean
           $temp_chessboard[2][6] = $put_0_2_in_3[ $i ][0];
           $temp_chessboard[5][3] = $put_0_2_in_3[ $i ][1];
           $temp_chessboard[7][1] = $put_0_2_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_3( $temp_chessboard , $strategy );
         }
       }
       else
@@ -3572,7 +3576,7 @@ class ChessBean
           $temp_chessboard[2][6] = $put_1_3_in_3[ $i ][0];
           $temp_chessboard[5][3] = $put_1_3_in_3[ $i ][1];
           $temp_chessboard[7][1] = $put_1_3_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_3( $temp_chessboard , $strategy );
         }
       }
     }
@@ -3593,7 +3597,7 @@ class ChessBean
           $temp_chessboard[1][7] = $put_0_2_in_3[ $i ][0];
           $temp_chessboard[3][5] = $put_0_2_in_3[ $i ][1];
           $temp_chessboard[6][2] = $put_0_2_in_3[ $i ][2];
-          $this->next_bloody_function( $temp_chessboard , $strategy );
+          $this->V1_3( $temp_chessboard , $strategy );
         }
       }
       else
@@ -3608,6 +3612,160 @@ class ChessBean
           $temp_chessboard[1][7] = $put_1_3_in_3[ $i ][0];
           $temp_chessboard[3][5] = $put_1_3_in_3[ $i ][1];
           $temp_chessboard[6][2] = $put_1_3_in_3[ $i ][2];
+          $this->V1_3( $temp_chessboard , $strategy );
+        }
+      }
+    }
+  }
+  private function V1_3( array $chessboard , bool $strategy )
+  { 
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if ( $strategy )
+    {
+      if( (($temp_chessboard[1][2]+
+            $temp_chessboard[3][4]+
+            $temp_chessboard[4][5]+
+            $temp_chessboard[6][7]) % 2) == $GLOBALS["black_diagonals"][3] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[0][1] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[2][3] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[5][6] = $put_0_2_in_3[ $i ][2];
+          $this->V1_4( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[0][1] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[2][3] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[5][6] = $put_1_3_in_3[ $i ][2];
+          $this->V1_4( $temp_chessboard , $strategy );
+        }
+      }
+    }
+    else
+    {
+      if( (($temp_chessboard[0][1]+
+            $temp_chessboard[2][3]+
+            $temp_chessboard[3][4]+
+            $temp_chessboard[5][6]) % 2) == $GLOBALS["black_diagonals"][3] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][2] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[4][5] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[6][7] = $put_0_2_in_3[ $i ][2];
+          $this->V1_4( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][2] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[4][5] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[6][7] = $put_1_3_in_3[ $i ][2];
+          $this->V1_4( $temp_chessboard , $strategy );
+        }
+      }
+    }
+  }
+  private function V1_4( array $chessboard , bool $strategy )
+  { 
+    $temp_chessboard = $chessboard;
+    if( !$this->middle_rule_checker($temp_chessboard) ) return false;
+    if ( $strategy )
+    {
+      if( (($temp_chessboard[1][0]+
+            $temp_chessboard[3][2]+
+            $temp_chessboard[4][3]+
+            $temp_chessboard[6][5]) % 2) == $GLOBALS["black_diagonals"][4] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[2][1] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[5][4] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[7][6] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[2][1] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[5][4] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[7][6] = $put_1_3_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+    }
+    else
+    {
+      if( (($temp_chessboard[2][1]+
+            $temp_chessboard[4][3]+
+            $temp_chessboard[5][4]+
+            $temp_chessboard[7][6]) % 2) == $GLOBALS["black_diagonals"][4] )
+      {
+        $put_0_2_in_3 = [
+            [0,0,0],
+            [1,1,0],
+            [1,0,1],
+            [0,1,1]
+        ];
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][0] = $put_0_2_in_3[ $i ][0];
+          $temp_chessboard[3][2] = $put_0_2_in_3[ $i ][1];
+          $temp_chessboard[6][5] = $put_0_2_in_3[ $i ][2];
+          $this->next_bloody_function( $temp_chessboard , $strategy );
+        }
+      }
+      else
+      {
+        $put_1_3_in_3 = [
+            [1,0,0],
+            [0,1,0],
+            [0,0,1],
+            [1,1,1]
+        ];      
+        for ($i=0; $i < 4 ; $i++) { 
+          $temp_chessboard[1][0] = $put_1_3_in_3[ $i ][0];
+          $temp_chessboard[3][2] = $put_1_3_in_3[ $i ][1];
+          $temp_chessboard[6][5] = $put_1_3_in_3[ $i ][2];
           $this->next_bloody_function( $temp_chessboard , $strategy );
         }
       }
@@ -3617,7 +3775,7 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 12 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 14 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   
