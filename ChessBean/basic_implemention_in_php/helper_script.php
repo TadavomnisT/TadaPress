@@ -1,5 +1,25 @@
 <?php
 
+
+dump_php_var_definition(
+    "put_1_3_in_3" ,
+    array_merge(
+        p_binary_combination( 3 , 1 ),
+        p_binary_combination( 3 , 3 )
+    ),
+);
+
+dump_php_var_definition(
+    "put_0_2_in_3" ,
+    array_merge(
+        p_binary_combination( 3 , 0 ),
+        p_binary_combination( 3 , 2 )
+    ),
+);
+
+
+
+die;
 dump_php_var_definition(
     "put_1_2_in_2" ,
     array_merge(
