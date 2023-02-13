@@ -3540,7 +3540,7 @@ class ChessBean
   { //EXTRA COMPUTATIONS : MUST DO STH
     $temp_chessboard = $chessboard;
     if( !$this->middle_rule_checker($temp_chessboard) ) return false;
-    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 10 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
+    if( $this->_DEBUG_rt->reliability_check($chessboard , $this->_DEBUG_rt_block , 11 , $strategy) ) $this->printBlockAsChessBoard($temp_chessboard);
     // $this->after_strategy_1( $temp_chessboard , $strategy );
   }
   
